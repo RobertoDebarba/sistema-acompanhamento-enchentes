@@ -148,7 +148,7 @@ void statusServerLedDown (int setPin1,int setPin2) {
   *<p>
   *<b> Exemplo: </p>
   *<code> receivingSendingMessage(); </code>
-  <p>
+  *<p>
   *
   *@author Luan
   *@version 1.0
