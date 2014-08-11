@@ -16,22 +16,29 @@ import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import javax.imageio.stream.ImageOutputStream;
 
 /**
- * Gera imagem PNG com base em informações binarias de arquivo TXT
+ * Gera imagem PNG com base em informações binarias de arquivo TXT<br>
+ * <br>
+ * Baseado em: Edmon Begoli<br>
  * 
- * Baseado em: Edmon Begoli
  * @author roberto.debarba
+ * @version 1.1
  * @see http://it.toolbox.com/blogs/lim/how-to-generate-jpeg-images-from-java-41449  
  */
 public class GeradorImagemMapa{
 	
 	private final String formatoImagem = "png";
-	private final float opacidadeBloco = 0.3f;
+	private final float opacidadeBloco = 0.3f; //Opacidade dos blocos visiveis
 
 	/**
-	 * Gera imagem PNG tranparente com os pontos informados no arquivo fonte
+	 * Gera imagem PNG tranparente com os pontos informados no arquivo fonte<br>
+	 * <p>
+	 * <b>Exemplo:></p><br>
+	 * <code>gerarImagem(base-teste.txt, imagem-teste.png)</code>
+	 * </p>
 	 * 
 	 * @param dirArqFonte diretorio e nome do arquivo de base
 	 * @param dirImgSaida diretorio e nome do arquivo imagem de saida
+	 * @author roberto
 	 */
     public void gerarImagem(String dirArqFonte, String dirImgSaida) {  	
 
@@ -79,12 +86,17 @@ public class GeradorImagemMapa{
     }
 
     /**
-     * Salva BufferedImage no arquivo informado
+     * Salva BufferedImage no arquivo informado<br>
+     * <p>
+	 * <b>Exemplo:></p><br>
+	 * <code>salvarImagem(img, imagem-teste.png)</code>
+	 * </p>
      * 
      * @param img BufferedImage a ser salva
      * @param diretorio Caminho e nome do arquivo a ser salvo
+     * @author roberto
      */
-    public void salvarImagem(BufferedImage img, String diretorio) {
+    private void salvarImagem(BufferedImage img, String diretorio) {
 
     	ImageWriter writer = null;
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName(formatoImagem);
@@ -112,10 +124,15 @@ public class GeradorImagemMapa{
     }
 
     /**
-     * Retorna Lista<String> contendo o arquivo de texto informado
+     * Retorna Lista<String> contendo o arquivo de texto informado<br>
+     * <p>
+	 * <b>Exemplo:></p><br>
+	 * <code>List<String> listaArquivo = getArquivoBase(base-teste.txt)</code>
+	 * </p>
      * 
      * @param diretorio e nome do arquivo
      * @return List<String> contendo o arquivo
+     * @author roberto
      */
     private List<String> getArquivoBase(String diretorio) {
     	
