@@ -1,0 +1,5 @@
+*/*.class
+*/*/*.class
+Resultado.txt
+ResultadoBinario.txt
+ResultadoSalvo/
