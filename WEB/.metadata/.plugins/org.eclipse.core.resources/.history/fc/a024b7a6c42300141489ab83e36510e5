@@ -1,0 +1,58 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+#tabela1{
+	height: 80%;
+    width:100%;	
+    margin-top: 10px;
+}
+			
+#mapa {
+	margin: auto;
+    height: 100%;
+    width: 100%;
+}
+
+#logo{
+	height: 45px;
+	width: 55px;
+}
+
+.logoAlerta {
+	
+    list-style-type: none;	
+}
+
+.logoAlerta li{
+	float: right;
+}
+
+#logo2{
+	height: 20px;
+	
+}
+
+
+#tempo{
+	height: 174px;
+	width: 124px;
+}
+
+
+ 
