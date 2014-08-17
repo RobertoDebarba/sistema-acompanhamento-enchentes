@@ -89,7 +89,6 @@ public class GravacaoDados {
 			
 	        for (int i = 0; i < pontos.length; i++) {
 				for (int z = 0; z < pontos[i].length; z++) {
-					System.out.println(i+" "+z);
 					bw.write(pontos[i][z].getElevacao()+";"+pontos[i][z].getLat()+";"+pontos[i][z].getLng());
 		        	bw.newLine();
 				}
