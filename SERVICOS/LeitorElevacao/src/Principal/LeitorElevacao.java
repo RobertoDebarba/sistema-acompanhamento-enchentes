@@ -4,6 +4,7 @@ import MapasGoogle.LeitorMapa;
 import MapasGoogle.PontoMapa;
 import SaidaDados.GravacaoDados;
 
+
 /*
  * Limites:
  * 2.500 solicitações
@@ -22,11 +23,12 @@ public class LeitorElevacao {
 		
 		LeitorMapa loop = new LeitorMapa();
 		
-//		double[] pontoIni = {-26.804,-49.279};
-//		double[] pontoFin = {-26.810,-49.287};
-		double[] pontoIni = {-26.80185606,-49.29616928};
-		double[] pontoFin = {-26.856695,-49.243126};
-//		double[] pontoFin = {-28.856695,-51.243126};
+		//Teste
+		double[] pontoIni = {-26.804,-49.279};
+		double[] pontoFin = {-26.810,-49.287};
+		//Timbó
+//		double[] pontoIni = {-26.79909806,-49.2956543};
+//		double[] pontoFin = {-26.85776756,-49.24398422};
 		
 		PontoMapa[][] result = loop.getElevacaoPontosArea(pontoIni, pontoFin, 0.001);
 		

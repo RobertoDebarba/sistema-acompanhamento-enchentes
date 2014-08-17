@@ -88,7 +88,7 @@ public class LeitorMapa {
 		 * 2- Adiciona as respostas a List<PontoMapa> listaRespostaPontos;
 		 */
 		int contPonto = 0;
-		int contNumCarac = 62;
+		int contNumCarac = 62; //Inicia com tamanho do inicio da req
 		List<double[]> listaPontosReq = new ArrayList<>();
 		List<PontoMapa> listaRespostaPontos = new ArrayList<>();
 		for (int i = 0; i < listaPontos.size(); i++) {
@@ -96,17 +96,19 @@ public class LeitorMapa {
 			/*
 			 * Se quantidade de pontos for menos que 511
 			 * Se não é o ultimo item da lista de pontos para enviar
-			 * Se tamanho de carac da requisição não pe maior de 2048 (considerando que mais uma ponto será adicionado)
+			 * Se tamanho de carac da requisição não pe maior de 2048 (numerosde caracteres especiais + tam estimado ponto + &sensor=false)
 			 */
-			if ((contPonto < 511) && (contPonto+1 < listaPontos.size()) && (contNumCarac + 60 < 2048)) {
+			if ((contPonto+1 < listaPontos.size()) && (contNumCarac + 155 < 2048)) {
 				//Lista para requisição recebe +1 ponto
 				listaPontosReq.add(listaPontos.get(contPonto));
 				contPonto++;
 				
 				//Adiciona o tamnho adicinal da url de requisição
-				contNumCarac += (listaPontos.get(contPonto)[0]+"").length();
-				contNumCarac += (listaPontos.get(contPonto)[1]+"").length();
-				contNumCarac += 4; // | e ,
+				int teste = 0;
+				teste += (listaPontos.get(contPonto)[0]+"").length();
+				teste += (listaPontos.get(contPonto)[1]+"").length();
+				teste += 4; // | e ,
+				contNumCarac += teste;
 			
 			/*
 			 * 1- Adiciona o ultimo ponto à lista de requisição
@@ -116,6 +118,7 @@ public class LeitorMapa {
 			} else {
 				//Lista para requisição recebe +1 ponto
 				listaPontosReq.add(listaPontos.get(contPonto));
+				contPonto++;
 				
 				//Envia requisição
 				JSONObject json = null;
@@ -140,8 +143,7 @@ public class LeitorMapa {
 				listaPontosReq.removeAll(listaPontosReq);
 				
 				//Reseta contadores de maximo de pontos e maximo e de caracteres
-				contPonto = 0;
-				contNumCarac = 62;
+				contNumCarac = 0;
 			}
 		}
 		

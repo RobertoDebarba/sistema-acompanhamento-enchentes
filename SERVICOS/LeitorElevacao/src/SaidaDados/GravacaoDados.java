@@ -77,17 +77,19 @@ public class GravacaoDados {
 	 */
 	public void gravarTXT(PontoMapa[][] pontos, String dirSaida) {
 		
-		FileWriter fw;
+		FileWriter fw = null;
+		BufferedWriter bw = null;
 		try {
 			fw = new FileWriter(dirSaida);
 			
-			BufferedWriter bw = new BufferedWriter(fw);
+			bw = new BufferedWriter(fw);
 	        
 			bw.write("Elevação;Latitude;Longitude");
 			bw.newLine();
 			
 	        for (int i = 0; i < pontos.length; i++) {
 				for (int z = 0; z < pontos[i].length; z++) {
+					System.out.println(i+" "+z);
 					bw.write(pontos[i][z].getElevacao()+";"+pontos[i][z].getLat()+";"+pontos[i][z].getLng());
 		        	bw.newLine();
 				}
@@ -97,7 +99,8 @@ public class GravacaoDados {
 	        
 		} catch (IOException e) {
 			e.printStackTrace();
-		}    
+		}
+		
 	}	
 	
 }

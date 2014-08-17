@@ -87,11 +87,16 @@ public class HTTP_request {
 		try {
 			
 			System.out.println("Mandando requisição GET para : \"" + url + "\"");
+			System.out.println("Quantidade de ponto na requisição: "+lista.size());
+			System.out.println("Quantidade de caracteres na requisição: "+url.length());
 			
 			//Envia requisição
 			HttpResponse response = client.execute(request);
 			
 			System.out.println("Codigo de resposta : " + response.getStatusLine().getStatusCode());
+			if (response.getStatusLine().getStatusCode() != 200) {
+				throw new HTTPRequestException("Códido de resposta diferente de 200");
+			}
 	 
 			//Monta JSON com a resposta
 			BufferedReader rd = new BufferedReader(
