@@ -152,7 +152,7 @@ public class LeitorMapa {
 		 * O double[][] é organizado respeitando a localização de cada ponto na matriz
 		 */
 		int contColuna = 0;
-		int contLinha = 0;
+		int contLinha = qtdPontoVer-1;
 		for (int i = 0; i < listaRespostaPontos.size(); i++) {
 			
 			if (contColuna < qtdPontoHor -1) {
@@ -160,7 +160,7 @@ public class LeitorMapa {
 			} else {
 				pontos[contLinha][contColuna] = listaRespostaPontos.get(i);
 				contColuna = -1;
-				contLinha++;
+				contLinha--;
 			}
 			
 			contColuna++;

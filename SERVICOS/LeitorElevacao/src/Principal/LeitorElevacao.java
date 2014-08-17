@@ -24,13 +24,13 @@ public class LeitorElevacao {
 		LeitorMapa loop = new LeitorMapa();
 		
 		//Teste
-		double[] pontoIni = {-26.804,-49.279};
-		double[] pontoFin = {-26.810,-49.287};
+//		double[] pontoSW = {-26.810,-49.287};
+//		double[] pontoNO = {-26.804,-49.279};
 		//Timbó
-//		double[] pontoIni = {-26.79909806,-49.2956543};
-//		double[] pontoFin = {-26.85776756,-49.24398422};
+		double[] pontoSW = {-26.8739997,-49.30561066};
+		double[] pontoNO = {-26.78959779,-49.23316956};
 		
-		PontoMapa[][] result = loop.getElevacaoPontosArea(pontoIni, pontoFin, 0.001);
+		PontoMapa[][] result = loop.getElevacaoPontosArea(pontoSW, pontoNO, 0.001);
 		
 		//Grava dados
 		GravacaoDados arqTxt = new GravacaoDados();
