@@ -12,12 +12,12 @@ function initialize() {
 
   var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-  var swBound = new google.maps.LatLng(-26.83, -49.29);
-  var neBound = new google.maps.LatLng(-26.81, -49.27);
+  var swBound = new google.maps.LatLng(-26.8744997,-49.30611066);
+  var neBound = new google.maps.LatLng(-26.7894996999999,-49.23311066000017);
   var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
   // The picture PNG
-  var srcImage = './_Imagens/teste.png';
+  var srcImage = './_Imagens/imagem-teste.png';
 
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
