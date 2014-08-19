@@ -24,7 +24,7 @@ const byte SENDING_DATA = 4;
 
 
 void setup() {
-  //Serial.begin(9600);
+  Serial.begin(9600);
   
   pinMode(pinRedLed, OUTPUT); // Seta a porta do led vermelho como saída
   pinMode(pinYellowLed, OUTPUT); // Seta a porta do led amarelo como saída
@@ -60,9 +60,13 @@ void loop(){
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
-        Serial.write(c);
-        client.println(readPotenciometer());
-        receivingSendingMessage();
+        if (c == 'getChuva'){
+        }
+        else if (c == 'getElevacao') {
+           client.println(readPotenciometer());
+           receivingSendingMessage(); 
+        }
+        Serial.write(c);     
       }
     }
   }
