@@ -1,3 +1,6 @@
+com.aptana.editor.common.editorMarkOccurrences=true
+com.aptana.editor.common.useGlobalDefaults=false
 eclipse.preferences.version=1
+spacesForTabs=true
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

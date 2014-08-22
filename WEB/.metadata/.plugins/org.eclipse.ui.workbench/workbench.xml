@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="51" version="2.0">
+<workbench progressCount="48" version="2.0">
 <workbenchAdvisor/>
 <window height="744" maximized="true" width="1200" x="53" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -20,7 +20,7 @@
 <coolItem id="com.aptana.editor.js" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="com.aptana.editor.php" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="com.aptana.editor.css" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="com.aptana.editor.html" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.html" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -33,21 +33,26 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="com.aptana.editor.html" name="index.html" partName="index.html" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/index.html" title="index.html" tooltip="Projeto Web/index.html" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/index.html"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3681" selectionTopPixel="943"/>
+<editor id="com.aptana.editor.php" name="index.php" partName="index.php | Jonathan" path="/opt/lampp/htdocs/Jonathan/Projeto Web/index.php" title="index.php | Jonathan" tooltip="Projeto Web php/index.php" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/index.php"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5255" selectionOffset="0" selectionTopPixel="1429"/>
 </editor>
-<editor id="com.aptana.editor.css" name="Styles.css" partName="Styles.css" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/_css/Styles.css" title="Styles.css" tooltip="Projeto Web/_css/Styles.css" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/_css/Styles.css"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="749" selectionTopPixel="462"/>
+<editor id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php | Jonathan" path="/opt/lampp/htdocs/Jonathan/Projeto Web/_php/webServiceAcesso.php" title="webServiceAcesso.php | Jonathan" tooltip="Projeto Web php/_php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/_php/webServiceAcesso.php"/>
+<editorState selectionHorizontalPixel="0" selectionLength="209" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/_php/webServiceAcesso.php" title="webServiceAcesso.php" tooltip="Projeto Web/_php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
+<editor id="com.aptana.editor.php" name="index.php" partName="index.php | WEB" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/index.php" title="index.php | WEB" tooltip="Projeto Web/index.php" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/index.php"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5255" selectionTopPixel="1524"/>
+</editor>
+<editor activePart="true" focus="true" id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php | WEB" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/_php/webServiceAcesso.php" title="webServiceAcesso.php | WEB" tooltip="Projeto Web/_php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="193" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="218" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -59,6 +64,9 @@
 <view id="com.aptana.samples.ui.SamplesView" partName="Samples"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (100 of 3502 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -151,7 +159,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19983137" ratioLeft="237" ratioRight="949" relationship="2" relative="left"/>
-<info folder="true" part="terminalArea" ratio="0.73208725" ratioLeft="470" ratioRight="172" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="terminalArea" ratio="0.45496893" ratioLeft="293" ratioRight="351" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="com.aptana.terminal.views.terminal" label="Terminal"/>
@@ -188,87 +196,20 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" path="/Projeto Web/_css/Styles.css"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" path="/Projeto Web/_js/ajax.js"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/cadastroSms.html"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.php"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/_php/webServiceAcesso.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.portal.ui.browser.portal" path="/Projeto Web/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
 </editors>
-<item historyLabel="ajax.js" index="2">
-<position info="not_deleted" x="644" y="0"/>
-</item>
-<item historyLabel="Styles.css" index="1">
-<position info="not_deleted" x="559" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="344" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3567" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3567" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="5" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3567" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="1892" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3458" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="0" y="343"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3458" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3606" y="0"/>
-</item>
-<item historyLabel="cadastroSms.html" index="4">
-<position info="not_deleted" x="640" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="1650" y="0"/>
-</item>
-<item historyLabel="cadastroSms.html" index="4">
-<position info="not_deleted" x="640" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3567" y="0"/>
-</item>
 <item historyLabel="webServiceAcesso.php" index="3">
 <position info="not_deleted" x="344" y="0"/>
 </item>
@@ -311,38 +252,111 @@
 <item historyLabel="Styles.css" index="1">
 <position info="not_deleted" x="749" y="0"/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="5">
+<item historyLabel="webServiceAcesso.php" index="4">
 <position/>
 </item>
-<item historyLabel="index.html" index="6">
+<item historyLabel="index.html" index="5">
 <position info="not_deleted" x="3775" y="0"/>
 </item>
-<item historyLabel="index.php" index="7">
+<item historyLabel="index.php" index="6">
 <position info="not_deleted" x="5" y="0"/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="5">
+<item historyLabel="webServiceAcesso.php" index="4">
 <position info="not_deleted" x="192" y="0"/>
 </item>
-<item historyLabel="index.php" index="7">
+<item historyLabel="index.php" index="6">
 <position/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="5">
+<item historyLabel="webServiceAcesso.php" index="4">
 <position info="not_deleted" x="192" y="0"/>
 </item>
-<item historyLabel="index.php" index="7">
+<item historyLabel="index.php" index="6">
 <position/>
 </item>
-<item historyLabel="index.html" index="6">
+<item historyLabel="index.html" index="5">
 <position info="not_deleted" x="3681" y="0"/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="5">
+<item historyLabel="webServiceAcesso.php" index="4">
 <position info="not_deleted" x="192" y="0"/>
+</item>
+<item historyLabel="index.html" index="7">
+<position info="not_deleted" x="3681" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="4">
+<position info="not_deleted" x="193" y="0"/>
 </item>
 <item historyLabel="index.html" index="8">
-<position info="not_deleted" x="3681" y="0"/>
+<position info="not_deleted" x="3648" y="0"/>
 </item>
-<item active="true" historyLabel="webServiceAcesso.php" index="5">
+<item historyLabel="webServiceAcesso.php" index="4">
 <position info="not_deleted" x="193" y="0"/>
+</item>
+<item historyLabel="index.html" index="8">
+<position info="not_deleted" x="3648" y="0"/>
+</item>
+<item historyLabel="index.php | WEB" index="9">
+<position info="not_deleted" x="0" y="4154"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position/>
+</item>
+<item historyLabel="index.php | WEB" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="12">
+<position info="not_deleted" x="193" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position info="not_deleted" x="5169" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position info="not_deleted" x="4775" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php | Jonathan" index="11">
+<position info="not_deleted" x="0" y="5255"/>
+</item>
+<item historyLabel="Aptana Portal Browser" index="14"/>
+<item historyLabel="index.php | Jonathan" index="11">
+<position info="not_deleted" x="0" y="5255"/>
+</item>
+<item historyLabel="index.php | WEB" index="15">
+<position info="not_deleted" x="5255" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php | WEB" index="16">
+<position info="not_deleted" x="218" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<position info="not_deleted" x="0" y="209"/>
+</item>
+<item active="true" historyLabel="webServiceAcesso.php | WEB" index="16">
+<position info="not_deleted" x="218" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -361,6 +375,18 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web/_php/webServiceAcesso.php">
+<persistable path="/Projeto Web/_php/webServiceAcesso.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="index.php" tooltip="Projeto Web/index.php">
+<persistable path="/Projeto Web/index.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web php/_php/webServiceAcesso.php">
+<persistable path="/Projeto Web php/_php/webServiceAcesso.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="index.php" tooltip="Projeto Web php/index.php">
+<persistable path="/Projeto Web php/index.php"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" name="cadastroSms.html" tooltip="Projeto Web/cadastroSms.html">
 <persistable path="/Projeto Web/cadastroSms.html"/>
 </file>
@@ -378,9 +404,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="ajax.js" tooltip="Projeto Web/_js/ajax.js">
 <persistable path="/Projeto Web/_js/ajax.js"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web/_php/webServiceAcesso.php">
-<persistable path="/Projeto Web/_php/webServiceAcesso.php"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="Styles.css" tooltip="Projeto Web/_css/Styles.css">
 <persistable path="/Projeto Web/_css/Styles.css"/>

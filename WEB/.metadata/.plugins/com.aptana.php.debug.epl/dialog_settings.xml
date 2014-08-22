@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item value="1" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.sortColumn"/>
-	<item value="0.3757764" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.column0"/>
+	<item value="0.378882" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.column0"/>
 	<item value="0.7670807" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.column2"/>
-	<item value="0.2515528" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.column1"/>
+	<item value="0.25465837" key="com.aptana.php.debug.eplphpdebug.dialog.columnwidth.column1"/>
 </section>

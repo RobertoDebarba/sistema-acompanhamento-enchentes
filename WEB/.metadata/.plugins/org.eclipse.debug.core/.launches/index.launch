@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.aptana.php.debug.core.launching.PHPExeLaunchConfigurationType">
+<stringAttribute key="ATTR_FILE" value="/Projeto Web php/index.php"/>
+<stringAttribute key="ATTR_FILE_FULL_PATH" value="/opt/lampp/htdocs/Jonathan/Projeto Web/index.php"/>
+<stringAttribute key="ATTR_INI_LOCATION" value="/etc/php5/mods-available/xdebug.ini"/>
+<stringAttribute key="ATTR_LOCATION" value="/opt/lampp/bin/php"/>
+<booleanAttribute key="ATTR_USE_SPECIFIC_FILE" value="true"/>
+<stringAttribute key="com.aptana.php.debug.configurationDelegateClass" value="org2.eclipse.php.internal.debug.core.launching.XDebugExeLaunchConfigurationDelegate"/>
+<stringAttribute key="com.aptana.php.debug.php_debugger_id" value="org2.eclipse.php.debug.core.xdebugDebugger"/>
+<stringAttribute key="debugOutputEncoding" value="UTF-8"/>
+<stringAttribute key="debugTransferEncoding" value="UTF-8"/>
+<booleanAttribute key="firstLineBreakpoint" value="true"/>
+<stringAttribute key="org2.eclipse.php.debug.core.PHP_Project" value="/Projeto Web php"/>
+<booleanAttribute key="org2.eclipse.php.debug.core.RunWithDebugInfo" value="true"/>
+</launchConfiguration>

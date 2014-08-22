@@ -2,9 +2,10 @@
 <launchConfiguration type="com.aptana.js.debug.core.webbrowserLaunchConfigurationType">
 <booleanAttribute key="advancedRunEnabled" value="false"/>
 <booleanAttribute key="appendProjectName" value="true"/>
+<stringAttribute key="browserCmdLine" value=""/>
 <stringAttribute key="browserExecutable" value="/usr/bin/firefox"/>
 <stringAttribute key="browserNature" value="Firefox"/>
-<stringAttribute key="externalBaseUrl" value=""/>
+<stringAttribute key="externalBaseUrl" value="http://localhost/"/>
 <stringAttribute key="httpGetData" value=""/>
 <stringAttribute key="httpPostContentType" value=""/>
 <stringAttribute key="httpPostData" value=""/>
