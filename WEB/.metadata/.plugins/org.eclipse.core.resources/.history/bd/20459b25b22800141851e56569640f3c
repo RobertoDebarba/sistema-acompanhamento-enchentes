@@ -1,0 +1,16 @@
+<?php
+	echo "teste";
+
+	$client = new SoapClient("http://ec2-54-207-68-21.sa-east-1.compute.amazonaws.com:8080/axis2/services/helloworld?wsdl"); // Edereço do servidor a ser consumido (lido)
+	try {
+	  	$function = 'arg0';
+		 
+		$result = $client->__soapCall($function);
+		 
+		echo 'Response: ';
+		
+		print_r($result);
+	} catch (Exception $e) {
+	  echo "ERRO: " . $e->getMessage();
+	}
+?>

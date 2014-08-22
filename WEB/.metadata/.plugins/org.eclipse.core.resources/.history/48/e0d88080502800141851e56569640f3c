@@ -1,0 +1,70 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+#painel1 {
+        padding: 10px;
+        border: 2px solid #DDDDDD; 
+        margin-bottom: 10px;
+        background-color: #FFFFFF 
+}
+
+#painel2{
+		height: 450px;
+        margin-left: 10px;
+        border: 2px solid #DDDDDD; 
+        background-color: #FFFFFF 
+        padding: 10px;
+}
+#painel3{
+	text-align: center;
+    border: 2px solid #DDDDDD; 
+    margin-top: 10px;
+    background-color: #FFFFFF 
+}
+    
+#mapa {
+        margin-left: auto;
+        margin-right: auto;
+        height: 400px 
+    }
+    
+#clima{
+	margin-left: 35%;
+	margin-top: 50%;
+	
+}
+   
+#logo{
+	height: 35px;
+	width: 45px;
+}
+
+#alerta{
+	margin: auto;
+	text-align: center;
+}
+
+#alertaImagem{
+	width: 20px;
+	height: auto;
+}
+
+#tempo{
+	height: 174px;
+	width: 124px;
+}
+
+
+ 

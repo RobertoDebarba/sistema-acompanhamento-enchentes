@@ -1,0 +1,18 @@
+<?php
+$client = new SoapClient("http://servidor/services/ServiceWS?wsdl"); // Edereço do servidor a ser consumido (lido)
+try {
+  $obj = $client->recuperarDados(array("idproduto" => "5")); //Neste exemplo eu estou chamando a função do servidor chamada recuperarDados e passando o numero 5 para a variavel idproduto
+  if ($myxml = simplexml_load_string ($obj -> return)) {
+    foreach ($myxml as $post) { //Loop para mostrar os dados
+        echo 'ID ' . $post->idproduto . '<br />'; //Retorna o conteudo da variável idproduto
+        echo 'Produto: ' . $post->nomeProduto . '<br />';
+        echo 'Data Vencimento: ' . $post->dataVenc . '<br />';
+        echo 'Quantidade: ' . $post->qtd . '<br />';
+    }
+   } else 
+    { echo 'Erro ao ler ficheiro XML'; }
+  
+} catch (Exception $e) {
+  echo "ERRO: " . $e->getMessage();
+}
+?>

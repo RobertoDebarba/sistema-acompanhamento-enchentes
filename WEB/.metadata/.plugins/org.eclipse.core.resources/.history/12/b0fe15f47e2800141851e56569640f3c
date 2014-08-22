@@ -1,0 +1,14 @@
+<script>
+	function click(){
+	<?php
+	
+	
+	header("Content-Type:text/javascript; charset=iso-8859-1");
+	
+	
+	?>
+	
+	
+	document.write('Olá mundo');
+	}
+</script>
