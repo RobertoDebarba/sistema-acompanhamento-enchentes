@@ -2,7 +2,8 @@ package Principal;
 
 import MapasGoogle.LeitorMapa;
 import MapasGoogle.PontoMapa;
-import SaidaDados.GravacaoDados;
+import SaidaDados.SaidaMongoDB;
+import SaidaDados.SaidaTexto;;
 
 
 /*
@@ -25,7 +26,7 @@ public class LeitorElevacao {
 		
 		//Teste
 //		double[] pontoSW = {-26.810,-49.287};
-//		double[] pontoNO = {-26.804,-49.279};
+//		double[] pontoNO = {-26.808,-49.284};
 		//Timbó
 		double[] pontoSW = {-26.8739997,-49.30561066};
 		double[] pontoNO = {-26.78959779,-49.23316956};
@@ -33,7 +34,8 @@ public class LeitorElevacao {
 		PontoMapa[][] result = loop.getElevacaoPontosArea(pontoSW, pontoNO, 0.001);
 		
 		//Grava dados
-		GravacaoDados arqTxt = new GravacaoDados();
+		SaidaTexto arqTxt = new SaidaTexto();
+		SaidaMongoDB mongo = new SaidaMongoDB();
 		
 		System.out.println("Gravado pontos em arquivo TXT...");
 		arqTxt.gravarTXT(result, "Resultado.txt");
@@ -41,6 +43,10 @@ public class LeitorElevacao {
 		
 		System.out.println("Gravado dados binarios em arquivo TXT...");
 		arqTxt.gravarTXTbinario(result, 70, "ResultadoBinario.txt");
+		System.out.println("Informações gravadas com sucesso!");
+		
+		System.out.println("Gravado pontos no MongoDB...");
+		mongo.gravarMongoDB(result, true);
 		System.out.println("Informações gravadas com sucesso!");
 	}
 }
