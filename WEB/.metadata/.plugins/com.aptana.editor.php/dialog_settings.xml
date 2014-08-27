@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="ShowStatusLine"/>
+	<item value="true" key="classes"/>
+	<item value="true" key="functions"/>
+	<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History/&gt;" key="History"/>
+	<item value="true" key="constants"/>
+	<section name="DialogBoundsSettings">
+		<item value="600" key="DIALOG_WIDTH"/>
+		<item value="39" key="DIALOG_Y_ORIGIN"/>
+		<item value="356" key="DIALOG_X_ORIGIN"/>
+		<item value="528" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

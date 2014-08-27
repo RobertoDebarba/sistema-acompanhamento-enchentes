@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="48" version="2.0">
+<workbench progressCount="44" version="2.0">
 <workbenchAdvisor/>
-<window height="744" maximized="true" width="1200" x="53" y="24">
+<window height="715" maximized="true" width="1194" x="53" y="24">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -10,6 +10,8 @@
 <coolItem id="group.file" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="30"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.python.pydev.debug.actionSet" itemType="typeToolBarContribution" x="68" y="30"/>
+<coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="40" y="30"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="140" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="82" y="30"/>
 <coolItem id="com.aptana.ui.globalActionSet" itemType="typeToolBarContribution" x="188" y="30"/>
@@ -17,9 +19,9 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="84" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="com.aptana.editor.js" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.js" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="com.aptana.editor.php" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="com.aptana.editor.css" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.css" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="com.aptana.editor.html" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -33,41 +35,63 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="com.aptana.editor.php" name="index.php" partName="index.php | Jonathan" path="/opt/lampp/htdocs/Jonathan/Projeto Web/index.php" title="index.php | Jonathan" tooltip="Projeto Web php/index.php" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.aptana.editor.js" name="funcoes.js" partName="funcoes.js" path="/opt/lampp/htdocs/Jonathan/Projeto Web/js/funcoes.js" title="funcoes.js" tooltip="Projeto Web php/js/funcoes.js" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/js/funcoes.js"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="602" selectionTopPixel="47"/>
+</editor>
+<editor id="com.aptana.editor.php" name="index.php" partName="index.php" path="/opt/lampp/htdocs/Jonathan/Projeto Web/index.php" title="index.php" tooltip="Projeto Web php/index.php" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/index.php"/>
-<editorState selectionHorizontalPixel="0" selectionLength="5255" selectionOffset="0" selectionTopPixel="1429"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3694" selectionTopPixel="1450"/>
 </editor>
-<editor id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php | Jonathan" path="/opt/lampp/htdocs/Jonathan/Projeto Web/_php/webServiceAcesso.php" title="webServiceAcesso.php | Jonathan" tooltip="Projeto Web php/_php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/_php/webServiceAcesso.php"/>
-<editorState selectionHorizontalPixel="0" selectionLength="209" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="com.aptana.editor.php" name="index.php" partName="index.php | WEB" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/index.php" title="index.php | WEB" tooltip="Projeto Web/index.php" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/index.php"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5255" selectionTopPixel="1524"/>
-</editor>
-<editor activePart="true" focus="true" id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php | WEB" path="/home/jonathan/git/SAEnchentes/WEB/Projeto Web/_php/webServiceAcesso.php" title="webServiceAcesso.php | WEB" tooltip="Projeto Web/_php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="218" selectionTopPixel="0"/>
+<editor id="com.aptana.editor.php" name="webServiceAcesso.php" partName="webServiceAcesso.php" path="/opt/lampp/htdocs/Jonathan/Projeto Web/php/webServiceAcesso.php" title="webServiceAcesso.php" tooltip="Projeto Web php/php/webServiceAcesso.php" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Projeto Web php/php/webServiceAcesso.php"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
+<view id="com.aptana.terminal.views.terminal" partName="Terminal">
+<viewState>
+<title>Terminal</title>
+<workingDirectory>/home/jonathan/git/SAEnchentes/WEB/Projeto Web</workingDirectory>
+</viewState>
+</view>
+<view id="com.aptana.samples.ui.SamplesView" partName="Samples">
+<viewState/>
+</view>
+<view id="com.aptana.explorer.view" partName="App Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" GitChangedFilesFilterEnabled="" activeProject="Projeto Web">
+<project name="Projeto Web">
+<selection>
+<element path="/Projeto Web"/>
+</selection>
+</project>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.PHPBrowserOutput" partName="Browser Output"/>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints"/>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
-<view id="com.aptana.snippets.ui.views.SnippetsView" partName="Snippets"/>
-<view id="com.aptana.terminal.views.terminal" partName="Terminal"/>
-<view id="com.aptana.samples.ui.SamplesView" partName="Samples"/>
+<view id="com.aptana.snippets.ui.views.SnippetsView" partName="Snippets">
+<viewState/>
+</view>
+<view id="com.aptana.js.debug.ui.scriptsView" partName="Loaded Scripts"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (100 of 3502 items)"/>
+<expanded>&#x0A;<category IMemento.internal.id="Warnings (100 of 2800 items)"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="443" org.eclipse.ui.ide.pathField="158" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -78,18 +102,8 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="com.aptana.explorer.view" partName="App Explorer">
-<viewState CommonNavigator.LINKING_ENABLED="0" GitChangedFilesFilterEnabled="" activeProject="Projeto Web">
-<project name="Projeto Web">&#x0A;<selection>&#x0A;<element path="/Projeto Web"/>
-</selection>
-</project>
-</viewState>
-</view>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
-<viewState/>
-</view>
 </views>
-<perspectives activePart="com.aptana.editor.php" activePerspective="com.aptana.ui.WebPerspective">
+<perspectives activePart="com.aptana.editor.js" activePerspective="com.aptana.ui.WebPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.aptana.ui.internal.WebPerspectiveFactory" id="com.aptana.ui.WebPerspective" label="Web"/>
 <alwaysOnActionSet id="com.aptana.browser.actionSet"/>
@@ -129,11 +143,11 @@
 <new_wizard_action id="org.radrails.rails.ui.projectWizard"/>
 <perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="com.aptana.explorer.view"/>
-<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="com.aptana.terminal.views.terminal"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
+<view id="com.aptana.explorer.view"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="com.aptana.samples.ui.SamplesView"/>
 <view id="com.aptana.snippets.ui.views.SnippetsView"/>
@@ -158,14 +172,15 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.19983137" ratioLeft="237" ratioRight="949" relationship="2" relative="left"/>
-<info folder="true" part="terminalArea" ratio="0.45496893" ratioLeft="293" ratioRight="351" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.14439324" ratioLeft="188" ratioRight="1114" relationship="2" relative="left"/>
+<info folder="true" part="terminalArea" ratio="0.6726727" ratioLeft="448" ratioRight="218" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="com.aptana.terminal.views.terminal" label="Terminal"/>
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.pde.runtime.LogView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
@@ -174,7 +189,7 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@7dc154c2" ratio="0.7488922" ratioLeft="507" ratioRight="170" relationship="4" relative="left">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<folder activePageID="com.aptana.snippets.ui.views.SnippetsView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="com.aptana.samples.ui.SamplesView" label="Samples"/>
 <page content="com.aptana.snippets.ui.views.SnippetsView" label="Snippets"/>
@@ -188,175 +203,271 @@
 </mainWindow>
 </layout>
 </perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="com.aptana.browser.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ruby.debug.ui.RubyDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="com.aptana.js.debug.ui.actionSet"/>
+<alwaysOnActionSet id="com.aptana.terminal.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.navigate.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.debug.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.python.pydev.exceptionBreakpoints"/>
+<alwaysOnActionSet id="org.python.pydev.pyPropertyTrace"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="com.aptana.js.debug.ui.scriptsView"/>
+<show_view_action id="com.aptana.js.debug.ui.AJAXMonitorView"/>
+<show_view_action id="com.aptana.ruby.debug.ui.DisplayView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<perspective_action id="com.aptana.ui.WebPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.debug.ui.PHPBrowserOutput"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.debug.internal.ui.ToolsFolderView" orientation="256" selectedTabId="org.eclipse.debug.ui.VariableView" style="0">
+<fastViews>
+<view id="org.eclipse.debug.ui.VariableView" ratio="0.3"/>
+<view id="org.eclipse.debug.ui.BreakpointView" ratio="0.3"/>
+<view id="com.aptana.js.debug.ui.scriptsView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7494253" ratioLeft="978" ratioRight="327" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.7488789" ratioLeft="501" ratioRight="168" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.debug.ui.PHPBrowserOutput" label="Browser Output"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="com.aptana.ruby.debug.ui.DisplayView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.4491018" ratioLeft="225" ratioRight="276" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7494253" ratioLeft="978" ratioRight="327" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.49961686" ratioLeft="652" ratioRight="653" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="0">
+<page content="org.eclipse.debug.ui.VariableView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
+<page content="com.aptana.js.debug.ui.scriptsView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.PHPStackView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
 </perspectives>
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" path="/Projeto Web/_css/Styles.css"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" path="/Projeto Web/_js/ajax.js"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.html"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/Projeto Web/index.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/index.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/index.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/_php/webServiceAcesso.php"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.portal.ui.browser.portal" path="/Projeto Web/index.php"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" path="/Projeto Web/css/Styles.css"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" path="/Projeto Web/js/funcoes.js"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/_php/webServiceAcesso.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/php/webServiceAcesso.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/index.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web/php/webServiceAcesso.php"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" path="/Projeto Web php/js/funcoes.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" path="/Projeto Web php/php/webServiceAcesso.php"/>
 </editors>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="4943" y="110"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="4943" y="110"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
 <item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="344" y="0"/>
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="4943" y="110"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="5054" y="0"/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="5054" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="5054" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="5054" y="0"/>
+</item>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="5059" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="2">
+<position/>
 </item>
 <item historyLabel="Styles.css" index="1">
-<position info="not_deleted" x="559" y="0"/>
+<position info="not_deleted" x="465" y="0"/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="344" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3606" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="340" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3606" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="5" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3657" y="0"/>
-</item>
-<item historyLabel="ajax.js" index="2">
-<position info="not_deleted" x="644" y="0"/>
-</item>
-<item historyLabel="index.html" index="0">
-<position info="not_deleted" x="3657" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="82" y="0"/>
-</item>
-<item historyLabel="Styles.css" index="1">
-<position info="not_deleted" x="749" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="3">
-<position info="not_deleted" x="33" y="40"/>
-</item>
-<item historyLabel="Styles.css" index="1">
-<position info="not_deleted" x="749" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position/>
-</item>
-<item historyLabel="index.html" index="5">
-<position info="not_deleted" x="3775" y="0"/>
-</item>
-<item historyLabel="index.php" index="6">
-<position info="not_deleted" x="5" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position info="not_deleted" x="192" y="0"/>
-</item>
-<item historyLabel="index.php" index="6">
-<position/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position info="not_deleted" x="192" y="0"/>
-</item>
-<item historyLabel="index.php" index="6">
-<position/>
-</item>
-<item historyLabel="index.html" index="5">
-<position info="not_deleted" x="3681" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position info="not_deleted" x="192" y="0"/>
-</item>
-<item historyLabel="index.html" index="7">
-<position info="not_deleted" x="3681" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position info="not_deleted" x="193" y="0"/>
-</item>
-<item historyLabel="index.html" index="8">
-<position info="not_deleted" x="3648" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php" index="4">
-<position info="not_deleted" x="193" y="0"/>
-</item>
-<item historyLabel="index.html" index="8">
-<position info="not_deleted" x="3648" y="0"/>
-</item>
-<item historyLabel="index.php | WEB" index="9">
-<position info="not_deleted" x="0" y="4154"/>
-</item>
-<item historyLabel="index.php | Jonathan" index="10">
+<item historyLabel="webServiceAcesso.php" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="index.php" index="9">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="5059" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
+<item historyLabel="funcoes.js" index="2">
 <position/>
 </item>
-<item historyLabel="index.php | WEB" index="9">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="3680" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
+<item historyLabel="funcoes.js" index="2">
 <position/>
 </item>
-<item historyLabel="webServiceAcesso.php" index="12">
-<position info="not_deleted" x="193" y="0"/>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="3680" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
+<item historyLabel="funcoes.js" index="2">
 <position/>
 </item>
-<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<item historyLabel="webServiceAcesso.php" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
-<position info="not_deleted" x="5169" y="0"/>
+<item historyLabel="index.php" index="0">
+<position info="not_deleted" x="3753" y="0"/>
 </item>
-<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<item historyLabel="funcoes.js | WEB" index="2">
+<position info="not_deleted" x="0" y="483"/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position info="not_deleted" x="687" y="0"/>
+</item>
+<item historyLabel="index.php" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
-<position info="not_deleted" x="4775" y="0"/>
+<item historyLabel="funcoes.js | WEB" index="2">
+<position info="not_deleted" x="0" y="483"/>
 </item>
-<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="funcoes.js" index="7">
+<position info="not_deleted" x="687" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
+<item historyLabel="funcoes.js" index="7">
 <position/>
 </item>
-<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="3694" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="3694" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position info="not_deleted" x="426" y="0"/>
+</item>
+<item historyLabel="index.php" index="5">
+<position info="not_deleted" x="3694" y="0"/>
+</item>
+<item historyLabel="funcoes.js" index="7">
+<position/>
+</item>
+<item historyLabel="webServiceAcesso.php" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="index.php | Jonathan" index="11">
-<position info="not_deleted" x="0" y="5255"/>
-</item>
-<item historyLabel="Aptana Portal Browser" index="14"/>
-<item historyLabel="index.php | Jonathan" index="11">
-<position info="not_deleted" x="0" y="5255"/>
-</item>
-<item historyLabel="index.php | WEB" index="15">
-<position info="not_deleted" x="5255" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php | WEB" index="16">
-<position info="not_deleted" x="218" y="0"/>
-</item>
-<item historyLabel="webServiceAcesso.php | Jonathan" index="13">
-<position info="not_deleted" x="0" y="209"/>
-</item>
-<item active="true" historyLabel="webServiceAcesso.php | WEB" index="16">
-<position info="not_deleted" x="218" y="0"/>
+<item active="true" historyLabel="funcoes.js" index="7">
+<position/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -364,6 +475,13 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@7dc154c2"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.ToolsFolderView"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -371,48 +489,55 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="terminalArea"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web/_php/webServiceAcesso.php">
-<persistable path="/Projeto Web/_php/webServiceAcesso.php"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="index.php" tooltip="Projeto Web/index.php">
-<persistable path="/Projeto Web/index.php"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web php/_php/webServiceAcesso.php">
-<persistable path="/Projeto Web php/_php/webServiceAcesso.php"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web php/php/webServiceAcesso.php">
+<persistable path="/Projeto Web php/php/webServiceAcesso.php"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="index.php" tooltip="Projeto Web php/index.php">
 <persistable path="/Projeto Web php/index.php"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" name="cadastroSms.html" tooltip="Projeto Web/cadastroSms.html">
-<persistable path="/Projeto Web/cadastroSms.html"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="funcoes.js" tooltip="Projeto Web php/js/funcoes.js">
+<persistable path="/Projeto Web php/js/funcoes.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap.min.css" tooltip="Projeto Web/_css/bootstrap.min.css">
-<persistable path="/Projeto Web/_css/bootstrap.min.css"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="funcoes.js" tooltip="Projeto Web/js/funcoes.js">
+<persistable path="/Projeto Web/js/funcoes.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="bootstrap.js" tooltip="Projeto Web/_js/bootstrap.js">
-<persistable path="/Projeto Web/_js/bootstrap.js"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="index.php" tooltip="Projeto Web/index.php">
+<persistable path="/Projeto Web/index.php"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap.css" tooltip="Projeto Web/_css/bootstrap.css">
-<persistable path="/Projeto Web/_css/bootstrap.css"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web/php/webServiceAcesso.php">
+<persistable path="/Projeto Web/php/webServiceAcesso.php"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap-theme.min.css" tooltip="Projeto Web/_css/bootstrap-theme.min.css">
-<persistable path="/Projeto Web/_css/bootstrap-theme.min.css"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.php" name="webServiceAcesso.php" tooltip="Projeto Web/_php/webServiceAcesso.php">
+<persistable path="/Projeto Web/_php/webServiceAcesso.php"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="ajax.js" tooltip="Projeto Web/_js/ajax.js">
-<persistable path="/Projeto Web/_js/ajax.js"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="Styles.css" tooltip="Projeto Web/_css/Styles.css">
-<persistable path="/Projeto Web/_css/Styles.css"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" name="monitoramento.html" tooltip="Projeto Web/monitoramento.html">
+<persistable path="/Projeto Web/monitoramento.html"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="Styles.css" tooltip="Projeto Web/css/Styles.css">
 <persistable path="/Projeto Web/css/Styles.css"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.portal.ui.browser.portal" name="index.html" tooltip="Projeto Web/index.html">
-<persistable path="/Projeto Web/index.html"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="jquery.min.js" tooltip="Projeto Web/js/jquery.min.js">
+<persistable path="/Projeto Web/js/jquery.min.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="bootstrap-modal.js" tooltip="Projeto Web/js/bootstrap-modal.js">
+<persistable path="/Projeto Web/js/bootstrap-modal.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.js" name="bootstrap.min.js" tooltip="Projeto Web/js/bootstrap.min.js">
+<persistable path="/Projeto Web/js/bootstrap.min.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap.min.css" tooltip="Projeto Web/_css/bootstrap.min.css">
+<persistable path="/Projeto Web/_css/bootstrap.min.css"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap.css" tooltip="Projeto Web/_css/bootstrap.css">
+<persistable path="/Projeto Web/_css/bootstrap.css"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.css" name="bootstrap-responsive.css" tooltip="Projeto Web/_css/bootstrap-responsive.css">
+<persistable path="/Projeto Web/_css/bootstrap-responsive.css"/>
 </file>
 </mruList>
 </workbench>

@@ -1,6 +1,0 @@
-function phpWebServiceAcesso()
-{
-  http.open("GET", "WebServiceAcesso.php?", true);
-  http.onreadystatechange = handleHttpResponse;
-  http.send(null);
-}

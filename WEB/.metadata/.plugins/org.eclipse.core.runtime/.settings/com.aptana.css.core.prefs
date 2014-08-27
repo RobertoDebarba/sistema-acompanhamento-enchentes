@@ -1,2 +1,5 @@
 CSS_INDEX_VERSION=0.13
+com.aptana.css.core.CSSParserValidator_reconcile_enabled=true
+com.aptana.css.core.W3CValidator_build_enabled=false
+com.aptana.css.core.W3CValidator_reconcile_enabled=false
 eclipse.preferences.version=1

@@ -1,0 +1,21 @@
+function Alterar_div(){
+   	$.ajax({
+	    type: 'post',
+	    data: 'texto='+ $('#entrada').val(),
+		url:'./php/webServiceAcesso.php',
+      
+      	success: function(retorno){
+        	$('#resposta').html(retorno);  
+      	},
+      	error: function(erro){
+      		$('#resposta').html(erro);
+    	}  
+    });
+};
+
+function Alterar_div_json(){
+	$.getJSON("./php/webServiceAcesso.php",{'texto': $('#entrada').val()}, function(info){
+	    	var titulo = info.result;
+	    	$('#resposta').html(titulo);
+	   });
+}

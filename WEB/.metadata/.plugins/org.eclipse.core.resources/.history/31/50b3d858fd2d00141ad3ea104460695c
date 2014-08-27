@@ -1,0 +1,47 @@
+
+
+// Função que verifica se o navegador tem suporte AJAX 
+function AjaxF(){
+	var ajax;
+	
+	try{
+		ajax = new XMLHttpRequest();
+	} 
+	catch(e){
+		try{
+			ajax = new ActiveXObject("Msxml2.XMLHTTP");
+	  	}
+		catch(e){
+			try{
+				ajax = new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+			catch(e){
+				alert("Seu browser não da suporte à AJAX!");
+				return false;
+	    	}
+		}
+	}
+	return ajax;
+}
+
+function Alterar_div(){
+	var req = AjaxF();
+	var data = "texto=" + $('#entrada').val();
+	
+    req.onreadystatechange = function(){ 
+      if(req.readyState == 4){
+         if(req.status == 200){
+            alert(req.responseText);	
+         }	
+         else{
+            alert("Error: returned status code " + req.status + " " + req.statusText);
+         }	
+      } 
+    }; 
+    req.open("POST", "./_php/webServiceAcesso.php", true); 
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
+	req.send(data);
+   	
+    $('#resposta').html(req.responseText);
+
+ }

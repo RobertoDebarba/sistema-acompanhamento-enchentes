@@ -1,0 +1,15 @@
+function Alterar_div(){
+   	$.ajax({
+	    type: 'post',
+	    data: 'texto': $('#entrada').val(),
+		url:'./_php/webServiceAcesso.php',
+      
+      	success: function(retorno){
+      		$('#resposta').html(retorno);
+    	},
+    	error: function(erro){
+      		$('#resposta').html(erro);
+    	}  
+    });
+
+}

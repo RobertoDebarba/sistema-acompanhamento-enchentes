@@ -1,0 +1,56 @@
+// Função que verifica se o navegador tem suporte AJAX 
+function AjaxF(){
+	var ajax;
+	
+	try{
+		ajax = new XMLHttpRequest();
+	} 
+	catch(e){
+		try{
+			ajax = new ActiveXObject("Msxml2.XMLHTTP");
+	  	}
+		catch(e){
+			try{
+				ajax = new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+			catch(e){
+				alert("Seu browser não da suporte à AJAX!");
+				return false;
+	    	}
+		}
+	}
+	return ajax;
+}
+
+// Função que faz as requisição Ajax ao arquivo PHP
+function AlteraConteudo(){
+	var ajax = AjaxF();	
+
+	ajax.onreadystatechange = function(){
+		if(ajax.readyState == 4){
+			document.getElementById('conteudo').innerHTML = ajax.responseText;
+  		}
+ 	}
+
+ 	// Variável com os dados que serão enviados ao PHP
+ 	var dados = "nome="+document.getElementById('txtnome').value;
+
+ 	ajax.open("GET", "retorna_informacoes.php?"+dados, false);
+ 	ajax.setRequestHeader("Content-Type", "text/html");
+ 	ajax.send();
+}
+
+function alterar_div() {
+	var ajax = AjaxF();
+	
+    ajax({
+        type: "POST",
+        url: "./_php/webServiceAcesso.php",
+        data: {
+          texto: $('#entrada').val()
+        },
+        success: function(data) {
+          $('#resposta').html(data);
+        }
+     });
+  }

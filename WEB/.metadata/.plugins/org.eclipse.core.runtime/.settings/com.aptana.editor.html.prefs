@@ -1,2 +1,4 @@
 HTML_INDEX_VERSION=0.14
+com.aptana.editor.html.validator.TidyValidator_build_enabled=false
+com.aptana.editor.html.validator.TidyValidator_reconcile_enabled=false
 eclipse.preferences.version=1
