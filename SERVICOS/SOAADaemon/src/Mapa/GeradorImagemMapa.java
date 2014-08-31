@@ -15,6 +15,9 @@ import javax.imageio.ImageWriter;
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import javax.imageio.stream.ImageOutputStream;
 
+import Arduino.Leitura;
+import Propriedades.Propriedades;
+
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -34,20 +37,21 @@ public class GeradorImagemMapa{
 	
 	private final String formatoImagem = "png";
 	private final float opacidadeBloco = 0.3f; //Opacidade dos blocos visiveis
+	
+	Propriedades prop = new Propriedades();
 
 	
 	/**
 	 * Gera imagem PNG tranparente com os pontos da collection do MongoDB<br>
 	 * <p>
 	 * <b>Exemplo:></p><br>
-	 * <code>gerarImagemMongoDB(60, imagem-teste.png)</code>
+	 * <code>gerarImagemMongoDB(60)</code>
 	 * </p>
 	 * @param nivelRio nivel atual do rio
-	 * @param dirImgSaida diretorio e nome da imagem gerada
 	 * 
 	 * @author roberto
 	 */
-	public void gerarImagemMongoDB(double nivelRio, String dirImgSaida) throws UnknownHostException {
+	public void gerarImagemMongoDB(Leitura leitura) throws UnknownHostException {
 		
 		int x, y = 0;
 
@@ -55,13 +59,14 @@ public class GeradorImagemMapa{
         int tamBloco = 1;
 
         //Conecta ao MongoDB
-        MongoClient mongoClient = new MongoClient("localhost" , 27017); //TODO prop
+        MongoClient mongoClient = 
+        		new MongoClient(prop.getProp("mongoHost"), Integer.parseInt(prop.getProp("mongoPorta")));
 		
 		//Conecta ao banco selecionado 
-        DB db = mongoClient.getDB("mydb"); //TODO prop
+        DB db = mongoClient.getDB(prop.getProp("mongoDB"));
 
         //Conecta à collection
-		DBCollection coll = db.getCollection("pontosMapa"); //TODO prop
+		DBCollection coll = db.getCollection("pontosMapa");
 		
 		//Captura quantidade de pontos de latitude
 		//Comando no MongoDB = db.pontosMapa.distinct('lat').length
@@ -103,7 +108,7 @@ public class GeradorImagemMapa{
                 y = j * tamBloco;
                 
                 //Define cor do bloco
-                if (elevacoes[cont] > nivelRio) {
+                if (elevacoes[cont] > leitura.getNivelRio()) {
                 	
                 	g.setColor(new Color(0, 0, 0, 0));
                 } else {
@@ -120,21 +125,20 @@ public class GeradorImagemMapa{
 
         g.dispose();
 
-        salvarImagem(image, dirImgSaida); 
+        salvarImagem(image); 
 	}
 	
     /**
-     * Salva BufferedImage no arquivo informado<br>
+     * Salva BufferedImage no arquivo informado na prop<br>
      * <p>
 	 * <b>Exemplo:></p><br>
-	 * <code>salvarImagem(img, imagem-teste.png)</code>
+	 * <code>salvarImagem(img)</code>
 	 * </p>
      * 
      * @param img BufferedImage a ser salva
-     * @param diretorio Caminho e nome do arquivo a ser salvo
      * @author roberto
      */
-    private void salvarImagem(BufferedImage img, String diretorio) {
+    private void salvarImagem(BufferedImage img) {
 
     	ImageWriter writer = null;
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName(formatoImagem);
@@ -147,7 +151,7 @@ public class GeradorImagemMapa{
         ImageOutputStream ios;
 		try {
 			
-			ios = ImageIO.createImageOutputStream(new File(diretorio));
+			ios = ImageIO.createImageOutputStream(new File(prop.getProp("dirImg")));
 			writer.setOutput(ios);
 
 	        ImageWriteParam param = new JPEGImageWriteParam( java.util.Locale.getDefault() );
