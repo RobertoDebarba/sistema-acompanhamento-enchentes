@@ -1,5 +1,5 @@
-Sistema de Acompanhamento de Enchentes
-======================================
+Sistema Online de Acompanhamento de Enchentes e Inundações
+==========================================================
 
 Projeto submetido como TCC ao Curso Técnico de Informática com Habilitação em Desenvolvimento de Software.<br>
 CEDUP Timbó, 2014.
