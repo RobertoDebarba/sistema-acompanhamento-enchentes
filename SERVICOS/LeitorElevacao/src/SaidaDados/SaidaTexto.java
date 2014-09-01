@@ -14,7 +14,7 @@ import MapasGoogle.PontoMapa;
  * @version 1.0
  * @see PontoMapa.java
  */
-public class GravacaoDados {
+public class SaidaTexto {
 
 	/**
 	 * Grava um arquivo de saida de dados .txt.<br>
