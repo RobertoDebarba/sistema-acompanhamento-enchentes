@@ -57,9 +57,8 @@ public class TimerExecucao {
 					mongoLeitura.setNovaLeitura(leitura);
 					
 					//Verifica diferença entre leitura atual e anterior
-					double diff = leitura.getNivelRio() - nivelRioAnterior;
-					//Se a diferença for negativa multipica por -1
-					diff = (diff < 0) ? (diff * -1) : diff;
+					//Obtem o valor absoluto
+					double diff = Math.abs(leitura.getNivelRio() - nivelRioAnterior);
 					
 					//Se a diferença for maior que o estipulado, gera imagem
 					if (diff >= Double.parseDouble(prop.getProp("diffGerador"))) {
