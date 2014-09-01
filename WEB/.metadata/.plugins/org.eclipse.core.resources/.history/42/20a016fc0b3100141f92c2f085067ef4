@@ -1,0 +1,18 @@
+function Alterar_div(){
+   	$('#resposta').load("./php/webServiceAcesso.php", {'texto': $('#entrada').val()});
+};
+
+function Alterar_div_json(){
+	alert("teste");
+	$.getJSON("./php/webServiceAcesso.php",{'texto=': $('#entrada').val()}, function(info){
+	    	var titulo = info.result;
+	    	if(titulo != null){
+	    		$('#resposta').html(titulo);
+	    	}
+	    	else{
+	    		alert("tete");
+	    	}
+	   });
+}
+
+

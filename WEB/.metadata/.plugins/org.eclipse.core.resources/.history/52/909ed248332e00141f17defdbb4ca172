@@ -1,0 +1,29 @@
+function Alterar_div(){
+   	$.ajax({
+	    type: 'post',
+	    data: 'texto='+ $('#entrada').val(),
+		url:'./php/webServiceAcesso.php',
+      
+      	success: function(retorno){
+        	$('#resposta').html(retorno);  
+      	},
+      	error: function(erro){
+      		$('#resposta').html(erro);
+    	}  
+    });
+};
+
+function Alterar_div_json(){
+	alert("teste");
+	$.getJSON("./php/webServiceAcesso.php",{'texto=': $('#entrada').val()}, function(info){
+	    	var titulo = info.result;
+	    	if(titulo != null){
+	    		$('#resposta').html(titulo);
+	    	}
+	    	else{
+	    		alert("tete");
+	    	}
+	   });
+}
+
+$('#resposta').load("./php/webServiceAcesso.php", {'texto=': $('#entrada').val()});

@@ -26,7 +26,8 @@ http://bootstrapdocs.com/v3.2.0/docs/
 
 	</head>
 	<body>
-		<header class="navbar navbar-default navbar-fixed-top" >
+	    <!--NAVEGARDOR-->
+		<header class="navbar navbar-default" >
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,20 +54,24 @@ http://bootstrapdocs.com/v3.2.0/docs/
 				</nav>
 			</div>
 		</header>
-
+        <!--fim navegador-->
+        
 		<div class="container-fluid">
+
 			<div id="painel1" class="col-lg-8">
 				<div id="mapa"></div>
 			</div>
 
 			<div id="painel2" class="col-lg-4">
-				<div class="alert alert-success" id="alerta">
-					<img src="_Imagens/ok2.png" id="alertaImagem"/>
-					<strong>Status: </strong> Rio em condições normais.
-				</div>
+				 <div class="alert alert-success" id="alerta">
+                    <img src="_Imagens/ok2.png" id="alertaImagem"/>
+                    <strong>Status: </strong> Rio em condições normais.
+                </div>
+				
 				<div id="clima">
 					<iframe src="http://selos.climatempo.com.br/selos/MostraSelo120.php?CODCIDADE=2070&SKIN=padrao" id="climatempo"></iframe>
 					<!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
+					
 					<iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"
 					src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=h&c=748ccc&f=ffffff" height="200px" width="215px"></iframe>
 					<!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
@@ -75,56 +80,72 @@ http://bootstrapdocs.com/v3.2.0/docs/
 		</div>
 
 		<div class="container-fluid">
-			<div id="painel3" class="col-lg-3">
-                <div id="textoBaixoEsquerda">textoBaixoEsquerda</div> 
+		    
+			<div id="painel3" class="col-lg-4">
+			    <!--BUSCAR RUA-->
+                <div id="buscarLocal">
+                  Encontre sua rua
+                  <form action="./php/funcoes.php">
+                      <input type="text" id="nomerua" name="NomeRua">  
+                      <input type="submit" name="btnBuscar" value="Buscar">  
+                  </form>
+                </div>
+                
             </div>    
             
-            <div id="painel4" class="col-lg-6"> 
-                <!-- abre tela Modal -->   
+            <div id="painel4" class="col-lg-2"> 
+                
+                <!--botao que abre a tela Modal do sms -->   
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                         Receber mensagens SMS
                 </button>
                 
-				<!-- tela Modal -->
+				<!-- tela Modal sms -->
 
 				<div id="myModal" class="modal fade">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
+							    
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-									&times;
 								</button>
-								<h4 class="modal-title">Confirmation</h4>
+								
+								<h4 class="modal-title">Recebimento SMS</h4>
 							</div>
 							<div class="modal-body">
+							    
+							    <!--faz o famoso "edit" do delphi-->
 								<input type="text" name="entrada" id="entrada">
 								<br>
 
 								<p id="resposta"></p>
 							</div>
 							<div class="modal-footer">
+							    <!-- botao fechar tela modal sms-->
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Fechar
 								</button>
 								
-								<button type="button" class="btn btn-primary" onclick="Alterar_div_json()">
-									Teste webservice
+								<!--botao cadastrar da tela modal sms(chama o metodo jquery da arquivo funcoes.js) -->
+								<button type="button" class="btn btn-primary" onclick="Alterar_div()">
+									Cadastrar
 								</button>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- fim tela modal sms-->
 			</div>
 			
-			<div id="painel5" class="col-lg-3">
+			<div id="painel5" class="col-lg-2" >
 			     <div id="textoBaixoDireita">textoBaixoDireita</div>     
 			</div>
 			    
 		</div>
 
 		<!--carrega os arquivos js necessarios -->
-
-		<script src="./js/jquery.min.js"></script>
+        
+		<script src="./js/jquery.min.js"></script><!--JQuery-->
 
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 

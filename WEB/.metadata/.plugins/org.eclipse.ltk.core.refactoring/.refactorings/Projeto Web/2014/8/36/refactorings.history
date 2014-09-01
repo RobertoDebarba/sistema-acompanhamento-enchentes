@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Projeto Web/php/webServiceAcesso.php&apos; to &apos;Funcoes.php&apos;" description="Rename resource &apos;webServiceAcesso.php&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="php/webServiceAcesso.php" name="Funcoes.php" stamp="1409488541297" updateReferences="true"/>
+</session>

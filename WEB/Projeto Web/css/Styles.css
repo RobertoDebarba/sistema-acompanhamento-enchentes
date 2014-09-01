@@ -1,8 +1,3 @@
-body {
-  padding-top: 70px;
-  padding-bottom: 30px;
-}
-
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -15,6 +10,7 @@ body {
 }
 
 #painel1 {
+	margin-top: 20px;
         padding: 10px;
         border: 2px solid #DDDDDD; 
         background-color: #FFFFFF;
@@ -26,25 +22,21 @@ body {
 	height: 400px;
     padding: 10px;
 }
+
 #painel3{
-	border: 2px solid #DDDDDD;
-	text-align: left;
     margin-top: 10px;
-    padding: 10px;
 }
 
 #painel4{
-	border: 2px solid #DDDDDD;
 	text-align: center;
     margin-top: 10px;
     padding: 10px;
 }
 
 #painel5{
-	border: 2px solid #DDDDDD;
 	text-align: right;
     margin-top: 10px;
-    padding: 10px;
+    padding: 17px;
 }
 
 #mapa {
@@ -52,8 +44,8 @@ body {
        height: 100%; 
 }
     
-#clima{
-	
+#nomerua{
+	width: 80% ;
 }
    
 #logo{

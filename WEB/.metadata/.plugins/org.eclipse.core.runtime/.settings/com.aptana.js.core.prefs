@@ -6,4 +6,4 @@ com.aptana.js.core.JSStyleValidator_reconcile_enabled=true
 com.aptana.js.core.SDocMLValidator_build_enabled=false
 com.aptana.js.core.SDocMLValidator_reconcile_enabled=false
 eclipse.preferences.version=1
-some_non_existent_pref_key=Not found
+some_non_existent_pref_key=/usr/bin/node
