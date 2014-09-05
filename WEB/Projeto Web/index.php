@@ -22,11 +22,56 @@ http://bootstrapdocs.com/v3.2.0/docs/
 		<!--fim carregamento bootstrap -->
 
 		<!--estilos proprios-->
-		<link href="./css/Styles.css" rel="stylesheet" />
+		<link href="./css/index.css" rel="stylesheet" />
+
+		<!--estilos mapa-->
+		<link href="./css/mapa.css" rel="stylesheet" />
+		<link href="./css/mapaClima.css" rel="stylesheet" />
 
 	</head>
 	<body>
-	    <!--NAVEGARDOR-->
+		<!-- Conecta ao MongoDB e recupera todas informações necessarias para tela -->
+		<?php
+			#Conecta ao MongoDB
+			$m = new MongoClient();
+			$db = $m -> mydb;
+			$collection = $db -> leituras;
+			
+			#Verifica se ultima leitura é valida
+			$cursor = $collection -> find();
+			$cursor -> sort(array('dataHora' => -1));
+			$cursor -> limit(1);
+			
+			foreach ($cursor as $document) {
+				$nivelRio = $document["nivelRio"];
+			}
+			
+			#Se ultima leitura é valida armazena dados
+			if ($nivelRio != "null") {
+				$ultimaLeituraValida = true;
+				$dataHora = date(DATE_ISO8601, $document["dataHora"] -> sec);
+				$nivelRio = $document["nivelRio"];
+				$nivelChuva = $document["nivelChuva"];
+				
+			#Se não é valida busca ultima valida
+			} else {
+				$ultimaLeituraValida = false;
+				
+				#Busca ultima leitura valida
+				$query = array('nivelRio' => array('$ne' => 'null'));
+				$cursor = $collection -> find($query);
+				$cursor -> sort(array('dataHora' => -1));
+				$cursor -> limit(1);
+				
+				foreach ($cursor as $document) {
+					$dataHora = date(DATE_ISO8601, $document["dataHora"] -> sec);
+					$nivelRio = $document["nivelRio"];
+					$nivelChuva = $document["nivelChuva"];
+				}
+			}
+		?>
+
+		<!--NAVEGARDOR-->
 		<header class="navbar navbar-default" >
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -36,7 +81,7 @@ http://bootstrapdocs.com/v3.2.0/docs/
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">SAEnchentes</a>
+					<a class="navbar-brand" href="#">Enchentes e Inundações</a>
 
 				</div>
 				<nav class="navbar-collapse collapse">
@@ -45,7 +90,10 @@ http://bootstrapdocs.com/v3.2.0/docs/
 							<a href="#">Inicio</a>
 						</li>
 						<li>
-							<a href="#">Monitoramentos</a>
+							<a href="#">Monitoramento</a>
+						</li>
+						<li>
+							<a data-toggle="modal" data-target="#myModal">Sistema de Alerta</a>
 						</li>
 						<li>
 							<a href="#Sobre">Sobre</a>
@@ -54,123 +102,184 @@ http://bootstrapdocs.com/v3.2.0/docs/
 				</nav>
 			</div>
 		</header>
-        <!--fim navegador-->
-        
-		<div class="container-fluid">
+		<!--fim navegador-->
+		
+		
+		<div class="container">
+			
 
-			<div id="painel1" class="col-lg-8">
-				<div id="mapa"></div>
-			</div>
+			<div class="row">
 
-			<div id="painel2" class="col-lg-4">
-				 <div class="alert alert-success" id="alerta">
-                    <img src="_Imagens/ok2.png" id="alertaImagem"/>
-                    <strong>Status: </strong> Rio em condições normais.
-                </div>
-				
-				<div id="clima">
-					<iframe src="http://selos.climatempo.com.br/selos/MostraSelo120.php?CODCIDADE=2070&SKIN=padrao" id="climatempo"></iframe>
-					<!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
-					
-					<iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"
-					src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=h&c=748ccc&f=ffffff" height="200px" width="215px"></iframe>
-					<!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
-				</div>
-			</div>
-		</div>
+				<div class="col-md-8">
 
-		<div class="container-fluid">
-		    
-			<div id="painel3" class="col-lg-4">
-			    <!--BUSCAR RUA-->
-                <div id="buscarLocal">
-                  Encontre sua rua
-                  <form action="./php/funcoes.php">
-                      <input type="text" id="nomerua" name="NomeRua">  
-                      <input type="submit" name="btnBuscar" value="Buscar">  
-                  </form>
-                </div>
-                
-            </div>    
-            
-            <div id="painel4" class="col-lg-2"> 
-                
-                <!--botao que abre a tela Modal do sms -->   
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                        Receber mensagens SMS
-                </button>
-                
-				<!-- tela Modal sms -->
+					<!--Caixa de pesquisa-->
+					<input id="pac-input" class="controls" type="text" placeholder="Digite um endereço...">
+					<!--Mapa-->
+					<div id="containerMapa" class="container">
+						<div id="mapa"></div>
+					</div>
 
-				<div id="myModal" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-							    
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								</button>
-								
-								<h4 class="modal-title">Recebimento SMS</h4>
-							</div>
-							<div class="modal-body">
-							    
-							    <!--faz o famoso "edit" do delphi-->
-								<input type="text" name="entrada" id="entrada">
-								<br>
+					<!--Rodape Mapa-->
+					<div class="row">
 
-								<p id="resposta"></p>
-							</div>
-							<div class="modal-footer">
-							    <!-- botao fechar tela modal sms-->
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Fechar
-								</button>
-								
-								<!--botao cadastrar da tela modal sms(chama o metodo jquery da arquivo funcoes.js) -->
-								<button type="button" class="btn btn-primary" onclick="Alterar_div()">
-									Cadastrar
-								</button>
-							</div>
+						<div id="textoMapaEsquerdo" class="col-md-6">
+							<?php
+							if ($ultimaLeituraValida) {
+								echo '<span class="label label-info">ONLINE</span>';
+							} else {
+								echo '<span class="label label-danger">OFFLINE</span>';
+							}
+							
+							echo(" Atualizado em: ");
+							echo date("d/m/Y", strtotime($dataHora)) . ", ";
+							echo date("h:i:sa", strtotime($dataHora)) . ".";
+							?>
 						</div>
 					</div>
 				</div>
-				<!-- fim tela modal sms-->
+
+				<div id="painel2" class="col-md-4">
+					
+					<div id="painelAlerta">
+						<!--Painel de alerta -->
+						<?php
+						if ($nivelRio < 7) {
+							echo('<div class="alert alert-success" id="alerta">');
+							#echo ('<img src="_Imagens/statusRioOK.png" id="alertaImagem"/>');
+							echo('<strong>Status: </strong> Rio em condições normais.');
+							echo('</div>');
+						} else if (($nivelRio >= 7) & ($nivelRio < 10)) {
+							echo('<div class="alert alert-warning" id="alerta">');
+							#echo ('<img src="_Imagens/statusRioAlerta.png" id="alertaImagem"/>');
+							echo('<strong>Status: </strong> Nível do rio em alerta!');
+							echo('</div>');
+						} else if ($nivelRio >= 10) {
+							echo('<div class="alert alert-danger" id="alerta">');
+							#echo ('<img src="_Imagens/statusRioPerigo.png" id="alertaImagem"/>');
+							echo('<strong>Status: </strong> Rio em inundação!');
+							echo('</div>');
+						}
+						?>
+					</div>
+					
+					<div id="tabelaInfo">
+						<table class="table table-striped">
+							<thead class="tituloTabela">
+								<tr>
+									<td>Hora</td>
+									<td>Nivel do Rio</td>
+									<td>Estado da Chuva</td>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+									#Busca tres ultimas leituras validas
+									$query = array('nivelRio' => array('$ne' => 'null'));
+									$cursor = $collection -> find($query);
+									$cursor -> sort(array('dataHora' => -1));
+									$cursor -> limit(5);
+									
+									#Imprime leituras na tabela
+									foreach ($cursor as $document) {
+										$Hora = date(DATE_ISO8601, $document["dataHora"] -> sec);
+										
+										echo "<tr>";
+										echo "<td>".date("d/m/Y", strtotime($Hora)) . ", ".
+											date("h:i:sa", strtotime($Hora)) . "</td>";
+										echo "<td>".$document["nivelRio"]."</td>";
+										echo "<td>".$document["nivelChuva"]."</td>";
+										echo "</tr>";
+									}
+								?>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="visible-"></div>
+					<div id="row2" class="row">
+
+						<!-- Mapa de Clima -->
+						<div id="mapaClima" class="col-md-6"></div>
+	
+						<div id="previsaoTempo" class="col-md-6">
+							<iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"
+							src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=h&c=748ccc&f=ffffff" height="200px" width="215px"></iframe>
+							<!-- Widget Previs&atilde;o de Tempo CPTEC/INPE -->
+						</div>
+						
+					</div>
+
+				</div>
+
 			</div>
-			
-			<div id="painel5" class="col-lg-2" >
-			     <div id="textoBaixoDireita">textoBaixoDireita</div>     
+
+			<!-- tela Modal sms -->
+
+			<div id="myModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+
+							<h4 class="modal-title">Recebimento SMS</h4>
+						</div>
+						<div class="modal-body">
+
+							<!--faz o famoso "edit" do delphi -->
+
+							<input type="text" name="entrada" id="entrada">
+							<br>
+
+							<p id="resposta"></p>
+						</div>
+						<div class="modal-footer">
+							<!-- botao fechar tela modal sms -->
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Fechar
+							</button>
+
+							<!--botao cadastrar da tela modal sms(chama o metodo jquery da arquivo funcoes.js) -->
+							<button type="button" class="btn btn-primary" onclick="Alterar_div()">
+								Cadastrar
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			    
+			<!-- fim tela modal sms-->
+
+			<!--carrega os arquivos js necessarios -->
+
+			<script src="./js/jquery.min.js"></script><!--JQuery-->
+
+			<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+
+			<script src="./js/funcoes.js"></script>
+
+			<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+			<!--[if lt IE 9]><script src="./js/ie8-responsive-file-warning.js"></script><![endif]-->
+			<script src="./js/ie-emulation-modes-warning.js"></script>
+
+			<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+			<script src="./js/ie10-viewport-bug-workaround.js"></script>
+
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+			<![endif]-->
+
+			<!--scripts do mapa-->
+
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
+
+			<script type="text/javascript" src="./js/mapa.js"></script>
+
+			<script type="text/javascript" src="./js/mapaClima.js"></script>
+
+			<!--AJAX-->
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 		</div>
-
-		<!--carrega os arquivos js necessarios -->
-        
-		<script src="./js/jquery.min.js"></script><!--JQuery-->
-
-		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-
-		<script src="./js/funcoes.js"></script>
-
-		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-		<!--[if lt IE 9]><script src="./js/ie8-responsive-file-warning.js"></script><![endif]-->
-		<script src="./js/ie-emulation-modes-warning.js"></script>
-
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="./js/ie10-viewport-bug-workaround.js"></script>
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-		<!--scripts do mapa-->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-		<script type="text/javascript" src="./js/mapa.js"></script>
-		
-		<!--AJAX-->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-
 	</body>
 </html>
