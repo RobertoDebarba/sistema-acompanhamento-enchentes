@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	
+	RewriteRule ^index/?$ ./ [NC,L]
+	
+	
+	
+	
+	RewriteRule ^contato/?$ ./page-contato.php [NC,L]
+	
+</IfModule>

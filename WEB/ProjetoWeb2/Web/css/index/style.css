@@ -1,0 +1,55 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#painelInfo, #painelInfoMobile {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	background-color: white;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+	padding: 5px;
+	text-align: center;
+}
+
+#painelInfo {
+	width: 410px;
+	height: 250px;
+}
+
+#painelInfoMobile {
+	width: 40px;
+	height: 40px;
+	padding: 0px;
+}
+
+#painelInfoMobile img {
+	width: 33px;
+	margin-top: 4px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+#labelAlerta {
+	margin-bottom: 3px;
+}
+
+a:link {
+	text-decoration: none;	
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
