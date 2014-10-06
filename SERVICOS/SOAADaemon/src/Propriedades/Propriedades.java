@@ -15,8 +15,8 @@ import java.util.Properties;
  * mongoHost=
  * mongoPorta=
  * mongoDB=
- * timerExec=
  * dirImg=
+ * diffGerador=
  * </code>
  * 
  * @version 1.0
