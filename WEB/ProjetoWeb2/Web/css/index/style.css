@@ -3,7 +3,7 @@ html, body {
 	width: 100%;
 }
 
-#painelInfo, #painelInfoMobile {
+#painelInfo {
 	position: absolute;
 	bottom: 20px;
 	right: 20px;
@@ -19,14 +19,13 @@ html, body {
 }
 
 #painelInfoMobile {
-	width: 40px;
-	height: 40px;
-	padding: 0px;
+	width: 100%;
+	height: 50px;
+	text-align: center;
 }
 
-#painelInfoMobile img {
-	width: 33px;
-	margin-top: 4px;
+#painelInfoMobile .alert {
+	margin-bottom: 0px;
 }
 
 .navbar {
@@ -52,4 +51,33 @@ a:hover {
 
 a:active {
     text-decoration: none;
+}
+
+#linhaMenu {
+	height: 51px;
+}
+
+#linhaCorpo {
+	padding-left: 0px;
+	padding-right: 0px;
+	height: calc(100% - 51px);
+}
+
+@media (max-width:991px) {
+	#linhaCorpo {
+		height: calc(100% - 51px - 52px);
+	}
+}
+
+#linhaRodape {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#linhaRodape button {
+	height: 100%;
+	width: 100%;
+	background-image: none;
+	border-radius: 0px;
+	border: none;
 }

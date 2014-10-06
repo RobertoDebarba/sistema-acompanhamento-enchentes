@@ -2,8 +2,6 @@
 #mapa{
 	width: 100%;
 	height: 100%;
-	margin-top: 31px;
-	margin-bottom: -51px;
 }
 
 /* Campo de pesquisa */
@@ -31,7 +29,7 @@
 #pac-input:focus {
 	border-color: #4d90fe;
 	margin-left: -1px;
-	padding-left: 14px; /* Regular padding-left + 1. */
+	padding-left: 14px;
 	width: 401px;
 }
 
@@ -49,4 +47,10 @@
 	font-family: Roboto;
 	font-size: 13px;
 	font-weight: 300;
+}
+
+@media (max-width:536px) { /* Responsividade do campo de pesquisa */
+	#pac-input {
+		width: 60%;
+	}
 }
