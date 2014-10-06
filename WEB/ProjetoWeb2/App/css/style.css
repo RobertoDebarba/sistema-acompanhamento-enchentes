@@ -1,0 +1,103 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+	
+#alerta{
+	position: fixed;
+	margin-bottom: 0;
+	bottom: 0;
+}
+
+.button-full, #header, .tabs-top{
+	border: none;
+}
+
+.popover-content{
+	height: 100%;
+	width: 100%;
+	background-color: #4a87e0;
+}
+
+
+#header{
+	position: static;
+}
+
+#menuPlus{
+	top: 24%;
+	opacity: 100;
+	width:auto;
+	display: none;
+	height: auto;
+}
+
+#conteudo, #mapaconteiner{
+	top: 93px;
+	height: 79%;
+	width: 100%;	
+}
+
+#conteudo{
+	display: none;
+}
+
+#mapa{
+	top:93px;	
+	height: 100%;
+	width: 100%	
+}
+
+.item{
+	width : auto;
+	padding-top: 6%;
+	text-align: center;
+	padding-bottom: 6%;
+	margin-top: 2px;
+	margin-bottom : 2px;
+}
+
+
+.controls {
+	margin-top: 16px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #fff;
+	padding: 0 11px 0 13px;
+	width: 40%;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	text-overflow: ellipsis;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+	margin-left: -1px;
+	padding-left: 14px; /* Regular padding-left + 1. */
+	width: 41%;
+}
+
+.pac-container {
+	font-family: Roboto;
+}
+
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
