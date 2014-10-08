@@ -1,26 +1,6 @@
-<?php
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-echo "<p>testetestetestetestetestetesteteste";
-
-
-?>
+<div id="grafico">	
+	<script type="text/javascript">
+	loadchart();
+	</script>
+	
+</div>

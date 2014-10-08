@@ -53,6 +53,7 @@
 	    		$( "#mapaconteiner" ).hide();
 		    	$("#menuPlus").slideToggle('fast');
 			    $( "#conteudo" ).load( "./App/"+tela+".php"); 	
+				
 			}				
 	    }
 	    
@@ -60,6 +61,11 @@
 
 	</head>
 	<body onload="onLoad">
+		<?php
+			include "./Comum/php/funcoes.php";
+			
+			//$alerta = getEstadoAlerta();
+		?>
 		<div id="header">
 			<div class="bar bar-header tabs-top bar-positive">
 			  <h1 class="title">
@@ -111,19 +117,36 @@
 	  	
 		<!--Conteúdo-->
 		
-		<div id="conteudo"></div>
+		<div id="conteudo">
+	
+		</div>
 		
 		<div id="mapaconteiner">
 			<input id='pac-input' class='controls' type='text' placeholder='Digite um endereço...'>
 			<div id='mapa'></div>
 		</div>
 		
-		<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
-		  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
-		</button>
+		<div id="painelInfo">
+				<?php
+					/*
+					if (($alerta[0] == 0) & ($alerta[1] == 0)) {
+						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
+								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
+								</button>';
+					} else if (($alerta[0] == 1) | (($alerta[1] == 1))) {
+						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
+								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
+								</button> ';
+					} else if ($alerta[0] == 2) {
+						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
+								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
+								</button> ';
+					}
+					*/
+				?>
+			</div>
 		
-		<!--JAVASCRIPT-->
-		
+		<!--JAVASCRIPT-->		
 		
 	    <script src="./App/lib/ionic/js/ionic.js"></script><!-- ionic-->
 	    
@@ -140,5 +163,61 @@
 		
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 		<script type="text/javascript" src="./Comum/js/mapa.js"></script><!-- MAPA -->
+		
+		<!--grafico-->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
+	    
+	    function loadchart(){
+	  		google.load("visualization", "1", {"callback" : drawVisualization, packages:["corechart"]});
+		}
+	    	
+	    <?php
+		date_default_timezone_set("America/Sao_Paulo");
+		
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionLeituras = $db -> leituras;
+		
+		$query = array('nivelRio' => array('$ne' => 'null'));
+			
+		$cursor = $collectionLeituras -> find($query);
+			
+		$cursor -> sort(array('dataHora' => -1));
+		$cursor -> limit(24);
+	
+		#Monta array
+		$leituras[] = array();
+	
+		#Imprime leituras na tabela
+		foreach ($cursor as $document) {
+			$Hora = $document["dataHora"];
+	
+			$hora = date("H:i:s", strtotime($Hora));
+			$nivelRio = $document["nivelRio"];
+			$nivelChuva = $document["nivelChuva"];
+	
+		}
+			?>
+		
+	  	function drawVisualization() {
+	        var data = google.visualization.arrayToDataTable([
+					["Hora",  "Nivel do Rio","Estado da Chuva"],
+					<?php  	
+					echo '["'.$hora.'" , '.$nivelRio.', '.$nivelChuva.' ]';
+					?>					
+				]);
+				 var options = {
+				    title: 'Histórico de Medições',
+				    curveType: 'function',
+				    legend: { position: 'bottom' }
+				  };
+			
+				var chart = new google.visualization.LineChart(document.getElementById('grafico'));
+			
+				chart.draw(data, options);
+			}
+			
+		</script> 
 	</body>
 </html>
