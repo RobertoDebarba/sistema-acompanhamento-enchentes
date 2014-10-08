@@ -25,43 +25,55 @@
 		 */
 		function verificarEstadoDefesaCivil() {
 			
-			#Palavras chave de pesquisa
-			$palavrasChave = array('Timbó', 'Blumenau', 'Litoral Norte');
-			
-			#Busca quadr de informações no site da defesa civil
-			include "./Comum/php/lib/simple_html_dom.php";
-			$html = file_get_html('http://www.defesacivil.sc.gov.br/');
-			
-			#Filtra dados			
-			$html =  $html -> getElementById("user5");
-			$html = $html -> find("p");
-			
-			#Varre dados em busca de palavras chave
-			$cont = 0;
-			$achouSemAviso = false;
-			$achouPalavra = false;
-			foreach ($html as $key => $value) {
-				if ($cont != 0) {
-					
-					#Procura por "Sem aviso."
-					if (strpos($value,'Sem aviso.') !== false) {
-					    $achouSemAviso = true;
-					}
-					
-					#Procura por palavras Chave
-					foreach ($palavrasChave as $key => $palavraChave) {
-						if (strpos($value, $palavraChave) !== false) {
-						    $achouPalavra = true;
-						}
-					}	
-				}
-				$cont++;
+			#Converte erros em exceções
+			function exception_error_handler($errno, $errstr, $errfile, $errline) {
+				throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 			}
+			set_error_handler("exception_error_handler");
 			
-			#Se não achou "Sem aviso" e achou palavra chave
-			if (!$achouSemAviso & $achouPalavra) {
-				return true;
-			} else {
+			try {
+				#Palavras chave de pesquisa
+				$palavrasChave = array('Timbó', 'Blumenau', 'Litoral Norte');
+				
+				#Busca quadr de informações no site da defesa civil
+				#include "./Comum/php/lib/simple_html_dom.php";
+				include "lib/simple_html_dom.php";
+				$html = file_get_html('http://www.defesacivil.sc.gov.br/');
+				
+				#Filtra dados			
+				$html =  $html -> getElementById("user5");
+				$html = $html -> find("p");
+				
+				#Varre dados em busca de palavras chave
+				$cont = 0;
+				$achouSemAviso = false;
+				$achouPalavra = false;
+				foreach ($html as $key => $value) {
+					if ($cont != 0) {
+						
+						#Procura por "Sem aviso."
+						if (strpos($value,'Sem aviso.') !== false) {
+						    $achouSemAviso = true;
+						}
+						
+						#Procura por palavras Chave
+						foreach ($palavrasChave as $key => $palavraChave) {
+							if (strpos($value, $palavraChave) !== false) {
+							    $achouPalavra = true;
+							}
+						}	
+					}
+					$cont++;
+				}
+				
+				#Se não achou "Sem aviso" e achou palavra chave
+				if (!$achouSemAviso & $achouPalavra) {
+					return true;
+				} else {
+					return false;
+				}
+			} catch (Exception $e) {
+				#echo 'Cuaght exception: ', $e -> getMessage(), "\n";
 				return false;
 			}
 			
@@ -96,35 +108,53 @@
 		return $retorno;		
 	}
 
-	/*
-	 * Em construção
+	/**
+	 * Busca a quantidade definida de leituras no banco de dados
+	 * 
+	 * @param qtdLeituras = quantidade de leituras a retornar
+	 * @param leiturasValidas = se true, retorna apenas leituras validas (nuvel <> 'null')
+	 * @return array[][] = 0: numero da leitura, 1= valor (0-dataHora, 1-nivelRio, 2-nivelChuva)
 	 */
 	function getLeituras($qtdLeituras, $leiturasValidas = true) {
 		
-		global $collection;
+		global $collectionLeituras;
 		
 		#Busca ultimas leituras
 		if ($leiturasValidas) {
 			$query = array('nivelRio' => array('$ne' => 'null'));
-			$cursor = $collection -> find($query);
+			$cursor = $collectionLeituras -> find($query);
 		} else {
-			$cursor = $collection -> find();
+			$cursor = $collectionLeituras -> find();
 		}
 		$cursor -> sort(array('dataHora' => -1));
 		$cursor -> limit($qtdLeituras);
 
-		#Monta array
-		$leituras[] = array();
-
-		#Imprime leituras na tabela
+		#Insere leituras no array
+		$leituras = array();
+		$i = 0;
 		foreach ($cursor as $document) {
 			$Hora = date(DATE_ISO8601, $document["dataHora"] -> sec);
-
-			echo "<tr>";
-			echo "<td>" . date("d/m/Y", strtotime($Hora)) . ", " . date("h:i:sa", strtotime($Hora)) . "</td>";
-			echo "<td>" . $document["nivelRio"] . "</td>";
-			echo "<td>" . $document["nivelChuva"] . "</td>";
-			echo "</tr>";
+			
+			$leituras[$i][0] = date("d/m/Y", strtotime($Hora)) . ", " . date("h:i:sa", strtotime($Hora));
+			$leituras[$i][1] = $document["nivelRio"];
+			switch ($document["nivelChuva"]) {
+				case 0:	
+					$leituras[$i][2] = 'Nula';
+					break;
+				case 1:
+					$leituras[$i][2] = 'Moderada';
+					break;
+				case 2:
+					$leituras[$i][2] = 'Forte';
+					break;
+				default:
+					$leituras[$i][2] = 'null';
+					break;
+			}
+			
+			$i++;
 		}
+		
+		return $leituras;
 	}
 ?>
