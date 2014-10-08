@@ -33,7 +33,7 @@ html, body {
 }
 
 #conteudo, #mapaconteiner{
-	top: 93px;
+	top: 100px;
 	height: 79%;
 	width: 100%;	
 }
@@ -42,7 +42,7 @@ html, body {
 	display: none;
 }
 
-#mapa{
+#mapa, #grafico{
 	top:93px;	
 	height: 100%;
 	width: 100%	
