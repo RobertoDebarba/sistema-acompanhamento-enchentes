@@ -1,8 +1,6 @@
 var overlay;
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-// Initialize the map and the custom overlay.
-
 function initialize() {
 
 	var markers = [];
@@ -11,94 +9,48 @@ function initialize() {
 		center : new google.maps.LatLng(-26.825, -49.268)
 	};
 
-
 	var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
+	// --- Imagem de inundação ---
+
+	//Define posição da imagem
 	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
 	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
-	// The picture PNG
-	var srcImage = './_Imagens/imagem-teste.png';
+	// Define imagem
+	var srcImage = 'Comum/imagens/status-inundacao.png';
 
-	// The custom USGSOverlay object contains the USGS image,
-	// the bounds of the image, and a reference to the map.
+	//Seta a imagem no mapa
 	overlay = new USGSOverlay(bounds, srcImage, map);
 
+	// --- Marcador da regua ---
 
-	//Marcador regua
-
-	
-	// To add the marker to the map, use the 'map' property
-	var latLngRegua = new google.maps.LatLng(-26.82682817,-49.27629948);
-	var iconeRegua = '_Imagens/marcadorRegua.png';
+	//Seta posição e propriedades
+	var latLngRegua = new google.maps.LatLng(-26.82682817, -49.27629948);
+	var iconeRegua = 'Comum/imagens/marcadorRegua.png';
 	var marcadorRegua = new google.maps.Marker({
-	    position: latLngRegua,
-	    map: map,
-	    icon: iconeRegua,
-	    title:"Ponto de medição"
+		position : latLngRegua,
+		map : map,
+		icon : iconeRegua,
+		title : "Ponto de medição"
 	});
-	
-	var conteudoMarcadorRegua = '<!DOCTYPE html>'+
-		'<html>'+
-		'<head>'+
-      		'<title></title>'+
-      		'<style>'+
-            	'#wrap {'+
-               		'margin:0 auto;'+
-            	'}'+
-            	'#left_col {'+
-               		'float:left;'+
-            	'}'+
-            	'#right_col {'+
-               		'float:right;'+
-            	'}'+
-            	'#foto {'+
-                	'width: 68px;'+
-                	'margin-right: 7px;'+
-            	'}'+
-			'</style>'+
-		'</head>'+
-		'<body>'+
-      		'<div id="content">'+
-            	'<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>'+
-      		'<div id="bodyContent">'+
-      			'<div id="wrap">'+
-            		'<div id="left_col">'+
-                  		'<img id="foto" src=_Imagens/regua.jpg>'+
-            		'</div>'+
-            	'</div>'+
-            	'<div id="rigth_col":'+
-                	'<p>'+
-                  	'Rio: Rio Benedito.<br>'+
-                  	'Bairro: Centro.<br>'+
-                  	'Cidade: Timbó.<br>'+
-                  	'Latitude: '+latLngRegua.lat()+'<br>'+
-                  	'Longitude: '+latLngRegua.lng()+'<br>'+
-                '</div>'+
-            '</div>'+
-		'</body>'+
-		'</html>';
-	
+
+	//Seta conteudo do quadro de info
+	var conteudoMarcadorRegua = '<!DOCTYPE html>' + '<html>' + '<head>' + '<title></title>' + '<style>' + '#wrap {' + 'margin:0 auto;' + '}' + '#left_col {' + 'float:left;' + '}' + '#right_col {' + 'float:right;' + '}' + '#foto {' + 'width: 68px;' + 'margin-right: 7px;' + '}' + '</style>' + '</head>' + '<body>' + '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>' + '<div id="bodyContent">' + '<div id="wrap">' + '<div id="left_col">' + '<img id="foto" src=Comum/imagens/foto-regua.jpg>' + '</div>' + '</div>' + '<div id="rigth_col":' + '<p>' + 'Rio: Rio Benedito.<br>' + 'Bairro: Centro.<br>' + 'Cidade: Timbó.<br>' + 'Latitude: ' + latLngRegua.lat() + '<br>' + 'Longitude: ' + latLngRegua.lng() + '<br>' + '</div>' + '</div>' + '</body>' + '</html>';
+
+	//Seta no mapa
 	var infowindow = new google.maps.InfoWindow({
-    	content: conteudoMarcadorRegua
-  	});
-	
-	
+		content : conteudoMarcadorRegua
+	});
+
 	google.maps.event.addListener(marcadorRegua, 'click', function() {
-    	infowindow.open(map,marcadorRegua);
-  	});
-  	
-	
+		infowindow.open(map, marcadorRegua);
+	});
+
 	marcadorRegua.setMap(map);
 
-
-
-
-	//Busca
-	
-	
-	
+	// --- Campo de busca ---
 
 	// Create the search box and link it to the UI element.
 	var input = /** @type {HTMLInputElement} */(
@@ -146,8 +98,6 @@ function initialize() {
 			bounds.extend(place.geometry.location);
 		}
 
-
-
 		//Seta o mapa no local
 
 		// This is needed to set the zoom after fitbounds,
@@ -176,12 +126,6 @@ function initialize() {
 }
 
 // [END region_initialization]
-
-// ----- Funções de campo de pesquisa -----
-
-// ----- Fim das funções de campo de pesquisa -----
-
-// ----- Funções de sobreposição de imagem -----
 
 // [START region_constructor]
 /** @constructor */
@@ -263,6 +207,6 @@ USGSOverlay.prototype.onRemove = function() {
 };
 // [END region_removal]
 
-// ----- Fim das funções de sobreposição de imagem -----
+//Adiciona mapa
 
 google.maps.event.addDomListener(window, 'load', initialize);

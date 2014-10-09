@@ -2,16 +2,13 @@
 	include './Mobile_Detect.php';
 	
 	$detect = new Mobile_Detect();
-
-	#Conecta ao MongoDB
-	$m = new MongoClient();
-	$db = $m -> mydb;
-	$collection = $db -> leituras;
 	
-	if($detect->isMobile()){ //se for acesso movel
-		include "./App/index.php";
+	//se for acesso movel
+	if($detect->isMobile()){
+		header('Location: App/index.php');
 	}
-	else {//se for acesso web desktop
-		include "./Web/index.php";
+	//se for acesso web desktop
+	else {
+		header('Location: Web/index.php');
 	}	
 ?>

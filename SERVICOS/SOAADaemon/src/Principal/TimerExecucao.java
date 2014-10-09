@@ -31,9 +31,6 @@ public class TimerExecucao {
 	public void executar() {
 		
 		Propriedades prop = new Propriedades();
-		
-		//Intervalo de execução
-		int intervalo = Integer.parseInt(prop.getProp("timerExec"));
 
 		Regua regua = new Regua();
 		MongoLeitura mongoLeitura = new MongoLeitura();
@@ -48,9 +45,12 @@ public class TimerExecucao {
 			public void run() {
 				
 				try {
+					
 					//Efetua leitura
 					System.out.println("Efetuando leitura...");
 					Leitura leitura = regua.efetuarLeitura();
+					
+					System.out.println(leitura.getNivelRio());
 					
 					//Grava valores no banco
 					System.out.println("Gravando leitura no banco...");
@@ -65,6 +65,7 @@ public class TimerExecucao {
 						
 						System.out.println("Gerando imagem de inundação...");
 						geradorImagem.gerarImagemMongoDB(leitura);
+						System.out.println("Imagem gerada com sucesso!");
 					}
 					
 					nivelRioAnterior = leitura.getNivelRio();
@@ -75,7 +76,7 @@ public class TimerExecucao {
 				}
 				
 			}
-		}, 100, intervalo);
+		}, 100, 15000);
 
 	}
 
