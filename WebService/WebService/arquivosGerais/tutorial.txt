@@ -1,0 +1,2 @@
+1 - Dentro da pasta WebContent>WEB-INF>lib  copiar as libs java-json.jar e mongo-java-driver-2.12.3.jar.
+2 - Na pasta do axis2 colar esses arquivos dentro da pasta WEB-INF>lib.
