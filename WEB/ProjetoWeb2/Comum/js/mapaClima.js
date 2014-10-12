@@ -1,54 +1,25 @@
-var overlay;
-USGSOverlay.prototype = new google.maps.OverlayView();
-
 function initialize() {
-
-	var markers = [];
 	var mapOptions = {
-		zoom : 14,
-		center : new google.maps.LatLng(-26.825, -49.268)
+		zoom : 10,
+		/*panControl: false,
+		 zoomControl: false,
+		 mapTypeControl: false,
+		 scaleControl: false,
+		 streetViewControl: false,
+		 overviewMapControl: false,*/
+		center : new google.maps.LatLng(-26.82, -49.28),
+		mapTypeId : google.maps.MapTypeId.SATELLITE
 	};
 
-	var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+	var map = new google.maps.Map(document.getElementById('mapaClima'), mapOptions);
 
-	// --- Imagem de inundação ---
-
-	//Define posição da imagem
-	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
-	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
-	var bounds = new google.maps.LatLngBounds(swBound, neBound);
-
-	// Define imagem
-	var srcImage = '../Comum/imagens/status-inundacao.png';
-
-	//Seta a imagem no mapa
-	overlay = new USGSOverlay(bounds, srcImage, map);
-
-	// --- Marcador da regua ---
-
-	//Seta posição e propriedades
-	var latLngRegua = new google.maps.LatLng(-26.82682817, -49.27629948);
-	var iconeRegua = '../Comum/imagens/marcadorRegua.png';
-	var marcadorRegua = new google.maps.Marker({
-		position : latLngRegua,
-		map : map,
-		icon : iconeRegua,
-		title : "Ponto de medição"
+	var weatherLayer = new google.maps.weather.WeatherLayer({
+		temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
 	});
+	weatherLayer.setMap(map);
 
-	//Seta conteudo do quadro de info
-	var conteudoMarcadorRegua = '<!DOCTYPE html>' + '<html>' + '<head>' + '<title></title>' + '<style>' + '#wrap {' + 'margin:0 auto;' + '}' + '#left_col {' + 'float:left;' + '}' + '#right_col {' + 'float:right;' + '}' + '#foto {' + 'width: 68px;' + 'margin-right: 7px;' + '}' + '</style>' + '</head>' + '<body>' + '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>' + '<div id="bodyContent">' + '<div id="wrap">' + '<div id="left_col">' + '<img id="foto" src=../Comum/imagens/foto-regua.jpg>' + '</div>' + '</div>' + '<div id="rigth_col":' + '<p>' + 'Rio: Rio Benedito.<br>' + 'Bairro: Centro.<br>' + 'Cidade: Timbó.<br>' + 'Latitude: ' + latLngRegua.lat() + '<br>' + 'Longitude: ' + latLngRegua.lng() + '<br>' + '</div>' + '</div>' + '</body>' + '</html>';
-
-	//Seta no mapa
-	var infowindow = new google.maps.InfoWindow({
-		content : conteudoMarcadorRegua
-	});
-
-	google.maps.event.addListener(marcadorRegua, 'click', function() {
-		infowindow.open(map, marcadorRegua);
-	});
-
-	marcadorRegua.setMap(map);
+	var cloudLayer = new google.maps.weather.CloudLayer();
+	cloudLayer.setMap(map);
 
 	// --- Campo de busca ---
 
@@ -207,6 +178,4 @@ USGSOverlay.prototype.onRemove = function() {
 };
 // [END region_removal]
 
-//Adiciona mapa
-
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize); 

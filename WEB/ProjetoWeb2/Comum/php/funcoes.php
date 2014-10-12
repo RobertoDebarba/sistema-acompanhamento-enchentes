@@ -1,11 +1,4 @@
 <?php
-	
-	#Conecta ao MongoDB
-	$m = new MongoClient();
-	$db = $m -> mydb;
-	$collectionLeituras = $db -> leituras;
-	
-	
 	/**
 	 * Verifica nivel do rio na ultima leitura e avisos no site da Defesa Civil de SC
 	 * 
@@ -15,7 +8,10 @@
 	 */
 	function getEstadoAlerta() {
 		
-		global $collectionLeituras;
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionLeituras = $db -> leituras;
 		
 		/**
 		 * Verifica avisos no site da Defesa Civil de SC e busca por palavras chave
@@ -25,18 +21,11 @@
 		 */
 		function verificarEstadoDefesaCivil() {
 			
-			#Converte erros em exceções
-			function exception_error_handler($errno, $errstr, $errfile, $errline) {
-				throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-			}
-			set_error_handler("exception_error_handler");
-			
 			try {
 				#Palavras chave de pesquisa
 				$palavrasChave = array('Timbó', 'Blumenau', 'Litoral Norte');
 				
 				#Busca quadr de informações no site da defesa civil
-				#include "./Comum/php/lib/simple_html_dom.php";
 				include "lib/simple_html_dom.php";
 				$html = file_get_html('http://www.defesacivil.sc.gov.br/');
 				
@@ -117,7 +106,10 @@
 	 */
 	function getLeituras($qtdLeituras, $leiturasValidas = true) {
 		
-		global $collectionLeituras;
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionLeituras = $db -> leituras;
 		
 		#Busca ultimas leituras
 		if ($leiturasValidas) {
