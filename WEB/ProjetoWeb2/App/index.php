@@ -1,71 +1,105 @@
+
+<!DOCTYPE html>
 <html>
-  <head>
+  <head>	
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title></title>
 	
-	<link href="./Comum/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../Comum/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
 
-    <link href="./App/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="./lib/ionic/css/ionic.css" rel="stylesheet"><!--Ionic-->
     
-    <link href="./App/css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet"><!--estilos-->
 
-	<script src="./Comum/js/jquery.min.js"></script><!--JQuery-->
-    <script>
-		function onLoad(){				
- 
-		    document.addEventListener("deviceready", onDeviceReady, true);
-		    	
-		}			    
+	<script src="../Comum/js/jquery.min.js"></script><!--JQuery-->
 	
-		function exitFromApp(){
-	    	navigator.app.exitApp();
-	    }
-	            
-		function geoLocalizar(){
-			navigator.geolocation.getCurrentPosition(onSuccess, onError);
-		}
-
-		function onSuccess(position){
-			$("#geolocation").html("Latitude: "  + position.coords.latitude + "<br />" +
-				                   "Longitude: " + position.coords.longitude + "<br />" + "<hr />");
-		}
-
-		function onError(error){
-			alert("code: "    + error.code    + "\n" +
-				 	"message: " + error.message + "\n");
-		}	
+	<script src="cordova.js"></script>
+	<script src="cordova_plugins.js"></script>
+	
+    <script type="text/javascript" charset="utf-8">
+    	var alertaAtivo;
+    	var timer
+    
+    	document.addEventListener("deviceready", onDeviceReady, false);
 		
+	    function onDeviceReady() {
+	       
+	    }
+	    
+	    /**
+	     * Ativa o modo background e manten um timer de alerta
+	     */
+	    function ativarAlerta(sim){
+	    	if(sim){
+	    		timer = setInterval(function(){alerta()}, 1000*5/*15*/);
+	    		window.plugin.backgroundMode.enable();
+	    		alertaAtivo = true;
+	    	}
+	    	else{
+	    		clearInterval(timer);
+	    		
+	    		window.plugin.backgroundMode.disable();
+	    		 
+	    		alertaAtivo = false;
+	    	}
+	    }
+	
+	    // chamado quando clicado no botao "Abrir App" do alerta
+        function alertaAbrirPrograma() {
+            // do something
+        }
+    
+	    //parametros do alerta
+	    function alerta() {
+	         navigator.notification.confirm(
+	            'Atenção! Água a caminho!',  
+	            alertaAbrirPrograma,
+	            'SAEmóvel Alerta',           
+	            ['Abrir App','Ignorar']     
+	        );
+	    }	    	
+		
+		/**
+		 * exibi o menu +
+		 */
 		function exibirMenuPlus(){
 				$("#menuPlus").slideToggle('fast');
 	    }
 	    
-	    function alterarBT(){
-	    	$('#alerta').toggleClass('button-assertive button-positive');
-	    }
-	    
+	    /**
+	     * abre a tela passada como parametro
+	     * -apenas nome do arquivo php sem o .php
+	     */
 	    function alterarConteudo(tela){
 	    	if(tela == "home"){	
 	    		$( "#conteudo" ).hide();
+	    		$("#alerta").show();
 	    		$( "#mapaconteiner" ).show();		
 	    	}
 	    	else{
 	    		$( "#conteudo" ).show();
 	    		$( "#mapaconteiner" ).hide();
-		    	$("#menuPlus").slideToggle('fast');
-			    $( "#conteudo" ).load( "./App/"+tela+".php"); 	
+		    	$("#menuPlus").hide('fast');
+		    	$("#alerta").hide();
+			    $( "#conteudo" ).load( "./"+tela+".php"); 	
 				
 			}				
 	    }
 	    
+	    
 	</script>
 
 	</head>
-	<body onload="onLoad">
+	<body>
 		<?php
-			include "./Comum/php/funcoes.php";
+			include "../Comum/php/funcoes.php";
 			
-			//$alerta = getEstadoAlerta();
+			$alerta = getEstadoAlerta();
 		?>
+		
+		<!--barra superior com menus-->
 		<div id="header">
 			<div class="bar bar-header tabs-top bar-positive">
 			  <h1 class="title">
@@ -75,19 +109,20 @@
 			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
 				  <a onclick="alterarConteudo('home');" href="javascript:void(0);" class="tab-item active">
 					<i class="icon ion-home"></i>
-				    Test
+				    Home
 				  </a>
-				  <a onclick="exibirMenuPlus();" href="javascript:void(0);" class="tab-item">
-					<i class="icon ion-plus-round"></i>
-				    Favorites
+				  <a href="javascript:void(0);" class="tab-item">
+					<i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i>
+				    Menu
 				  </a>
-				  <a class="tab-item" href="#">
+				  <a onclick="alterarConteudo('Servico');" class="tab-item" href="javascript:void(0);">
 					<i class="icon ion-gear-a"></i>
-				    Settings
+				    Configurações
 				  </a>
 			</div>
 		</div>
 		
+		<!--menu plus-->
 	  	<div id="menuPlus" class="popover bottom ">
             <div class="arrow"></div>
             <div class="popover-content">
@@ -115,108 +150,104 @@
 	  		</div>
        </div>
 	  	
-		<!--Conteúdo-->
+		<!--Conteúdo adicionais-->
 		
-		<div id="conteudo">
+		<div id="conteudo" class="container">
 	
 		</div>
 		
-		<div id="mapaconteiner">
+		<!--area do mapa-->
+		<div id="mapaconteiner" >
 			<input id='pac-input' class='controls' type='text' placeholder='Digite um endereço...'>
 			<div id='mapa'></div>
 		</div>
 		
+		<!--alerta rodapé-->
 		<div id="painelInfo">
-				<?php
-					/*
-					if (($alerta[0] == 0) & ($alerta[1] == 0)) {
-						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
-								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
-								</button>';
-					} else if (($alerta[0] == 1) | (($alerta[1] == 1))) {
-						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
-								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
-								</button> ';
-					} else if ($alerta[0] == 2) {
-						echo '<button id="alerta" class="button button-full button-assertive" onclick="alterarBT()">
-								  <Strong>Nivel do rio: 12 metros | Chuva Moderada</strong>
-								</button> ';
-					}
-					*/
-				?>
-			</div>
+			<?php
+			$leituras = getLeituras(1, true);
+
+			if (($alerta[0] == 0) & ($alerta[1] == 0)) {
+				echo('<button onclick="alterarConteudo(\'medicoes\');" id="alerta" class="button button-full button-positive" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</button> ');
+			} else if (($alerta[0] == 1) | (($alerta[1] == 1))) {
+				echo('<button onclick="alterarConteudo(\'medicoes\');" id="alerta" class="button button-full button-energized" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</button> ');
+			} else if ($alerta[0] == 2) {
+				echo('<button onclick="alterarConteudo(\'medicoes\');" id="alerta" class="button button-full button-assertive" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</button> ');
+			}
+			?>
+		</div>
+			
+		
 		
 		<!--JAVASCRIPT-->		
 		
-	    <script src="./App/lib/ionic/js/ionic.js"></script><!-- ionic-->
+	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->
 	    
-	    <script src="./App/lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
+	    <script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
 	    
-	    <script src="./Comum/bootstrap-3.2.0/js/bootstrap.min.js"></script><!--boots-->
-	    <script src="./Comum/bootstrap-3.2.0/js/bootstrap.js"></script><!--boots-->
-	        
-  		<script src="./App/plugins/cordova.js"></script><!-- cordova-->
-				
-		<script src="./App/plugins/backgroundmode/www/background-mode.js"></script>
-		<script src="./App/plugins/org.apache.cordova.dialogs/www/notification.js"></script>
-		<script src="./App/plugins/org.apache.cordova.geolocation/www/geolocation.js"></script>
+	    <script type="text/javascript" src="../Comum/bootstrap-3.2.0/js/bootstrap.min.js"></script><!--boots-->
+	    <script type="text/javascript" src="../Comum/bootstrap-3.2.0/js/bootstrap.js"></script><!--boots-->
 		
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-		<script type="text/javascript" src="./Comum/js/mapa.js"></script><!-- MAPA -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+		<script type="text/javascript" src="../Comum/js/mapa.js"></script><!-- MAPA -->
 		
 		<!--grafico-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	    <script type="text/javascript">
 	    
-	    function loadchart(){
-	  		google.load("visualization", "1", {"callback" : drawVisualization, packages:["corechart"]});
-		}
-	    	
-	    <?php
-		date_default_timezone_set("America/Sao_Paulo");
-		
-		$m = new MongoClient();
-		$db = $m -> mydb;
-		$collectionLeituras = $db -> leituras;
-		
-		$query = array('nivelRio' => array('$ne' => 'null'));
-			
-		$cursor = $collectionLeituras -> find($query);
-			
-		$cursor -> sort(array('dataHora' => -1));
-		$cursor -> limit(24);
-	
-		#Monta array
-		$leituras[] = array();
-	
-		#Imprime leituras na tabela
-		foreach ($cursor as $document) {
-			$Hora = $document["dataHora"];
-	
-			$hora = date("H:i:s", strtotime($Hora));
-			$nivelRio = $document["nivelRio"];
-			$nivelChuva = $document["nivelChuva"];
-	
-		}
-			?>
-		
-	  	function drawVisualization() {
-	        var data = google.visualization.arrayToDataTable([
-					["Hora",  "Nivel do Rio","Estado da Chuva"],
-					<?php  	
-					echo '["'.$hora.'" , '.$nivelRio.', '.$nivelChuva.' ]';
-					?>					
-				]);
-				 var options = {
-				    title: 'Histórico de Medições',
-				    curveType: 'function',
-				    legend: { position: 'bottom' }
-				  };
-			
-				var chart = new google.visualization.LineChart(document.getElementById('grafico'));
-			
-				chart.draw(data, options);
+		    /*carrega o grafico*/
+		    function loadchart(){
+		  		google.load("visualization", "1", {"callback" : drawVisualization, packages:["corechart"]});
 			}
+		    	
+		    <?php
+			date_default_timezone_set("America/Sao_Paulo");
+			
+			$m = new MongoClient();
+			$db = $m -> mydb;
+			$collectionLeituras = $db -> leituras;
+			
+			$query = array('nivelRio' => array('$ne' => 'null'));
+				
+			$cursor = $collectionLeituras -> find($query);
+				
+			$cursor -> sort(array('dataHora' => -1));
+			$cursor -> limit(24);
+		
+			#Monta array
+			$leituras[] = array();
+		
+			
+				?>
+			
+		  	function drawVisualization() {
+		        var data = google.visualization.arrayToDataTable([
+						["Hora",  "Nivel do Rio"],
+						<?php  	
+						#Imprime leituras no grafico
+						foreach ($cursor as $document) {
+							$Hora = $document["dataHora"];
+					
+							$hora = date("H:i:s", strtotime($Hora));
+							$nivelRio = $document["nivelRio"];
+							$nivelChuva = $document["nivelChuva"];
+							
+							echo '["'.$hora.'" , '.$nivelRio.'],';
+					
+						}
+						
+						?>					
+					]);
+					 var options = {
+					    title: 'Histórico de Medições',
+					    curveType: 'function',
+					    legend: { position: 'bottom' }
+					  };
+				
+					var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));
+				
+					chart.draw(data, options);
+				}
 			
 		</script> 
 	</body>

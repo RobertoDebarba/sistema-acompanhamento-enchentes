@@ -1,4 +1,4 @@
-var OrientationLock = function() {}
+cordova.define("com.phonegap.plugins.OrientationLock.OrientationLock", function(require, exports, module) { var OrientationLock = function() {}
 
 OrientationLock.prototype.lock = function(orientation, success, fail) {
 	return cordova.exec(success, fail, "OrientationLock", "lock", [orientation])
@@ -16,3 +16,5 @@ if ( ! window.plugins.orientationLock ) {
 }
 
 module.exports = OrientationLock
+
+});
