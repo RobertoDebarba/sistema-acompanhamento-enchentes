@@ -24,6 +24,7 @@
     	var estado;
     	var leituras;
     	var dataArray = [];
+    	var chuva = [];
 
     	getEstadoAlerta();
     	getLeituras(12);	
@@ -174,23 +175,26 @@
 		 * cria um array com as leituras para o grafico
 		 */
 		function carregaLeituras(){
+			dataArray = [];
+			chuva = [];
+			
+			chuva[0] = ['Data','Chuva'];
 			dataArray[0] = ['Data', 'Nivel do Rio'];
 			
 	    	var key;
 			for(key in leituras) {
-			  if(leituras.hasOwnProperty(key)) {
+			  	if(leituras.hasOwnProperty(key)) {
 			
-			    var object = leituras[key];
-			    
-			    datacompleta =  object[0] + " "+  object[1];
-			    
-			    hora = object[1];
-			    
-				nivelRio = object[2];
-				
-				$('#tabela').append('<tr><td>'+object[0]+" "+object[1] + '</td><td>'+object[2] + ' m</td><td>'+object[3] + '</td></tr>');
-			  	
-				dataArray[dataArray.length] = [datacompleta, parseInt(nivelRio)];
+				    var object = leituras[key];
+				    
+				    datacompleta =  object[0] + " "+  object[1];					
+					
+					$('#tabela').append('<tr><td>'+object[0]+" "+object[1] + '</td><td>'+object[2] + ' m</td><td>'+object[3] + '</td></tr>');
+				  	
+				  	if(key <= 7){
+				  		chuva[chuva.length] = [object[0], parseInt(object[3])];
+						dataArray[dataArray.length] = [datacompleta, parseInt(object[2])];
+					}
 				}
 			}	
 		}
@@ -199,9 +203,7 @@
 			dados = data;
 		}
 	
-    	function alteraBarraAlerta(){	
-    		
-    		
+    	function alteraBarraAlerta(){	   		
     		medicoes = leituras[1];
     		
 			if ((estado[0] == 0) & (estado[1] == 0)) {
@@ -288,7 +290,7 @@
 		
 		<!--alerta rodapé-->
 		<div id="painelInfo">
-			<button onclick="alterarConteudo(\'medicoes\');" id="alerta" class="button button-full button-positive button-assertive button-energized" role="alert">
+			<button onclick='alterarConteudo("medicoes");' id="alerta" class="button button-full button-positive button-assertive button-energized" role="alert">
 			</button>
 		</div>
 			
@@ -311,26 +313,38 @@
 	    <script type="text/javascript">
 			
 		    /*carrega o grafico*/
-		    function loadchart(){
-				google.load("visualization", "1", {"callback" : drawVisualization, packages:["corechart"]});
+		    function loadchart(){		    	
+				google.load("visualization", "1.0", {"callback" : drawVisualization, packages:["corechart"]});
+	    	
+				google.load("visualization", "1.0", {"callback" : drawVisualization, packages:["corechart"]});
 			}
 			
 			
-		  	function drawVisualization() {
-				 
-		        var dataTable = google.visualization.arrayToDataTable(dataArray);
+		  	function drawVisualization() {		
+		        dataTable1 = google.visualization.arrayToDataTable(dataArray);
+		        console.log(chuva);
+		        dataTable2 = google.visualization.arrayToDataTable(chuva);
 
-				var options = {
+				var options1 = {
 				    title: 'Histórico de Medições',
 				    curveType: 'function',
-					legend: { position: 'bottom' }
+					legend: { position: 'none' },
+					pointSize: 5
 				};
-			
-				var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));
-			
-				chart.draw(dataTable, options);
+				
+				var options2 = {
+				    title: 'Histórico de Chuva',
+				    curveType: 'function',
+					legend: { position: 'none' },
+					pointSize: 5
+				};
+				
+				var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));				
+				chart.draw(dataTable2, options2);
+				
+				var chart = new google.visualization.LineChart(document.getElementById('graficoChuva'));
+				chart.draw(dataTable1, options1);
 			}
-
 		</script> 
 	</body>
 </html>
