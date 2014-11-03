@@ -124,7 +124,7 @@ var alertaAtivo;// verificador de timer do alerta ativo ou nao
 		 */
 	    function getLeituras(qtdLeituras){
 	    	$.ajax({
-                url: "http://192.168.129.212/jonathan/Projeto%20Web/Comum/php/funcoes.php/?getLeituras=?",
+                url: "http://localhost/jonathan/Projeto%20Web/final/funcoes.php/?getLeituras=?",
        			data: { 'qtdLeituras' : qtdLeituras},
                 dataType:'jsonp',
                 crossDomain: true,
@@ -140,7 +140,7 @@ var alertaAtivo;// verificador de timer do alerta ativo ou nao
 		 */
         function getEstadoAlerta(){
          	$.ajax({
-                url: "http://192.168.129.212/jonathan/Projeto%20Web/Comum/php/funcoes.php?getEstadoAlerta=?",
+                url: "http://localhost/jonathan/Projeto%20Web/final/funcoes.php?getEstadoAlerta=?",
                 dataType:'jsonp',
                 crossDomain: true,
 
@@ -182,7 +182,7 @@ var alertaAtivo;// verificador de timer do alerta ativo ou nao
 					$('#tabela').append('<tr><td>'+object[0]+" "+object[1] + '</td><td>'+object[2] + ' m</td><td>'+object[3] + '</td></tr>');
 				  	
 				  	if(key <= 6){
-				  		chuva[chuva.length] = [object[0], parseInt(object[3])];
+				  		chuva[chuva.length] = [datacompleta, parseInt(object[3])];
 						dataArray[dataArray.length] = [datacompleta, parseInt(object[2])];
 					}
 				}
@@ -234,7 +234,7 @@ function trataEnchentes(data) {
 
 function getEnchentes() {
 	$.ajax({
-		url : "http://localhost/luan/tcc/testeAndroid/www/functions.php?getEnchentes=?",
+		url : "http://localhost/jonathan/Projeto%20Web/final/functions.php?getEnchentes=?",
 		dataType : 'jsonp',
 		crossDomain : true,
 		
