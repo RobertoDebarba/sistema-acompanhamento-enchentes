@@ -7,7 +7,7 @@
     
     <title>SAEmóvel</title>
 	
-	<link href="./bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
+	<link href="./css/bootstrappopover.css" rel="stylesheet"><!--Bootstrap-->
 
     <link href="./lib/ionic/css/ionic.css" rel="stylesheet"><!--Ionic-->
     
@@ -18,209 +18,7 @@
 	<script src="cordova.js"></script>
 	
     <script type="text/javascript" charset="utf-8">
-    	var alertaAtivo;
-    	var timer;
-
-    	var estado;
-    	var leituras;
-    	var dataArray = [];
-    	var chuva = [];
-
-    	getEstadoAlerta();
-    	getLeituras(12);	
-    
-    	document.addEventListener("deviceready", onDeviceReady, false);
-		
-	    function onDeviceReady() {
-	       
-	      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-	    }
-	
-	    function gotFS(fileSystem) {
-	        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-	        alert("1");
-	    }
-	
-	    function gotFileEntry(fileEntry) {
-	        fileEntry.createWriter(gotFileWriter, fail);
-	        alert("2");
-	    }
-	
-	    function gotFileWriter(writer) {
-	        writer.onwriteend = function(evt) {
-	            console.log("contents of file now 'some sample text'");
-	            writer.truncate(11);  
-	            writer.onwriteend = function(evt) {
-	                console.log("contents of file now 'some sample'");
-	                writer.seek(4);
-	                writer.write(" different text");
-	                writer.onwriteend = function(evt){
-	                    console.log("contents of file now 'some different text'");
-	                };
-	            };
-	        };
-	        writer.write("some sample text");
-	        
-	    }
-
-	    function fail(error) {
-	        alert(error.code);
-	    }
-	    
-	    /**
-	     * Ativa o modo background e manten um timer de alerta
-	     */
-	    function ativarAlerta(sim){
-	    	if(sim){
-	    		timer = setInterval(function(){alerta();}, 1000*5/*15*/);
-	    		window.plugin.backgroundMode.enable();
-
-	    		alertaAtivo = true;
-	    	}
-	    	else{
-	    		clearInterval(timer);
-	    		
-	    		window.plugin.backgroundMode.disable();
-	    		 
-	    		alertaAtivo = false;
-	    	}
-	    }
-	
-	    // chamado quando clicado no botao "Abrir App" do alerta
-        function alertaAbrirPrograma() {
-            // do something
-        }
-    
-	    //parametros do alerta
-	    function alerta() {
-	    	navigator.notification.beep(3);
-	        navigator.notification.confirm(
-	           'Atenção! Água a caminho!',  
-	            alertaAbrirPrograma,
-	            'SAEmóvel Alerta',           
-	            ['Abrir App','Ignorar']     
-	        );
-	    }	    	
-		
-		/**
-		 * exibi o menu +
-		 */
-		function exibirMenuPlus(){
-				$("#menuPlus").slideToggle('fast');
-	    }
-	    
-	    /**
-	     * abre a tela passada como parametro
-	     * -apenas nome do arquivo php sem o .php
-	     */
-	    function alterarConteudo(tela){
-	    	if(tela == "home"){	
-	    		$( "#conteudo" ).hide();
-	    		$("#alerta").show();
-	    		$( "#mapaconteiner" ).show();		
-	    	}
-	    	else{
-	    		$( "#conteudo" ).show();
-	    		$( "#mapaconteiner" ).hide();
-		    	$("#menuPlus").hide('fast');
-		    	$("#alerta").hide();
-			    $( "#conteudo" ).load( "./"+tela+".html"); 	
-				
-			}				
-	    }
-		
-		/**
-		 * obtem as leituras do php no servidor
-		 */
-	    function getLeituras(qtdLeituras){
-	    	$.ajax({
-                url: "http://localhost/jonathan/Projeto%20Web/Comum/php/funcoes.php/?getLeituras=?",
-       			data: { 'qtdLeituras' : qtdLeituras},
-                dataType:'jsonp',
-                crossDomain: true,
-
-                success: function(data){
-                	setleituras(data);
-                }
-            });
-	    }
-	    
-	    /**
-		 * obtem alertas da defesa civil do php no servidor
-		 */
-        function getEstadoAlerta(){
-         	$.ajax({
-                url: "http://localhost/jonathan/Projeto%20Web/Comum/php/funcoes.php?getEstadoAlerta=?",
-                dataType:'jsonp',
-                crossDomain: true,
-
-                success: function(data){
-                	setEstado(data);
-				}  
-            });
-            
-         }
-		
-         function setEstado(dados){
-         	estado = dados;
-         	alteraBarraAlerta();
-         }
-
-         function setleituras(dados){
-         	leituras = dados;  
-         	alteraBarraAlerta();         	
-         }
-		
-		/**
-		 * cria um array com as leituras para o grafico
-		 */
-		function carregaLeituras(){
-			dataArray = [];
-			chuva = [];
-			
-			chuva[0] = ['Data','Chuva'];
-			dataArray[0] = ['Data', 'Nivel do Rio'];
-			
-	    	var key;
-			for(key in leituras) {
-			  	if(leituras.hasOwnProperty(key)) {
-			
-				    var object = leituras[key];
-				    
-				    datacompleta =  object[0] + " "+  object[1];					
-					
-					$('#tabela').append('<tr><td>'+object[0]+" "+object[1] + '</td><td>'+object[2] + ' m</td><td>'+object[3] + '</td></tr>');
-				  	
-				  	if(key <= 7){
-				  		chuva[chuva.length] = [object[0], parseInt(object[3])];
-						dataArray[dataArray.length] = [datacompleta, parseInt(object[2])];
-					}
-				}
-			}	
-		}
-			
-		function setDados(data){
-			dados = data;
-		}
-	
-    	function alteraBarraAlerta(){	   		
-    		medicoes = leituras[1];
-    		
-			if ((estado[0] == 0) & (estado[1] == 0)) {
-				$("#alerta").toggleClass("button-assertive");
-				$("#alerta").toggleClass("button-energized");
-				$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva' + medicoes[3]);
-			} else if ((estado[0] == 1) | ((estado[1] == 1))) {
-				$("#alerta").toggleClass("button-assertive");
-				$("#alerta").toggleClass("button-positive");
-				$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
-			} else if (estado[0] == 2) {
-				$("#alerta").toggleClass("button-energized");
-				$("#alerta").toggleClass("button-positive");
-				$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
-			}
-	
-    	}
+    	
 	</script>
 
 	</head>
@@ -267,7 +65,7 @@
 				  <a class="item" href="#">
 				    Galeria
 				  </a>
-				  <a class="item" href="#">
+				  <a onclick="lerCfg();" class="item" href="javascript:void(0);">
 				    Simulador
 				  </a>
 				  <a onclick="alterarConteudo('verificarLocal');" class="item" href="javascript:void(0);">
@@ -293,58 +91,19 @@
 			<button onclick='alterarConteudo("medicoes");' id="alerta" class="button button-full button-positive button-assertive button-energized" role="alert">
 			</button>
 		</div>
-			
-		
-		
+					
 		<!--JAVASCRIPT-->		
-		
-	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->
-	    
+	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->	    
 	    <script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
-	    
-	    <script type="text/javascript" src="./bootstrap-3.2.0/js/bootstrap.min.js"></script><!--boots-->
-	    <script type="text/javascript" src="./bootstrap-3.2.0/js/bootstrap.js"></script><!--boots-->
 		
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 		<script type="text/javascript" src="./js/mapa.js"></script><!-- MAPA -->
 		
 		<!--grafico-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	    <script type="text/javascript">
-			
-		    /*carrega o grafico*/
-		    function loadchart(){		    	
-				google.load("visualization", "1.0", {"callback" : drawVisualization, packages:["corechart"]});
-	    	
-				google.load("visualization", "1.0", {"callback" : drawVisualization, packages:["corechart"]});
-			}
-			
-			
-		  	function drawVisualization() {		
-		        dataTable1 = google.visualization.arrayToDataTable(dataArray);
-		        console.log(chuva);
-		        dataTable2 = google.visualization.arrayToDataTable(chuva);
-
-				var options1 = {
-				    title: 'Histórico de Medições',
-				    curveType: 'function',
-					legend: { position: 'none' },
-					pointSize: 5
-				};
-				
-				var options2 = {
-				    title: 'Histórico de Chuva',
-				    curveType: 'function',
-					legend: { position: 'none' },
-					pointSize: 5
-				};
-				
-				var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));				
-				chart.draw(dataTable2, options2);
-				
-				var chart = new google.visualization.LineChart(document.getElementById('graficoChuva'));
-				chart.draw(dataTable1, options1);
-			}
-		</script> 
+		
+		<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
+		<script type="text/javascript" src="./js/graficos.js"></script><!-- funçoes-->
+		
 	</body>
 </html>

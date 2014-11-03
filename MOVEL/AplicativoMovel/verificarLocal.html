@@ -1,0 +1,50 @@
+<div id="divbotao" onclick="carregaDados();" >
+
+	<img id="botao" src="./ionicons-1.5.2/png/512/android-locate.png"/>
+	<h2>Verificar Local</h2>
+
+</div>
+
+<script>
+	function carregaDados() {
+		coordenadas();
+		getEnchentes();
+
+	}
+
+</script>
+
+<div id="tabela" >
+	<span id="enderecoLocal">Endereço</span>
+	<table id="tabelaInformacoesLocal" class="table table-bordered">
+
+		<tr>
+			<td>Elevação</td>
+			<td id="elevacaoLocal"></td>
+		</tr>
+		<tr>
+			<td>Nível do Rio</td>
+			<td id="nivelRioLocal"></td>
+		</tr>
+		<tr>
+			<td>Latitude</td>
+			<td id="latitudeLocal" ></td>
+		</tr>
+		<tr>
+			<td>Longitude</td>
+			<td id="longitudeLocal" ></td>
+		</tr>
+
+	</table>
+	<table  class="table table-bordered">
+		<thead>
+			<tr>
+				<td style="background-color: #4a87ee"> Histórico de Inundações</td>
+			</tr>
+		</thead>
+		<tbody id="tabelaHistoricoInundacoes">
+
+		</tbody>
+	</table>
+</div>
+
