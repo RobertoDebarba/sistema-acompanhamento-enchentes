@@ -19,7 +19,7 @@ function initialize() {
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Define imagem
-	var srcImage = '../Comum/imagens/status-inundacao.png';
+	var srcImage = 'imagens/status-inundacao.png';
 
 	//Seta a imagem no mapa
 	overlay = new USGSOverlay(bounds, srcImage, map);
@@ -28,7 +28,7 @@ function initialize() {
 
 	//Seta posição e propriedades
 	var latLngRegua = new google.maps.LatLng(-26.82682817, -49.27629948);
-	var iconeRegua = '../Comum/imagens/marcadorRegua.png';
+	var iconeRegua = 'imagens/marcadorRegua.png';
 	var marcadorRegua = new google.maps.Marker({
 		position : latLngRegua,
 		map : map,
@@ -37,7 +37,7 @@ function initialize() {
 	});
 
 	//Seta conteudo do quadro de info
-	var conteudoMarcadorRegua = '<!DOCTYPE html>' + '<html>' + '<head>' + '<title></title>' + '<style>' + '#wrap {' + 'margin:0 auto;' + '}' + '#left_col {' + 'float:left;' + '}' + '#right_col {' + 'float:right;' + '}' + '#foto {' + 'width: 68px;' + 'margin-right: 7px;' + '}' + '</style>' + '</head>' + '<body>' + '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>' + '<div id="bodyContent">' + '<div id="wrap">' + '<div id="left_col">' + '<img id="foto" src=../Comum/imagens/foto-regua.jpg>' + '</div>' + '</div>' + '<div id="rigth_col":' + '<p>' + 'Rio: Rio Benedito.<br>' + 'Bairro: Centro.<br>' + 'Cidade: Timbó.<br>' + 'Latitude: ' + latLngRegua.lat() + '<br>' + 'Longitude: ' + latLngRegua.lng() + '<br>' + '</div>' + '</div>' + '</body>' + '</html>';
+	var conteudoMarcadorRegua = '<!DOCTYPE html>' + '<html>' + '<head>' + '<title></title>' + '<style>' + '#wrap {' + 'margin:0 auto;' + '}' + '#left_col {' + 'float:left;' + '}' + '#right_col {' + 'float:right;' + '}' + '#foto {' + 'width: 68px;' + 'margin-right: 7px;' + '}' + '</style>' + '</head>' + '<body>' + '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>' + '<div id="bodyContent">' + '<div id="wrap">' + '<div id="left_col">' + '<img id="foto" src=imagens/foto-regua.jpg>' + '</div>' + '</div>' + '<div id="rigth_col":' + '<p>' + 'Rio: Rio Benedito.<br>' + 'Bairro: Centro.<br>' + 'Cidade: Timbó.<br>' + 'Latitude: ' + latLngRegua.lat() + '<br>' + 'Longitude: ' + latLngRegua.lng() + '<br>' + '</div>' + '</div>' + '</body>' + '</html>';
 
 	//Seta no mapa
 	var infowindow = new google.maps.InfoWindow({

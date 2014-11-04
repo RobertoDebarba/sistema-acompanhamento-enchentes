@@ -1,15 +1,15 @@
 <?php
-include 'header.php';
-$meta = array();
+	include 'header.php';
+	$meta = array();
 
-$meta['pag_inicial'] = true;
-$meta['descricao'] = 'Sistema Online de Acompanhamento de Enchentes e Inundações';
-$meta['css'] = array('css/index.css', 'css/mapa-index.css');
-$meta['menuAtivo'] = 0;
+	$meta['pag_inicial'] = true;
+	$meta['descricao'] = 'Sistema Online de Acompanhamento de Enchentes e Inundações';
+	$meta['css'] = array('css/index.css', 'css/mapa-index.css');
+	$meta['menuAtivo'] = 0;
 
-printHeader($meta);
+	printHeader($meta);
 
-$alerta = getEstadoAlerta();
+	$alerta = getEstadoAlerta();
 ?>
 
 <!-- Corpo -->
@@ -96,7 +96,7 @@ $alerta = getEstadoAlerta();
 
 <!-- MAPA -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
-<script src="../Comum/js/mapa.js" type="text/javascript"></script>
+<script src="js/mapa.js" type="text/javascript"></script>
 
 <?php
 	include 'footer.php';
