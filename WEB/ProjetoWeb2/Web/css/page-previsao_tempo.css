@@ -1,0 +1,27 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#linhaMenu {
+	height: 51px;
+}
+
+#linhaCorpo {
+	padding-left: 0px;
+	padding-right: 0px;
+	height: calc(100% - 51px);
+}
+
+#painelInfo {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	padding: 5px;
+}
+
+#painelInfo img {
+	height: 275px;
+	padding-bottom: 5px;
+	padding-top: 0px;
+}

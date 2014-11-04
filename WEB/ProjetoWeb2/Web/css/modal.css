@@ -1,0 +1,17 @@
+table {
+	text-align: center;
+}
+
+.modal-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+#modalMedicoes thead {
+	font-weight: bold;
+}
+
+#modalSitesUteis table thead {
+	font-weight: bold;
+	font-size: 18px;
+}
