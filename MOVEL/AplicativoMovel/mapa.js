@@ -1,25 +1,54 @@
-function initializeWeather() {
+var overlay;
+USGSOverlay.prototype = new google.maps.OverlayView();
+
+function initialize() {
+
+	var markers = [];
 	var mapOptions = {
-		zoom : 10,
-		/*panControl: false,
-		 zoomControl: false,
-		 mapTypeControl: false,
-		 scaleControl: false,
-		 streetViewControl: false,
-		 overviewMapControl: false,*/
-		center : new google.maps.LatLng(-26.82, -49.28),
-		mapTypeId : google.maps.MapTypeId.SATELLITE
+		zoom : 14,
+		center : new google.maps.LatLng(-26.825, -49.268)
 	};
 
-	var map = new google.maps.Map(document.getElementById('mapaClima'), mapOptions);
+	var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-	var weatherLayer = new google.maps.weather.WeatherLayer({
-		temperatureUnits : google.maps.weather.TemperatureUnit.CELSIUS
+	// --- Imagem de inundação ---
+
+	//Define posição da imagem
+	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
+	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
+	var bounds = new google.maps.LatLngBounds(swBound, neBound);
+
+	// Define imagem
+	var srcImage = './img/status-inundacao.png';
+
+	//Seta a imagem no mapa
+	overlay = new USGSOverlay(bounds, srcImage, map);
+
+	// --- Marcador da regua ---
+
+	//Seta posição e propriedades
+	var latLngRegua = new google.maps.LatLng(-26.82682817, -49.27629948);
+	var iconeRegua = './img/marcadorRegua.png';
+	var marcadorRegua = new google.maps.Marker({
+		position : latLngRegua,
+		map : map,
+		icon : iconeRegua,
+		title : "Ponto de medição"
 	});
-	weatherLayer.setMap(map);
 
-	var cloudLayer = new google.maps.weather.CloudLayer();
-	cloudLayer.setMap(map);
+	//Seta conteudo do quadro de info
+	var conteudoMarcadorRegua = '<!DOCTYPE html>' + '<html>' + '<head>' + '<title></title>' + '<style>' + '#wrap {' + 'margin:0 auto;' + '}' + '#left_col {' + 'float:left;' + '}' + '#right_col {' + 'float:right;' + '}' + '#foto {' + 'width: 68px;' + 'margin-right: 7px;' + '}' + '</style>' + '</head>' + '<body>' + '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">Ponto de Medição</h1>' + '<div id="bodyContent">' + '<div id="wrap">' + '<div id="left_col">' + '<img id="foto" src=./img/foto-regua.jpg>' + '</div>' + '</div>' + '<div id="rigth_col":' + '<p>' + 'Rio: Rio Benedito.<br>' + 'Bairro: Centro.<br>' + 'Cidade: Timbó.<br>' + 'Latitude: ' + latLngRegua.lat() + '<br>' + 'Longitude: ' + latLngRegua.lng() + '<br>' + '</div>' + '</div>' + '</body>' + '</html>';
+
+	//Seta no mapa
+	var infowindow = new google.maps.InfoWindow({
+		content : conteudoMarcadorRegua
+	});
+
+	google.maps.event.addListener(marcadorRegua, 'click', function() {
+		infowindow.open(map, marcadorRegua);
+	});
+
+	marcadorRegua.setMap(map);
 
 	// --- Campo de busca ---
 
@@ -178,6 +207,7 @@ function initializeWeather() {
 	// [END region_removal]
 }
 
+<<<<<<< HEAD:MOVEL/AplicativoMovel/js/mapaClima.js
 $(function() {
 	$('.loadMap').ready(function(e) {
 		var map = this.id + '-map';
@@ -188,3 +218,70 @@ $(function() {
 		}
 	});
 }); 
+=======
+// [END region_constructor]
+
+// [START region_attachment]
+/**
+ * onAdd is called when the map's panes are ready and the overlay has been
+ * added to the map.
+ */
+USGSOverlay.prototype.onAdd = function() {
+
+	var div = document.createElement('div');
+	div.style.borderStyle = 'none';
+	div.style.borderWidth = '0px';
+	div.style.position = 'absolute';
+
+	// Create the img element and attach it to the div.
+	var img = document.createElement('img');
+	img.src = this.image_;
+	img.style.width = '100%';
+	img.style.height = '100%';
+	img.style.position = 'absolute';
+	div.appendChild(img);
+
+	this.div_ = div;
+
+	// Add the element to the "overlayLayer" pane.
+	var panes = this.getPanes();
+	panes.overlayLayer.appendChild(div);
+};
+// [END region_attachment]
+
+// [START region_drawing]
+USGSOverlay.prototype.draw = function() {
+
+	// We use the south-west and north-east
+	// coordinates of the overlay to peg it to the correct position and size.
+	// To do this, we need to retrieve the projection from the overlay.
+	var overlayProjection = this.getProjection();
+
+	// Retrieve the south-west and north-east coordinates of this overlay
+	// in LatLngs and convert them to pixel coordinates.
+	// We'll use these coordinates to resize the div.
+	var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+	var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+	// Resize the image's div to fit the indicated dimensions.
+	var div = this.div_;
+	div.style.left = sw.x + 'px';
+	div.style.top = ne.y + 'px';
+	div.style.width = (ne.x - sw.x) + 'px';
+	div.style.height = (sw.y - ne.y) + 'px';
+};
+// [END region_drawing]
+
+// [START region_removal]
+// The onRemove() method will be called automatically from the API if
+// we ever set the overlay's map property to 'null'.
+USGSOverlay.prototype.onRemove = function() {
+	this.div_.parentNode.removeChild(this.div_);
+	this.div_ = null;
+};
+// [END region_removal]
+
+//Adiciona mapa
+
+google.maps.event.addDomListener(window, 'load', initialize);
+>>>>>>> 69b548cee7598b771a766ca0d11f5f843fe0da6b:MOVEL/AplicativoMovel/mapa.js
