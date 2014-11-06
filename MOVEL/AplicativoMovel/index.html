@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>	
@@ -9,7 +8,7 @@
     
 	<script src="./js/jquery.min.js"></script><!--JQuery-->
 	
-	<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"><!--Bootstrap-->
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
 
     <link href="./lib/ionic/css/ionic.min.css" rel="stylesheet"><!--Ionic-->
     
@@ -17,21 +16,66 @@
 	
 	<script src="cordova.js"></script> <!--cordova-->
 	
-    <script type="text/javascript" charset="utf-8">
-    	
-	</script>
+	<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
+	
+	<script type="text/javascript">
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
 
+		/**
+		 *	Evento quando o dispositivo estiver pronto 
+		 */
+		function onDeviceReady() {
+		  	
+		  	
+		  	
+		}
+		
+		
+		/**
+		 * exibi o menu +
+		 */
+		function exibirMenuPlus(){
+			$("#menuPlus").slideToggle('fast');
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+		}
+		
+		
+		/**
+		 * Abre um conteudo dentro do div 'conteudos'
+		 * @param tela: nome do arquivo html sem a extenção
+		 * @param nome: nome a ser exibido no topo do App
+		 * */
+		function alterarConteudo(tela, nome){
+			if(tela == "home"){	
+				$("#conteudo" ).hide();
+				$("#alerta").show();
+				$("#mapaconteiner" ).show();	
+				$("strong").html("Sae Móvel");
+			}
+			else{				
+				$( "#mapaconteiner" ).hide();
+				$("#menuPlus").hide('fast');
+				$("#alerta").hide();
+				$("#conteudo" ).load(tela+".html");
+				$( "#conteudo" ).show();
+			    $( "strong" ).html(nome);
+			}				
+		}
+
+	</script>
+	
 	</head>
 	<body>
 		<!--barra superior com menus-->
-		<div id="header">
+		<div style="margin-left: auto;" id="header">
 			<div class="bar bar-header tabs-top bar-positive">
 			  <h1 class="title">
-			  	<strong>APLICATIVO</strong>
+			  	<strong>Sae Móvel</strong>
 			  </h1>
 			</div>
-			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
-				  <a onclick="alterarConteudo('home');" href="javascript:void(0);" class="tab-item active">
+			<div style="margin-left: auto;" class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
+				  <a onclick="alterarConteudo('home', 'Sae Móvel');" href="javascript:void(0);" class="tab-item active">
 					<i class="icon ion-home"></i>
 				    Home
 				  </a>
@@ -39,9 +83,9 @@
 					<i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i>
 				    Menu
 				  </a>
-				  <a onclick="alterarConteudo('Servico');" class="tab-item" href="javascript:void(0);">
+				  <a onclick="alterarConteudo('Servico', 'Serviço De Alertas');" class="tab-item" href="javascript:void(0);">
 					<i class="icon ion-gear-a"></i>
-				    Configurações
+				    Configurações	
 				  </a>
 			</div>
 		</div>
@@ -50,7 +94,7 @@
 	  	<div id="menuPlus" class="popover bottom ">
             <div class="arrow"></div>
             <div class="popover-content">
-				  <a onclick="alterarConteudo('medicoes');" class="item" href="javascript:void(0);">
+				  <a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);">
 				    Medições
 				  </a>				
 				  <a class="item" href="#">
@@ -68,14 +112,13 @@
 				  <a onclick="lerCfg();" class="item" href="javascript:void(0);">
 				    Simulador
 				  </a>
-				  <a onclick="alterarConteudo('verificarLocal');" class="item" href="javascript:void(0);">
+				  <a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);">
 				    Verificar Local
 				  </a>
 	  		</div>
        </div>
 	  	
-		<!--Conteúdo adicionais-->
-		
+		<!--Conteúdo adicionais-->	
 		<div id="conteudo" class="container">
 	
 		</div>
@@ -88,11 +131,11 @@
 		
 		<!--alerta rodapé-->
 		<div id="painelInfo">
-			<button onclick='alterarConteudo("medicoes");' id="alerta" class="button button-full button-positive button-assertive button-energized" role="alert">
+			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized">
 			</button>
 		</div>
 					
-		<!--JAVASCRIPT-->		
+		<!--JAVASCRIPT-->				
 	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->	    
 	    <script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
 		
@@ -102,8 +145,7 @@
 		<!--grafico-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		
-		<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
-		<script type="text/javascript" src="./js/graficos.js"></script><!-- funçoes-->
+		<script type="text/javascript" src="./js/graficos.js"></script><!-- graficos-->
 		
 	</body>
 </html>
