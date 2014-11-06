@@ -11,7 +11,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand active" href="#">SOAEI</a>
+						<a class="navbar-brand active" href="index.php">SOAEI</a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -20,7 +20,7 @@
 								<a data-toggle="modal" data-target="#modalMedicoes" class="hidden-md hidden-lg">Acompanhamento de Medições</a>
 							</li>
 							<li <?php if($menuAtivo == 1) {echo 'class="active"';} ?>>
-								<a href="#">Histórico de Medições</a>
+								<a href="page-historico_medicoes.php">Histórico de Medições</a>
 							</li>
 							<li<?php if($menuAtivo == 2) {echo 'class="active"';} ?>>
 								<a data-toggle="modal" data-target="#modalSitesUteis">Sites Uteis</a>
