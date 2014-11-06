@@ -1,4 +1,28 @@
 <?php
+	#Call do app mobile -> Leituras
+	if (isset($_GET["getLeituras"])) {
+		header('content-type: application/json; charset=utf-8');
+		header("access-control-allow-origin: *");
+		
+		echo $_GET["getLeituras"].' ('.json_encode(getLeituras($_GET['qtdLeituras'], true)).')';        
+    }
+	
+	#Call do app mobile -> EstadoAlerta
+	if (isset($_GET['getEstadoAlerta'])) {
+		header('content-type: application/json; charset=utf-8');
+		header("access-control-allow-origin: *");	
+		
+        echo $_GET["getEstadoAlerta"].' ('.json_encode(getEstadoAlerta()).")";
+    }
+	
+	#Call do app mobile -> Enchentes
+	if (isset($_GET['getEnchentes'])) {
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");   
+		
+        echo $_GET["getEnchentes"].' ('.json_encode(getEnchentes()).")";
+    }
+	
 	/**
 	 * Verifica nivel do rio na ultima leitura e avisos no site da Defesa Civil de SC
 	 * 
@@ -102,7 +126,7 @@
 	 * 
 	 * @param qtdLeituras = quantidade de leituras a retornar
 	 * @param leiturasValidas = se true, retorna apenas leituras validas (nuvel <> 'null')
-	 * @return array[][] = 0: numero da leitura, 1= valor (0-dataHora, 1-nivelRio, 2-nivelChuva)
+	 * @return array[][] = 0: numero da leitura, 1: valor (0-data, 1-hora, 2-nivelRio, 3-nivelChuva)
 	 */
 	function getLeituras($qtdLeituras, $leiturasValidas = true) {
 		
@@ -127,20 +151,21 @@
 		foreach ($cursor as $document) {
 			$Hora = date(DATE_ISO8601, $document["dataHora"] -> sec);
 			
-			$leituras[$i][0] = date("d/m/Y", strtotime($Hora)) . ", " . date("h:i:sa", strtotime($Hora));
-			$leituras[$i][1] = $document["nivelRio"];
+			$leituras[$i]['0'] = date("d/m", strtotime($Hora));
+			$leituras[$i]['1'] = date("H:i", strtotime($Hora));
+			$leituras[$i]['2'] = strval($document["nivelRio"]);
 			switch ($document["nivelChuva"]) {
 				case 0:	
-					$leituras[$i][2] = 'Nula';
+					$leituras[$i]['3'] = 'Nula';
 					break;
 				case 1:
-					$leituras[$i][2] = 'Moderada';
+					$leituras[$i]['3'] = 'Moderada';
 					break;
 				case 2:
-					$leituras[$i][2] = 'Forte';
+					$leituras[$i]['3'] = 'Forte';
 					break;
 				default:
-					$leituras[$i][2] = 'null';
+					$leituras[$i]['3'] = 'null';
 					break;
 			}
 			
@@ -148,5 +173,32 @@
 		}
 		
 		return $leituras;
+	}
+	
+	/**
+	 * Retorna todas enchentes cujo pico for maior ou igual ao informado.
+	 * 
+	 * @param elevAtual = Elevação atual.
+	 * @return array[][] = 0: numero da enchente, 1: ->(0: Data, 1: Nivel de pico do rio)
+	 */
+	function getEnchentes($elevAtual) {
+		
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionEnchentes = $db -> enchentes;
+		
+		$query = array('nivelRio' => array('$gte' => $elevAtual));
+		$cursor = $collectionEnchentes -> find($query);
+		
+		$enchentes = array();
+		$i = 0;
+		foreach ($cursor as $document) {
+			$enchentes[$i][0] = $document['data'];
+			$enchentes[$i][1] =  $document['nivelRio'];
+			$i++;
+		}
+		
+		return $array;		
 	}
 ?>
