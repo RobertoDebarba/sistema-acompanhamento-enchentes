@@ -25,9 +25,6 @@ phonegap local plugin add org.apache.cordova.device
 
 phonegap local plugin add de.appplant.cordova.plugin.background-mode
 
-phonegap local plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
-
-
 
 PARA RODAR O APLICATIVO
 

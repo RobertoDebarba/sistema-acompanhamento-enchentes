@@ -1,7 +1,8 @@
-<h2 style="text-align:center;">Sistema de alerta</h2>
-<div style="margin: auto;" class="row">
-	<span style="font-size: 20px;">Alertas</span>
-	<div style="margin-left: auto;" class="onoffswitch">
+
+<h2 style="margin-left:20%;">Sistema de alerta</h2>
+<div style="float: right;" class="row">
+	<span style="margin-right: 19%; font-size: 20px; padding-top: 10px">Alertas</span>
+	<div style="float: right;" class="onoffswitch">
 	    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
 	    <label class="onoffswitch-label" for="myonoffswitch">
 	        <span class="onoffswitch-inner"></span>
@@ -26,19 +27,17 @@
 		});
 	
 </script>
+<div class="row">
 
-<div style="margin: auto;" class="row"></div>
-
-<div style="margin: auto;" class="row">
+</div>
+<div class="row">
 	<table class="table table-striped">
-  		<tr>
-  			<td style="text-align; center">
-				<span id="enderecoLocal"></span>			
+  		<tr >
+  			<td>
+				<span style="line-height: 50px; font-size: 20px;">Local</span>
 			</td>
-			<td>
-				<div onclick="addLocal();">
-					<button style="float: right;" id="buscarLocal" class="button button-positive">Buscar Local</button>
-				</div>
+			<td class="center">
+				<button style="float: right;" id="buscarLocal" class="button button-positive" >Buscar Local</button>
 			</td>
   		</tr>
 	</table>
