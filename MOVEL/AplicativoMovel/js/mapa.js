@@ -172,10 +172,8 @@ $(function() {
 		var map = this.id + '-map';
 
 		if ($('#mapa #' + map).length === 0) {
-			$('<div class="map_style" id="' + map + '">').appendTo('#mapa');
+			$('<div class="map_style id="' + map + '">').appendTo('#mapa');
 			initialize();
 		}
 	});
-});
-
-
+}); 

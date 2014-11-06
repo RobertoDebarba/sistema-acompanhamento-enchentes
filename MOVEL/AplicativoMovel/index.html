@@ -1,89 +1,152 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>SAEmóvel</title>
+    
+	<script src="./js/jquery.min.js"></script><!--JQuery-->
+	
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
 
-		<title>SAEmóvel</title>
+    <link href="./lib/ionic/css/ionic.min.css" rel="stylesheet"><!--Ionic-->
+    
+    <link href="./css/style.css" rel="stylesheet"><!--estilos-->
+	
+	<script src="cordova.js"></script> <!--cordova-->
+	
+	<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
+	
+	<script type="text/javascript">
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
 
-		<script src="./js/jquery.min.js"></script><!--JQuery-->
+		/**
+		 *	Evento quando o dispositivo estiver pronto 
+		 */
+		function onDeviceReady() {
+		  	
+		  	
+		  	
+		}
+		
+		
+		/**
+		 * exibi o menu +
+		 */
+		function exibirMenuPlus(){
+			$("#menuPlus").slideToggle('fast');
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+		}
+		
+		
+		/**
+		 * Abre um conteudo dentro do div 'conteudos'
+		 * @param tela: nome do arquivo html sem a extenção
+		 * @param nome: nome a ser exibido no topo do App
+		 * */
+		function alterarConteudo(tela, nome){
+			if(tela == "home"){	
+				$("#conteudo" ).hide();
+				$("#alerta").show();
+				$("#mapaconteiner" ).show();	
+				$("strong").html("Sae Móvel");
+			}
+			else{				
+				$( "#mapaconteiner" ).hide();
+				$("#menuPlus").hide('fast');
+				$("#alerta").hide();
+				$("#conteudo" ).load(tela+".html");
+				$( "#conteudo" ).show();
+			    $( "strong" ).html(nome);
+			}				
+		}
 
-		<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-		<!--Bootstrap-->
-
-		<link href="./lib/ionic/css/ionic.min.css" rel="stylesheet">
-		<!--Ionic-->
-
-		<link href="./css/style.css" rel="stylesheet">
-		<!--estilos-->
-
-		<script src="cordova.js"></script>
-		<!--cordova-->
-
-		<script type="text/javascript" charset="utf-8"></script>
-
+	</script>
+	
 	</head>
 	<body>
 		<!--barra superior com menus-->
-		<div id="header">
+		<div style="margin-left: auto;" id="header">
 			<div class="bar bar-header tabs-top bar-positive">
-				<h1 class="title"><strong>APLICATIVO</strong></h1>
+			  <h1 class="title">
+			  	<strong>Sae Móvel</strong>
+			  </h1>
 			</div>
-			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
-				<a onclick="alterarConteudo('home');" href="javascript:void(0);" class="tab-item active"> <i class="icon ion-home"></i> Home </a>
-				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i> Menu </a>
-				<a onclick="alterarConteudo('Servico');" class="tab-item" href="javascript:void(0);"> <i class="icon ion-gear-a"></i> Configurações </a>
+			<div style="margin-left: auto;" class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
+				  <a onclick="alterarConteudo('home', 'Sae Móvel');" href="javascript:void(0);" class="tab-item active">
+					<i class="icon ion-home"></i>
+				    Home
+				  </a>
+				  <a href="javascript:void(0);" class="tab-item">
+					<i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i>
+				    Menu
+				  </a>
+				  <a onclick="alterarConteudo('Servico', 'Serviço De Alertas');" class="tab-item" href="javascript:void(0);">
+					<i class="icon ion-gear-a"></i>
+				    Configurações	
+				  </a>
 			</div>
 		</div>
-
+		
 		<!--menu plus-->
-		<div id="menuPlus" class="popover bottom ">
-			<div class="arrow"></div>
-			<div class="popover-content">
-				<a onclick="alterarConteudo('medicoes');" class="item" href="javascript:void(0);"> Medições </a>
-				<a class="item" href="#"> História </a>
-				<a onclick="alterarConteudo('previsao');" class="item" href="javascript:void(0);"> Previsão do Tempo </a>
-				<a class="item" href="#"> Links Úteis </a>
-				<a class="item" href="#"> Galeria </a>
-				<a onclick="lerCfg();" class="item" href="javascript:void(0);"> Simulador </a>
-				<a onclick="alterarConteudo('verificarLocal');" class="item" href="javascript:void(0);"> Verificar Local </a>
-			</div>
-		</div>
-
-		<!--Conteúdo adicionais-->
-
+	  	<div id="menuPlus" class="popover bottom ">
+            <div class="arrow"></div>
+            <div class="popover-content">
+				  <a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);">
+				    Medições
+				  </a>				
+				  <a class="item" href="#">
+				    História
+				  </a>				
+				  <a onclick="alterarConteudo('previsao', 'Previsão do Tempo');" class="item" href="javascript:void(0);">
+				    Previsão do Tempo
+				  </a>
+				  <a class="item" href="#">
+				    Links Úteis
+				  </a>
+				  <a class="item" href="#">
+				    Galeria
+				  </a>
+				  <a onclick="lerCfg();" class="item" href="javascript:void(0);">
+				    Simulador
+				  </a>
+				  <a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);">
+				    Verificar Local
+				  </a>
+	  		</div>
+       </div>
+	  	
+		<!--Conteúdo adicionais-->	
 		<div id="conteudo" class="container">
-
+	
 		</div>
-
+		
 		<!--area do mapa-->
 		<div id="mapaconteiner" >
 			<input id='pac-input' class='controls' type='text' placeholder='Digite um endereço...'>
-			<div class="loadMap" id='mapa'>
-
-			</div>
+			<div id='mapa'></div>
 		</div>
-
+		
 		<!--alerta rodapé-->
 		<div id="painelInfo">
-			<button onclick='alterarConteudo("medicoes");' id="alerta" class="button button-full button-positive button-assertive button-energized" role="alert"></button>
+			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized">
+			</button>
 		</div>
-
-		<!--JAVASCRIPT-->
-		<script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->
-		<script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
-	
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
-	
-		<script type="text/javascript" src="./js/mapa.js"></script><!-- MAPA -->
-		<script type="text/javascript" src="./js/mapaClima.js"></script><!-- MAPA -->
+					
+		<!--JAVASCRIPT-->				
+	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->	    
+	    <script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
 		
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=weather,places"></script>
+
+		<script type="text/javascript" src="./js/mapaClima.js"></script><!-- MAPA -->
 		
 		<!--grafico-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-		<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
-		<script type="text/javascript" src="./js/graficos.js"></script><!-- funçoes-->
-
+		
+		<script type="text/javascript" src="./js/graficos.js"></script><!-- graficos-->
+		
 	</body>
 </html>
