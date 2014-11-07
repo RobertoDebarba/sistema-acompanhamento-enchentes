@@ -151,7 +151,7 @@
 		foreach ($cursor as $document) {
 			$Hora = date(DATE_ISO8601, $document["dataHora"] -> sec);
 			
-			$leituras[$i]['0'] = date("d/m", strtotime($Hora));
+			$leituras[$i]['0'] = date("d/m/Y", strtotime($Hora));
 			$leituras[$i]['1'] = date("H:i", strtotime($Hora));
 			$leituras[$i]['2'] = strval($document["nivelRio"]);
 			switch ($document["nivelChuva"]) {
