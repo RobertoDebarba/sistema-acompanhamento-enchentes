@@ -5,7 +5,7 @@
 	$meta['pag_inicial'] = false;
 	$meta['pagina'] = 'Historico de Medições';
 	$meta['descricao'] = 'Historico de Medições';
-	$meta['css'] = array();
+	$meta['css'] = array('css/page-historico_medicoes.css');
 	$meta['menuAtivo'] = 0;
 
 	printHeader($meta);
@@ -29,7 +29,8 @@
 		var options = {
 			title: 'Medição do Nível do Rio',
 			legend: { position: 'none' },
-			pointSize: 5
+			pointSize: 5,
+			'chartArea': {'width': '80%'}
 		};
 	
 		var chart = new google.visualization.LineChart(document.getElementById('chartRio'));
@@ -44,12 +45,12 @@
 <br>
 <br>
 
-<div id="chartRio" style="width: 1300px; height: 500px;"></div>
+<div id="chartRio"></div>
 
 <table class="table table-striped">
 <thead>
 	<tr>
-		<td><b>Data | Hora</b></td>
+		<td><b>Data - Hora</b></td>
 		<td><b>Nível do Rio</b></td>
 		<td><b>Estado da Chuva</b></td>
 	</tr>
