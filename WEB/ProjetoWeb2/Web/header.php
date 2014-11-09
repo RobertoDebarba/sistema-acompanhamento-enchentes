@@ -77,8 +77,11 @@
 				include "menu.php";
 				include "modal.php";
 				
-				
-				printMenu($meta['menuAtivo']);
+				if (isset($meta['itensDireita'])) {
+					printMenu($meta['menuAtivo'], $meta['itensDireita']);
+				} else {
+					printMenu($meta['menuAtivo']);
+				}
 			?>
 		
 <?php } ?>

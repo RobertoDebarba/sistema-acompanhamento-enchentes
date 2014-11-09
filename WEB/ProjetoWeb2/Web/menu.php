@@ -1,5 +1,5 @@
 <?php
-	function printMenu($menuAtivo) { ?>
+	function printMenu($menuAtivo, $itensDireita = array()) { ?>
 		<style>
 			#linhaMenu {
 				height: 51px;
@@ -50,6 +50,13 @@
 								</ul>
 							</li>
 						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<?php
+								foreach ($itensDireita as $item) {
+									echo "<li>$item</li>";
+								}
+							?>
+					    </ul>
 					</div>
 				</div>
 			</div>
