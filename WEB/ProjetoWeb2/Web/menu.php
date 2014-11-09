@@ -1,5 +1,11 @@
 <?php
 	function printMenu($menuAtivo) { ?>
+		<style>
+			#linhaMenu {
+				height: 51px;
+			}
+		</style>
+		
 		<!-- Menu -->
 		<div id="linhaMenu" class="container-fluid">
 			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

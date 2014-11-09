@@ -42,9 +42,6 @@
 	google.setOnLoadCallback(drawChart);
 </script>
 
-<br>
-<br>
-
 <div id="chartRio"></div>
 
 <table class="table table-striped">
