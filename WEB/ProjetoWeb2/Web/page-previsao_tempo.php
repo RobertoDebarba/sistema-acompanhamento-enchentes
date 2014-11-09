@@ -36,19 +36,9 @@
 			</table>
 		</div>		
 		
-		<!-- Scripts de Compatibilidade -->
-		<script src="js/geral/ie10-viewport-bug-workaround.js"></script>
-
-		<!-- JQuery -->
-		<script src="../Comum/js/jquery.min.js"></script>
-
-		<!-- Bootstrap -->
-		<script src="bootstrap-3.2.0/js/bootstrap.min.js"></script>
-		
 		<!-- MAPA -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
 		<script src="js/mapaClima.js" type="text/javascript"></script>
-
 <?php
 	include 'footer.php';
 	printFooter();
