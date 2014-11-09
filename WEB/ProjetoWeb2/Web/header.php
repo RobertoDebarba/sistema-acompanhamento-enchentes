@@ -60,6 +60,9 @@
 		
 				<!-- Scripts de Compatibilidade -->
 				<script src="js/geral/ie-emulation-modes-warning.js"></script>
+				
+				<!-- JQuery -->
+				<script src="js/geral/jquery.min.js"></script>
 		</head>
 		<body>
 			<?php
