@@ -8,6 +8,12 @@
 	$meta['css'] = array('css/page-galeria.css');
 	$meta['menuAtivo'] = 0;
 	
+	//Define Botão Direito do menu navegador
+	$itensDireita = array();
+	$itensDireita[] = '<a data-toggle="modal" data-target="#modalEnviarImagens">Enviar Imagens</a>';
+	$meta['itensDireita'] = $itensDireita;
+	
+	
 	printHeader($meta);
 ?>
 
@@ -43,6 +49,44 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal de envio de imagens -->
+<div id="modalEnviarImagens" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Enviar Imagens</h4>
+			</div>
+			<!-- Corpo do Modal -->
+			<div class="modal-body">
+				<h2>Vertical (basic) form</h2>
+				<form role="form">
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" id="email" placeholder="Enter email">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label>
+						<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">
+							Remember me</label>
+					</div>
+					<button type="submit" class="btn btn-default">
+						Submit
+					</button>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					Fechar
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
