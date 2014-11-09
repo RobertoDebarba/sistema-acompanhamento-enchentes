@@ -45,14 +45,7 @@
 					echo '<meta property="og:image" content="'.$meta['imagem'].'"/>';
 				} else {
 					echo '<meta property="og:image" content="'.$logo_url.'"/>';
-				}
-				
-				# -- Importações --
-				#Estilo
-				foreach ($meta['css'] as $css) {
-					echo '<link href="'.$css.'" rel="stylesheet">';
-				}
-				
+				}				
 			?>
 				<!-- Bootstrap -->
 				<link href="bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -63,6 +56,14 @@
 				
 				<!-- JQuery -->
 				<script src="js/geral/jquery.min.js"></script>
+				
+			<?php 
+				# -- Importações --
+				#Estilo
+				foreach ($meta['css'] as $css) {
+					echo '<link href="'.$css.'" rel="stylesheet">';
+				}
+			?>
 		</head>
 		<body>
 			<?php
