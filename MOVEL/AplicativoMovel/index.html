@@ -2,23 +2,34 @@
 <html>
   <head>	
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     
     <title>SAEmóvel</title>
     
-	<script src="./js/jquery.min.js"></script><!--JQuery-->
-	
-	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
-
-    <link href="./lib/ionic/css/ionic.min.css" rel="stylesheet"><!--Ionic-->
+    <!--JAVASCRIPT-->			 
+   	<script src="./js/jquery.min.js"></script><!--JQuery-->
+   
+    <script src="./cordova.js"></script> <!--cordova-->
     
-    <link href="./css/style.css" rel="stylesheet"><!--estilos-->
+    <script src="./bootstrap/js/bootstrap.min.js"></script><!--Bootstrap-->
+      
+    <!-- funçoes-->
+	<script type="text/javascript" src="./js/funtions.js"></script>
+	<!-- funçoes-->
+		
+	<!-- MAPA -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<script type="text/javascript" src="./js/mapa.js"></script>
+	<!-- MAPA -->
 	
-	<script src="cordova.js"></script> <!--cordova-->
-	
-	<script type="text/javascript" src="./js/funtions.js"></script><!-- funçoes-->
+	<!--grafico-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="./js/graficos.js"></script>
+	<!--grafico-->
 	
 	<script type="text/javascript">
+		
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
 
@@ -26,7 +37,7 @@
 		 *	Evento quando o dispositivo estiver pronto 
 		 */
 		function onDeviceReady() {
-		  	
+		  	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 		  	
 		  	
 		}
@@ -37,7 +48,6 @@
 		 */
 		function exibirMenuPlus(){
 			$("#menuPlus").slideToggle('fast');
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 		}
 		
 		
@@ -65,6 +75,13 @@
 
 	</script>
 	
+	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap-->
+	<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"><!--Bootstrap-->
+
+    <link href="./lib/ionic/css/ionic.min.css" rel="stylesheet"><!--Ionic-->
+    
+    <link href="./css/style.css" rel="stylesheet"><!--estilos-->
+		
 	</head>
 	<body>
 		<!--barra superior com menus-->
@@ -134,18 +151,6 @@
 			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized">
 			</button>
 		</div>
-					
-		<!--JAVASCRIPT-->				
-	    <script type="text/javascript" src="./lib/ionic/js/ionic.js"></script><!-- ionic-->	    
-	    <script type="text/javascript" src="./lib/ionic/js/ionic.bundle.js"></script><!-- ionic-->
-		
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-		<script type="text/javascript" src="./js/mapa.js"></script><!-- MAPA -->
-		
-		<!--grafico-->
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		
-		<script type="text/javascript" src="./js/graficos.js"></script><!-- graficos-->
-		
+			
 	</body>
 </html>

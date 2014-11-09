@@ -1,6 +1,5 @@
-<h2 style="text-align:center;">Sistema de alerta</h2>
-<div style="margin: auto;" class="row">
-	<span style="font-size: 20px;">Alertas</span>
+<div style="margin: auto; margin-top: 20px;" class="row">
+	<span style="font-size: 20px;">Mensagens de Alertas</span>
 	<div style="margin-left: auto;" class="onoffswitch">
 	    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
 	    <label class="onoffswitch-label" for="myonoffswitch">
@@ -36,10 +35,32 @@
 				<span id="enderecoLocal"></span>			
 			</td>
 			<td>
-				<div onclick="addLocal();">
-					<button style="float: right;" id="buscarLocal" class="button button-positive">Buscar Local</button>
-				</div>
+				<button type="button" style="float: right;" class="button button-positive" data-toggle="modal" data-target="#modal">
+					Buscar Local
+				</button>
 			</td>
+			
   		</tr>
 	</table>
+</div>
+
+
+
+<!--Modal-->
+<div id="modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Forma de Localização</h4>
+			</div>
+			<div class="modal-footer" style="text-align: center;">	
+				<button type="button" class="button button-positive">
+					GPS
+				</button>
+				<button type="button" class="button button-positive">
+					Mapa
+				</button>			
+			</div>
+		</div>
+	</div>
 </div>

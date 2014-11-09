@@ -266,54 +266,26 @@ function addLocal(){
 	coordenadas();
 	//armazenarAltura(getAltura());
 	
-	$("#buscarLocal").html("Alterar Local");
-	
+	$("#buscarLocal").html("Alterar Local");	
 }
 
 function lerCfg(){
 	window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "cfg.txt", gotFile, fail);
 }
+
 function gotFS(fileSystem) {
-        fileSystem.root.getFile("cfg.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-}       
+        fileSystem.root.getFile("sae", {create: true, exclusive: false}, gotFileEntry, fail);
+    }
 
 function gotFileEntry(fileEntry) {
     fileEntry.createWriter(gotFileWriter, fail);
 }
 
 function gotFileWriter(writer) {
-    // writes a file
-    write_file = function(writer) {
-        var lineCount = 1;
-                  
-        // set the callbacks
-        writer.onwritestart = onFileEvent;
-        writer.onprogress = onFileEvent;
-        writer.onwrite = onFileWrite;
-        writer.onabort = onFileEvent;
-        writer.onerror = onFileError;
-        writer.onwriteend = function(event) {
-            onFileEvent(event);
-            lineCount += 1;
-            if (lineCount <= 3) {
-                // append a new line   
-                writer.write('Line ' + lineCount + '.\r\n');  
-            } 
-            else {
-                alert(writer.fileName + 
-                    ' length=' + writer.length + 
-                    ', position=' + writer.position);
-            }
-        };
-        
-        // append
-            writer.seek(writer.length);
-  
-            // write to file
-        writer.write('Line ' + lineCount + '.\r\n');   
-    };
+    writer.write("some sample text");
+    writer.seek(4);
+            writer.write(" different text");
 }
-        
 
 
 function readAsText(file) {
