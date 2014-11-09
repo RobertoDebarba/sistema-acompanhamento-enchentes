@@ -1,7 +1,8 @@
 <!-- Estilo -->
 <link href="css/modal.css" rel="stylesheet">
 
-<!-- Tela de medições MODAL -->
+<!-- Tela de medições MODAL
+	Quando em modo Mobile, o item que chama esse modal aparece no navegaor -->
 <div id="modalMedicoes" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
