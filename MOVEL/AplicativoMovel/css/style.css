@@ -3,7 +3,18 @@ html, body {
 	width: 100%;
 	overflow-y: scroll;
 }
-	
+
+#modal{
+	display: none;
+	text-align: center;
+	margin: 0;
+	border: #000 1px solid;
+	background-color: white;
+	padding: 20px;
+	z-index: 10;
+	position: relative;
+}
+
 #alerta{
 	position: fixed;
 	margin-bottom: 0;

@@ -1,4 +1,3 @@
-var alertaAtivo;// verificador de timer do alerta ativo ou nao
 var timer; // variavel que recebe o timer de alertas
 
 var estado; // array com estado de alerta da defesa civil
@@ -11,6 +10,7 @@ var alturaAlerta;
 var altitude;
 var latitude;
 var longitude;
+var local;
 
 getEstadoAlerta();
 getLeituras(12);	
@@ -22,14 +22,11 @@ getLeituras(12);
 function ativarAlerta(sim){
 	if(sim){
 		timer = setInterval(function(){alerta();}, 1000*5/*15*/);
-		window.plugin.backgroundMode.enable();
 
 		alertaAtivo = true;
 	}
 	else{
 		clearInterval(timer);
-		
-		window.plugin.backgroundMode.disable();
 		 
 		alertaAtivo = false;
 	}
@@ -219,7 +216,9 @@ function geocodificacaoReversa() {
 	}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			if (results[0]) {
-				$("#enderecoLocal").html(results[0].formatted_address);
+				local = results[0].formatted_address;
+				$("#enderecoLocal").html(local);
+				
 				getAltura();
 			} else {
 				alert("Geocoder failed due to: " + status);
@@ -246,7 +245,7 @@ function getAltura() {
 				$("#elevacaoLocal").html(results[0].elevation);
 				$("#divbotao").hide();
 				$("#tabela").show();
-				return results[0].elevation;
+				altitude = results[0].elevation;
 			}
 			else{
 				return ('No results found');
@@ -263,18 +262,52 @@ function getAltura() {
  * adiciona local na pagina Serviços
  * */
 function addLocal(){
+	$("#modal").hide();
+	$("#paginaToda").fadeTo( "slow", 1);
 	coordenadas();
-	//armazenarAltura(getAltura());
+	
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 	
 	$("#buscarLocal").html("Alterar Local");	
 }
 
-function lerCfg(){
-	window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "cfg.txt", gotFile, fail);
+function abrirModal(){
+	$("#paginaToda").fadeTo( "slow", 0.33 );
+	$("#modal").show();
 }
 
+
+function lerCfg(){
+	 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
+}
+
+ function gotFile(fileSystem) {
+    fileSystem.root.getFile("sae", null, gotEntry, fail);
+}
+
+function gotEntry(fileEntry) {
+    fileEntry.file(gotFile, fail);
+}
+
+function gotFile(file){
+    readAsText(file);
+}
+
+function readAsText(file) {
+    var reader = new FileReader();
+    reader.onloadend = function(evt) {
+       alert(evt.target.result);
+    };
+    
+    reader.readAsText(file);
+}
+
+
+/**
+ * escrevendo arquivo
+ * */
 function gotFS(fileSystem) {
-        fileSystem.root.getFile("sae", {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile("sae", {create: true, exclusive: true}, gotFileEntry, fail);
     }
 
 function gotFileEntry(fileEntry) {
@@ -282,19 +315,10 @@ function gotFileEntry(fileEntry) {
 }
 
 function gotFileWriter(writer) {
-    writer.write("some sample text");
+    writer.write(altitude);
     writer.seek(4);
-            writer.write(" different text");
+    writer.write(local);
 }
-
-
-function readAsText(file) {
-    var reader = new FileReader();
-    reader.onloadend = function(evt) {
-       alert(evt.target.result);
-    };
-}
-
 
  function fail(error) {
     console.log(error.code);

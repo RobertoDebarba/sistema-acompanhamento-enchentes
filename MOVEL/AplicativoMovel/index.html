@@ -6,8 +6,7 @@
 		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     
     <title>SAEmóvel</title>
-    
-    <!--JAVASCRIPT-->			 
+	 
    	<script src="./js/jquery.min.js"></script><!--JQuery-->
    
     <script src="./cordova.js"></script> <!--cordova-->
@@ -29,6 +28,7 @@
 	<!--grafico-->
 	
 	<script type="text/javascript">
+		var alertaAtivo = false;// verificador de timer do alerta ativo ou nao
 		
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
@@ -37,7 +37,7 @@
 		 *	Evento quando o dispositivo estiver pronto 
 		 */
 		function onDeviceReady() {
-		  	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+		  	lerCfg()
 		  	
 		  	
 		}
