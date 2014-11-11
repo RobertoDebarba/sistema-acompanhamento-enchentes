@@ -323,3 +323,16 @@ function gotFileWriter(writer) {
  function fail(error) {
     console.log(error.code);
 }
+
+function OpcoesMapaMetereologico() {
+	var onShow;
+	if(onShow == true){
+		$("#painelInfo").hide();
+		var onShow = false;
+	} else {
+		$("#painelInfo").show();
+		 onShow = true;
+		 
+	}
+	
+}

@@ -14,12 +14,17 @@ html, body {
 	z-index: 10;
 	position: relative;
 }
+#painelOpcoesMapa, #painelInfo{
+	display: none;
+}
 
-#alerta{
+
+#alerta, #painelOpcoesMapa{
 	position: fixed;
 	margin-bottom: 0;
 	bottom: 0;
 }
+
 
 .button-full, #header, .tabs-top{
 	border: none;
@@ -64,7 +69,7 @@ html, body {
 #mapaClima{
 	display: none;
 	top:93px;	
-	height: 110%;
+	height: 100%;
 	width: 100%	
 }
 
