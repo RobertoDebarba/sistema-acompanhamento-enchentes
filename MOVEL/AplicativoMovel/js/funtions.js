@@ -341,3 +341,16 @@ function gotFileWriter(writer) {
     console.log(error.code);
 }
 
+
+function OpcoesMapaMetereologico() {
+	$("#painelInfo").show();
+	if ($("#painelOpcoesMapa").html() == "Mais Informações") {
+		$("#painelOpcoesMapa").html("Fechar");
+		$("#painelInfo").show();
+	} else {
+		$("#painelOpcoesMapa").html("Mais Informações");
+		$("#painelInfo").hide();
+		$("#mapaClima").show();
+	}
+
+}
