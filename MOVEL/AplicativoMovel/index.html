@@ -67,7 +67,7 @@
 					$("strong").html("Sae Móvel");
 					$("#mapaClima").hide();
 				} else if (tela == "previsao") {
-					
+
 					$("#mapa").hide();
 					$("#conteudo").hide();
 					$("#alerta").hide();
@@ -137,18 +137,10 @@
 			<input id='pac-input' class='controls' type='text' placeholder='Digite um endereço...'>
 			<div id='mapa'></div>
 			<div id='mapaClima'></div>
-			<div id="painelInfo" class="hidden-xs hidden-sm">
-				<table>
-					<tr>
-						<td><!-- Widget Previs&atilde;o de Tempo CPTEC/INPE --><iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=n&c=909090&f=ffffff" height="46px" width="312px"></iframe>
-						<noscript>
-							Previs&atilde;o de <a href="http://www.cptec.inpe.br/cidades/tempo/5400">Timbó/SC</a> oferecido por <a href="http://www.cptec.inpe.br">CPTEC/INPE</a>
-						</noscript><!-- Widget Previs&atilde;o de Tempo CPTEC/INPE --></td>
-					</tr>
-					<tr>
-						<td><img src="http://ciram.epagri.sc.gov.br/ciram_arquivos/arquivos/saidas_scripts/img/satelite/goes13IR/anima.gif" /></td>
-					</tr>
-				</table>
+			<div id="painelInfo">
+				<iframe id="imgInfoMapa" height="60px" width="100%"  allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=n&c=909090&f=ffffff"></iframe>
+				<img id="imgMapaMetereologico" src="http://ciram.epagri.sc.gov.br/ciram_arquivos/arquivos/saidas_scripts/img/satelite/goes13IR/anima.gif"/>
+
 			</div>
 		</div>
 
@@ -158,7 +150,9 @@
 
 		<!--alerta rodapé mapa metereológico-->
 
-		<button value="Mais Informações" name="Mais Informações" onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive button-assertive button-energized"></button>
+		<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive button-assertive button-energized">
+			Mais Informações
+		</button>
 
 	</body>
 </html>

@@ -4,7 +4,7 @@ html, body {
 	overflow-y: scroll;
 }
 
-#modal{
+#modal {
 	display: none;
 	text-align: center;
 	margin: 0;
@@ -14,78 +14,93 @@ html, body {
 	z-index: 10;
 	position: relative;
 }
-#painelOpcoesMapa, #painelInfo{
+
+#imgMapaMetereologico{
+	width: 100%;
+	text-align: center;
+	max-height: 100%;
+}
+
+#painelInfo {
+	overflow:none;
+	text-align: center;
+	z-index: 10;
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#painelOpcoesMapa, #painelInfo {
 	display: none;
 }
 
-
-#alerta, #painelOpcoesMapa{
+#alerta, #painelOpcoesMapa {
 	position: fixed;
 	margin-bottom: 0;
 	bottom: 0;
 }
 
-
-.button-full, #header, .tabs-top{
+.button-full, #header, .tabs-top {
 	border: none;
 }
 
-.popover-content{
+.popover-content {
 	height: 100%;
 	width: 100%;
 	background-color: #4a87e0;
 }
 
-
-#header{
+#header {
 	position: static;
 }
 
-#menuPlus{
+#menuPlus {
 	top: 24%;
 	opacity: 100;
-	width:auto;
+	width: auto;
 	display: none;
 	height: auto;
 }
 
-#mapaconteiner{
+#mapaconteiner {
 	top: 100px;
 	height: 79%;
-	width: 100%;	
+	width: 100%;
+	margin-bottom:26px;
 }
 
-#graficoRio{
-	margin : 0;
+#graficoRio {
+	margin: 0;
 	margin-bottom: 20px;
 }
 
-#mapa{
-	top:93px;	
+#mapa {
+	top: 93px;
 	height: 100%;
-	width: 100%	
+	width: 100%
 }
 
-#mapaClima{
+#mapaClima {
 	display: none;
-	top:93px;	
+	top: 93px;
 	height: 100%;
-	width: 100%	
+	width: 100%;
 }
 
-#conteudo{
+#conteudo {
 	display: none;
 	margin-top: 93px;
 	height: auto;
 }
 
-.item{
-	width : auto;
+.item {
+	width: auto;
 	padding-top: 6%;
 	text-align: center;
 	padding-bottom: 6%;
 	margin-top: 2px;
-	margin-bottom : 2px;
+	margin-bottom: 2px;
 }
 
 .controls {
@@ -150,56 +165,86 @@ html, body {
 }
 
 .onoffswitch {
-    position: relative; width: 90px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+	position: relative;
+	width: 90px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
 .onoffswitch-checkbox {
-    display: none;
+	display: none;
 }
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #666666; border-radius: 5px;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid #666666;
+	border-radius: 5px;
 }
 .onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+	display: block;
+	width: 200%;
+	margin-left: -100%;
+	-moz-transition: margin 0.3s ease-in 0s;
+	-webkit-transition: margin 0.3s ease-in 0s;
+	-o-transition: margin 0.3s ease-in 0s;
+	transition: margin 0.3s ease-in 0s;
 }
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	display: block;
+	float: left;
+	width: 50%;
+	height: 30px;
+	padding: 0;
+	line-height: 30px;
+	font-size: 16px;
+	color: white;
+	font-family: Trebuchet, Arial, sans-serif;
+	font-weight: bold;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: #4a87e0; color: #FFFFFF;
+	content: "ON";
+	padding-left: 10px;
+	background-color: #4a87e0;
+	color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #F8F8F8; color: #666666;
-    text-align: right;
+	content: "OFF";
+	padding-right: 10px;
+	background-color: #F8F8F8;
+	color: #666666;
+	text-align: right;
 }
 .onoffswitch-switch {
-    display: block; width: 35px; margin: 0px;
-    background: #FFFFFF;
-    border: 2px solid #666666; border-radius: 5px;
-    position: absolute; top: 0; bottom: 0; right: 51px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
-    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	display: block;
+	width: 35px;
+	margin: 0px;
+	background: #FFFFFF;
+	border: 2px solid #666666;
+	border-radius: 5px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 51px;
+	-moz-transition: all 0.3s ease-in 0s;
+	-webkit-transition: all 0.3s ease-in 0s;
+	-o-transition: all 0.3s ease-in 0s;
+	transition: all 0.3s ease-in 0s;
+	background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
+	margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
+	right: 0px;
 }
 
-#tabela{
+#tabela {
 	text-align: center;
 }

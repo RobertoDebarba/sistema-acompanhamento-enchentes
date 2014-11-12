@@ -1,9 +1,13 @@
-var timer; // variavel que recebe o timer de alertas
+var timer;
+// variavel que recebe o timer de alertas
 
-var estado; // array com estado de alerta da defesa civil
-var leituras;// array com leituras completas de mediçoes
+var estado;
+// array com estado de alerta da defesa civil
+var leituras;
+// array com leituras completas de mediçoes
 
-var dataArray = []; //array com data e nivel do rio
+var dataArray = [];
+//array com data e nivel do rio
 
 var alturaAlerta;
 
@@ -13,31 +17,29 @@ var longitude;
 var local;
 
 getEstadoAlerta();
-getLeituras(12);	
-
+getLeituras(12);
 
 /**
  * Ativa o modo background e manten um timer de alerta
  */
-function ativarAlerta(sim){
-	if(sim){
-		timer = setInterval(function(){alerta();}, 1000*5/*15*/);
+function ativarAlerta(sim) {
+	if (sim) {
+		timer = setInterval(function() {
+			alerta();
+		}, 1000 * 5/*15*/);
 
 		alertaAtivo = true;
-	}
-	else{
+	} else {
 		clearInterval(timer);
-		 
+
 		alertaAtivo = false;
 	}
 }
 
-
 // chamado quando clicado no botao "Abrir App" do alerta
 function alertaAbrirPrograma() {
-    // do something
+	// do something
 }
-
 
 /**
  *  o alerta
@@ -45,139 +47,128 @@ function alertaAbrirPrograma() {
 function alerta() {
 	var now = new Date();
 	window.plugin.notification.local.add({
-	    id:      1,
-	    date : now,
-	    title:   'SAEmóvel Alerta',
-	    message: 'Atenção! Água a caminho!',
-	    autoCancel: true
-    });
-}	    	
-
-
-
+		id : 1,
+		date : now,
+		title : 'SAEmóvel Alerta',
+		message : 'Atenção! Água a caminho!',
+		autoCancel : true
+	});
+}
 
 /**
  * obtem as leituras do php no servidor
  */
-function getLeituras(qtdLeituras){
+function getLeituras(qtdLeituras) {
 	$.ajax({
-        url: "http://localhost/jonathan/Projeto%20Web/final/funcoes.php/?getLeituras=?",
-		data: { 'qtdLeituras' : qtdLeituras},
-	    dataType:'jsonp',
-        crossDomain: true,
+		url : "http://localhost/jonathan/Projeto%20Web/final/funcoes.php/?getLeituras=?",
+		data : {
+			'qtdLeituras' : qtdLeituras
+		},
+		dataType : 'jsonp',
+		crossDomain : true,
 
-        success: function(data){
-        	setleituras(data);
-        }
-    });
+		success : function(data) {
+			setleituras(data);
+		}
+	});
 }
-
 
 /**
  * obtem alertas da defesa civil do php no servidor
  */
-function getEstadoAlerta(){
- 	$.ajax({
-        url: "http://localhost/jonathan/Projeto%20Web/final/funcoes.php?getEstadoAlerta=?",
-    	dataType:'jsonp',
-        crossDomain: true,
+function getEstadoAlerta() {
+	$.ajax({
+		url : "http://localhost/jonathan/Projeto%20Web/final/funcoes.php?getEstadoAlerta=?",
+		dataType : 'jsonp',
+		crossDomain : true,
 
-        success: function(data){
-        	setEstado(data);
-		}  
-    });
-    
- }
+		success : function(data) {
+			setEstado(data);
+		}
+	});
 
+}
 
-function setEstado(dados){
- 	estado = dados;
- 	alteraBarraAlerta();
- }
+function setEstado(dados) {
+	estado = dados;
+	alteraBarraAlerta();
+}
 
-
-function setleituras(dados){
- 	leituras = dados;  
- 	alteraBarraAlerta();         	
- }
-
+function setleituras(dados) {
+	leituras = dados;
+	alteraBarraAlerta();
+}
 
 /**
  * cria um array com as leituras para o grafico
  */
-function carregaLeituras(){
+function carregaLeituras() {
 	dataArray = [];
 	dataArray[0] = ['Data', 'Nivel do Rio'];
 
 	var key;
-	for(key in leituras) {
-  		if(leituras.hasOwnProperty(key)) {
+	for (key in leituras) {
+		if (leituras.hasOwnProperty(key)) {
 
-	    	var object = leituras[key];				
-		
-			$('#tabela').append('<tr><td>'+object[0]+" "+object[1] + '</td><td>'+object[2] + ' m</td><td>'+object[3] + '</td></tr>');
-		  	
-		  	if(key <= 7){
+			var object = leituras[key];
+
+			$('#tabela').append('<tr><td>' + object[0] + " " + object[1] + '</td><td>' + object[2] + ' m</td><td>' + object[3] + '</td></tr>');
+
+			if (key <= 7) {
 				dataArray[dataArray.length] = [object[1], parseInt(object[2])];
 			}
 		}
-	}	
+	}
 }
 
-	
-function setDados(data){
+function setDados(data) {
 	dados = data;
 }
-
 
 /**
  * altera o design da barra de alerta no rodapé
  */
-function alteraBarraAlerta(){	   		
+function alteraBarraAlerta() {
 	medicoes = leituras[1];
-	
+
 	if ((estado[0] == 0) & (estado[1] == 0)) {
 		$("#alerta").toggleClass("button-assertive");
 		$("#alerta").toggleClass("button-energized");
 		$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva' + medicoes[3]);
-	}
-	else if ((estado[0] == 1) | ((estado[1] == 1))) {
+	} else if ((estado[0] == 1) | ((estado[1] == 1))) {
 		$("#alerta").toggleClass("button-assertive");
 		$("#alerta").toggleClass("button-positive");
 		$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
-	}
-	else if (estado[0] == 2) {
+	} else if (estado[0] == 2) {
 		$("#alerta").toggleClass("button-energized");
 		$("#alerta").toggleClass("button-positive");
 		$("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
 	}
 }
 
-
-var alturaAtual = 4;/**>>>>>QG<<<<<<<*/
+var alturaAtual = 4;
+/**>>>>>QG<<<<<<<*/
 
 function trataEnchentes(data) {
 	for (var oi in data) {
 		var teste = data[oi];
-		if(alturaAtual < parseFloat(teste[1])) {
-			$("#tabelaHistoricoInundacoes").append('<tr> <td>'+teste[0]+'</td> </tr>');
+		if (alturaAtual < parseFloat(teste[1])) {
+			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + teste[0] + '</td> </tr>');
 		}
 	}
 }
-
 
 function getEnchentes() {
 	$.ajax({
 		url : "http://localhost/jonathan/Projeto%20Web/final/functions.php?getEnchentes=?",
 		dataType : 'jsonp',
 		crossDomain : true,
-		
+
 		success : function(data) {
 			trataEnchentes(data);
 		}
 	});
 }
-
 
 function coordenadas() {
 	alert('Certifique-se que o GPS do dispositivo está ativado para maior precisão');
@@ -186,7 +177,7 @@ function coordenadas() {
 		longitude = position.coords.longitude;
 		geocodificacaoReversa();
 		$("#latitudeLocal").html(latitude);
-	
+
 		$("#longitudeLocal").html(longitude);
 
 	};
@@ -205,11 +196,10 @@ function coordenadas() {
 
 }
 
-
 function geocodificacaoReversa() {
 	var geocoder;
 	geocoder = new google.maps.Geocoder();
-	
+
 	var latlng = new google.maps.LatLng(latitude, longitude);
 	geocoder.geocode({
 		'latLng' : latlng
@@ -218,7 +208,7 @@ function geocodificacaoReversa() {
 			if (results[0]) {
 				local = results[0].formatted_address;
 				$("#enderecoLocal").html(local);
-				
+
 				getAltura();
 			} else {
 				alert("Geocoder failed due to: " + status);
@@ -226,7 +216,6 @@ function geocodificacaoReversa() {
 		}
 	});
 }
-
 
 function getAltura() {
 	locations = [];
@@ -246,93 +235,92 @@ function getAltura() {
 				$("#divbotao").hide();
 				$("#tabela").show();
 				altitude = results[0].elevation;
-			}
-			else{
+			} else {
 				return ('No results found');
 			}
-		}
-		else{
+		} else {
 			alert('Elevation service failed due to: ' + status);
 		}
 	});
-	
+
 }
 
 /**
  * adiciona local na pagina Serviços
  * */
-function addLocal(){
+function addLocal() {
 	$("#modal").hide();
-	$("#paginaToda").fadeTo( "slow", 1);
+	$("#paginaToda").fadeTo("slow", 1);
 	coordenadas();
-	
+
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-	
-	$("#buscarLocal").html("Alterar Local");	
+
+	$("#buscarLocal").html("Alterar Local");
 }
 
-function abrirModal(){
-	$("#paginaToda").fadeTo( "slow", 0.33 );
+function abrirModal() {
+	$("#paginaToda").fadeTo("slow", 0.33);
 	$("#modal").show();
 }
 
-
-function lerCfg(){
-	 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
+function lerCfg() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
 }
 
- function gotFile(fileSystem) {
-    fileSystem.root.getFile("sae", null, gotEntry, fail);
+function gotFile(fileSystem) {
+	fileSystem.root.getFile("sae", null, gotEntry, fail);
 }
 
 function gotEntry(fileEntry) {
-    fileEntry.file(gotFile, fail);
+	fileEntry.file(gotFile, fail);
 }
 
-function gotFile(file){
-    readAsText(file);
+function gotFile(file) {
+	readAsText(file);
 }
 
 function readAsText(file) {
-    var reader = new FileReader();
-    reader.onloadend = function(evt) {
-       alert(evt.target.result);
-    };
-    
-    reader.readAsText(file);
-}
+	var reader = new FileReader();
+	reader.onloadend = function(evt) {
+		alert(evt.target.result);
+	};
 
+	reader.readAsText(file);
+}
 
 /**
  * escrevendo arquivo
  * */
 function gotFS(fileSystem) {
-        fileSystem.root.getFile("sae", {create: true, exclusive: true}, gotFileEntry, fail);
-    }
+	fileSystem.root.getFile("sae", {
+		create : true,
+		exclusive : true
+	}, gotFileEntry, fail);
+}
 
 function gotFileEntry(fileEntry) {
-    fileEntry.createWriter(gotFileWriter, fail);
+	fileEntry.createWriter(gotFileWriter, fail);
 }
 
 function gotFileWriter(writer) {
-    writer.write(altitude);
-    writer.seek(4);
-    writer.write(local);
+	writer.write(altitude);
+	writer.seek(4);
+	writer.write(local);
 }
 
- function fail(error) {
-    console.log(error.code);
+function fail(error) {
+	console.log(error.code);
 }
 
 function OpcoesMapaMetereologico() {
-	var onShow;
-	if(onShow == true){
-		$("#painelInfo").hide();
-		var onShow = false;
-	} else {
+	$("#painelInfo").show();
+	if ($("#painelOpcoesMapa").html() == "Mais Informações") {
+		$("#painelOpcoesMapa").html("Fechar");
 		$("#painelInfo").show();
-		 onShow = true;
-		 
+	} else {
+		$("#painelOpcoesMapa").html("Mais Informações");
+		$("#painelInfo").hide();
+		$("#mapaClima").show();
 	}
-	
+
 }
