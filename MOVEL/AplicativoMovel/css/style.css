@@ -3,6 +3,9 @@ html, body {
 	width: 100%;
 	overflow-y: scroll;
 }
+#tabelaLinksUteis{
+	text-align: center;
+}
 
 #modal {
 	display: none;
