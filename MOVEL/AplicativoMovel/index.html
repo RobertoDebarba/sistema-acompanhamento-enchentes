@@ -30,17 +30,29 @@
 		<!--grafico-->
 
 		<script type="text/javascript">
-			var alertaAtivo = false;
-			// verificador de timer do alerta ativo ou nao
-
+			var alertaAtivo = true;
+			
 			document.addEventListener("deviceready", onDeviceReady, false);
 
 			/**
 			 *	Evento quando o dispositivo estiver pronto
 			 */
 			function onDeviceReady() {
-				lerCfg()
-
+				
+				
+				try{
+					lerCfg();
+				}
+				catch(e){
+					console.log(e);
+				}
+				finally{
+					// verificador de timer do alerta ativo ou nao
+					if(alertaAtivo){
+						ativarAlerta(true);
+					}
+				}
+	
 			}
 
 			/**

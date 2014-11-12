@@ -34,12 +34,22 @@
 	
 	$('#myonoffswitch').click(function() {
 		    if($(this).is(':checked')) {
-		      ativarAlerta(true);
+			      try{
+			      	addLocal();
+			      }
+			      catch(e){
+			      	console.log(e);
+			      }
+			      finally{
+			      	ativarAlerta(true);
+			      }
+		      
 		    } else {
 		       ativarAlerta(false);
 		    }
 		});
-	
+		
+	$("#enderecoLocal").html(local);	
 </script>
 
 <div style="margin: auto;" class="row"></div>

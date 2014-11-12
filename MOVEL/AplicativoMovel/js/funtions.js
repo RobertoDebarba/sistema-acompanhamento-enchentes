@@ -274,13 +274,13 @@ function addLocal(){
 	$("#modal").hide();
 	$("#buscarLocal").html("Alterar Local");
 	
-	$("#conteudoServico").show();
-	
-	
-	
-		
+	$("#conteudoServico").show();		
 }
 
+
+/**
+ * abrir modal
+ * */
 function abrirModal(){
 	$("#conteudoServico").hide();
 	$("#modal").show("slow");
@@ -311,14 +311,20 @@ function readAsText(file) {
     reader.onloadend = function(evt) {
        texto = evt.target.result;
        
-       ponto = texto.indexOf(";");
+       doisPontos = texto.indexOf(":");
+       pontoVirgula = texto.indexOf(";");
        alturaAlerta = texto.substring(0,ponto);
-       local = texto.substring(ponto,texto.length);
        
+       if(texto.substring(doisPontos,texto.length)== "true"){       
+			alertaAtivo = true;
+       }
+       
+       local = texto.substring(pontoVirgula,doisPontos);
     };
     reader.readAsText(file);
 }
 /*****/
+
 
 /**
  * escrevendo arquivo
@@ -332,7 +338,7 @@ function gotFileEntry(fileEntry) {
 }
 
 function gotFileWriter(writer) {
-    writer.write(altitude+";"+local);
+    writer.write(altitude+";"+local+":"+alertaAtivo);
 }
 /****/
 
