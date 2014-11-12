@@ -1,3 +1,16 @@
+<!--Modal-->
+<div id="modal">
+		<h4> Forma de Localização</h4>
+		<button type="button" onclick="addLocal();" class="button button-positive">
+			GPS
+		</button>
+		<button type="button"  class="button button-positive">
+			Mapa
+		</button>
+</div>
+
+<div id="conteudoServico">
+	
 <div style="margin: auto; margin-top: 20px;" class="row">
 	<span style="font-size: 20px;">Alertas</span>
 	<div style="margin-left: auto;" class="onoffswitch">
@@ -9,6 +22,9 @@
 	</div>	
 </div>
 <script>
+	/***
+	 * inicia a tela com o batao ativado ou nao
+	 */
 	if(alertaAtivo){
 		$('#myonoffswitch').prop('checked', true);
 	}
@@ -44,14 +60,4 @@
 	</table>
 </div>
 
-
-<!--Modal-->
-<div id="modal">
-		<h4> Forma de Localização</h4>
-		<button type="button" onclick="addLocal();" class="button button-positive">
-			GPS
-		</button>
-		<button type="button"  class="button button-positive">
-			Mapa
-		</button>
 </div>
