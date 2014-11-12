@@ -20,10 +20,8 @@ function initializeWeather() {
 
 	var cloudLayer = new google.maps.weather.CloudLayer();
 	cloudLayer.setMap(map);
-
-
 }
 
 // [END region_removal]
 
-
+google.maps.event.addDomListener(window, 'load', initializeWeather);

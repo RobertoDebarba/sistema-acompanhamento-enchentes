@@ -309,11 +309,16 @@ function gotFile(file){
 function readAsText(file) {
     var reader = new FileReader();
     reader.onloadend = function(evt) {
-       console.log(evt.target.result);
+       texto = evt.target.result;
+       
+       ponto = texto.indexOf(";");
+       alturaAlerta = texto.substring(0,ponto);
+       local = texto.substring(ponto,texto.length);
+       
     };
     reader.readAsText(file);
 }
-
+/*****/
 
 /**
  * escrevendo arquivo
@@ -327,11 +332,12 @@ function gotFileEntry(fileEntry) {
 }
 
 function gotFileWriter(writer) {
-    writer.write(altitude);
-    writer.seek(4);
-    writer.write(local);
+    writer.write(altitude+";"+local);
 }
+/****/
 
+/*Erro para leitura ou escrita de arquivos*/
  function fail(error) {
     console.log(error.code);
 }
+
