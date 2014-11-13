@@ -1,6 +1,30 @@
 var overlay;
 USGSOverlay.prototype = new google.maps.OverlayView();
 
+var srcImage = './img/status-inundacao.png';
+function passarImg(acao) {
+	if (acao == "+") {
+		if (document.getElementById('btnProximo').value == 10) {
+			alert('Valor maximo atingido!');
+		} else {
+			document.getElementById('btnVoltar').value = document.getElementById('btnVoltar').value + 1;
+			document.getElementById('btnProximo').value = document.getElementById('btnProximo').value + 1;
+			var srcImage = './img/status-inundacao.png';
+		}
+		initialize();
+	} else if (acao == "-") {
+		if (document.getElementById('btnVoltar').value == 0) {
+			alert('Valor minimo atingido!');
+		} else {
+			document.getElementById('btnVoltar').value = document.getElementById('btnVoltar').value - 1;
+			document.getElementById('btnProximo').value = document.getElementById('btnProximo').value - 1;
+			var srcImage = './img/status-inundacao.png';
+		}
+		initialize();
+	};
+
+}
+
 function initialize() {
 
 	var markers = [];
@@ -19,7 +43,7 @@ function initialize() {
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Define imagem
-	var srcImage = './img/status-inundacao.png';
+	//var srcImage = './img/status-inundacao.png';
 
 	//Seta a imagem no mapa
 	overlay = new USGSOverlay(bounds, srcImage, map);

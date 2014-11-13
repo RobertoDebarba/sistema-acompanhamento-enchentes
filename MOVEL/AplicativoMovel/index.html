@@ -78,8 +78,8 @@
 					$("#mapa").show();
 					$("strong").html("Sae Móvel");
 					$("#mapaClima").hide();
+					
 				} else if (tela == "previsao") {
-
 					$("#mapa").hide();
 					$("#conteudo").hide();
 					$("#alerta").hide();
@@ -87,6 +87,11 @@
 					$("#mapaClima").show();
 					$("strong").html(nome);
 					initializeWeather();
+				
+				} else if (tela == "simulacao") {
+					$("#botaoSimulacao").show();
+					$("#alerta").hide();
+			
 				} else {
 					$("#mapa").hide();
 					$("strong").html(nome);
@@ -134,7 +139,7 @@
 				<a onclick="alterarConteudo('previsao', 'Previsão do Tempo');" class="item" href="javascript:void(0);"> Previsão do Tempo </a>
 				<a onclick="alterarConteudo('linksUteis', 'Links Uteis');" class="item" href="javascript:void(0);"> Links Úteis </a>
 				<a class="item" href="#"> Galeria </a>
-				<a onclick="lerCfg();" class="item" href="javascript:void(0);"> Simulador </a>
+				<a onclick="alterarConteudo('simulacao', 'Simulação');" class="item" href="javascript:void(0);"> Simulador </a>
 				<a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);"> Verificar Local </a>
 			</div>
 		</div>
@@ -162,11 +167,17 @@
 
 		<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized"></button>
 
-		<!--alerta rodapé mapa metereológico-->
+		<!-- mais informações mapa metereológico-->
 
 		<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive button-assertive button-energized">
 			Mais Informações
 		</button>
-
+		
+		<!-- botoes simulação-->
+		
+			<button onclick="passarImg("-");" id="btnVoltar" class="button button-full button-positive button-assertive button-energized">-</button>
+			<button onclick="passarImg("+")" id="btnProximo" class="button button-full button-positive button-assertive button-energized">+</button>
+			<button id="btnFechar" class="button button-full button-positive button-assertive button-energized">X</button>
+		
 	</body>
 </html>
