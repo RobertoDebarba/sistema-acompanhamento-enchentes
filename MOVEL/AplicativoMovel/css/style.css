@@ -3,6 +3,7 @@ html, body {
 	width: 100%;
 	overflow-y: scroll;
 }
+
 #tabelaLinksUteis{
 	text-align: center;
 }
@@ -124,7 +125,7 @@ html, body {
 #pac-input {
 	background-color: #fff;
 	padding: 0 11px 0 13px;
-	width: 40%;
+	width: 60%;
 	font-family: Roboto;
 	font-size: 15px;
 	font-weight: 300;
@@ -135,40 +136,7 @@ html, body {
 	border-color: #4d90fe;
 	margin-left: -1px;
 	padding-left: 14px; /* Regular padding-left + 1. */
-	width: 41%;
-}
-
-#pac-input2 {
-	background-color: #fff;
-	padding: 0 11px 0 13px;
-	width: 40%;
-	font-family: Roboto;
-	font-size: 15px;
-	font-weight: 300;
-	text-overflow: ellipsis;
-}
-
-#pac-input2:focus {
-	border-color: #4d90fe;
-	margin-left: -1px;
-	padding-left: 14px; /* Regular padding-left + 1. */
-	width: 41%;
-}
-
-.pac-container {
-	font-family: Roboto;
-}
-
-#type-selector {
-	color: #fff;
-	background-color: #4d90fe;
-	padding: 5px 11px 0px 11px;
-}
-
-#type-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-	font-weight: 300;
+	width: 61%;
 }
 
 .onoffswitch {
@@ -181,6 +149,7 @@ html, body {
 .onoffswitch-checkbox {
 	display: none;
 }
+
 .onoffswitch-label {
 	display: block;
 	overflow: hidden;

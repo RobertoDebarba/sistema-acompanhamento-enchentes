@@ -21,14 +21,18 @@ getLeituras(12);
  */
 function ativarAlerta(sim){
 	if(sim){
-		timer = setInterval(function(){alerta();}, 1000*5/*15*/);
+		timer = setInterval(function(){alerta();}, 1000/*5*/*15);
 
 		alertaAtivo = true;
+		
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 	}
 	else{
 		clearInterval(timer);
 		 
 		alertaAtivo = false;
+		
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 	}
 }
 
@@ -182,9 +186,12 @@ function getEnchentes() {
 function coordenadas() {
 	alert('Certifique-se que o GPS do dispositivo está ativado para maior precisão');
 	var onSuccess = function(position) {
+		
 		latitude = position.coords.latitude;
 		longitude = position.coords.longitude;
+		
 		geocodificacaoReversa();
+		
 		$("#latitudeLocal").html(latitude);
 	
 		$("#longitudeLocal").html(longitude);
@@ -192,7 +199,7 @@ function coordenadas() {
 	};
 
 	function onError(error) {
-		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+		console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	}
 
 	var options = {
@@ -272,9 +279,8 @@ function addLocal(){
 	}
 	
 	$("#modal").hide();
-	$("#buscarLocal").html("Alterar Local");
-	
 	$("#conteudoServico").show();		
+	$("#buscarLocal").html("Alterar Local");
 }
 
 
@@ -313,13 +319,19 @@ function readAsText(file) {
        
        doisPontos = texto.indexOf(":");
        pontoVirgula = texto.indexOf(";");
+       
        alturaAlerta = texto.substring(0,ponto);
        
-       if(texto.substring(doisPontos,texto.length)== "true"){       
+       local = texto.substring(pontoVirgula,doisPontos);
+              
+       $("#enderecoLocal").html(local);       
+              
+       if(texto.substring(doisPontos,texto.length) == "false"){       
+			$('#myonoffswitch').prop('checked', true);
 			alertaAtivo = true;
        }
        
-       local = texto.substring(pontoVirgula,doisPontos);
+       
     };
     reader.readAsText(file);
 }
