@@ -8,6 +8,11 @@ html, body {
 	text-align: center;
 }
 
+#divSimulacao{
+	display: none;
+	text-align: center;
+}
+
 #modal {
 	display: none;
 	text-align: center;

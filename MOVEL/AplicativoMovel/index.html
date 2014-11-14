@@ -18,41 +18,43 @@
 		<script type="text/javascript" src="./js/funtions.js"></script>
 		<!-- funçoes-->
 
-		<!-- MAPA -->
+		<!-- MAPA --
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,weather"></script>
 		<script type="text/javascript" src="./js/mapa.js"></script>
 		<script type="text/javascript" src="./js/mapaClima.js"></script>
-		<!-- MAPA -->
+		!-- MAPA -->
 
-		<!--grafico-->
+		<!--grafico--
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript" src="./js/graficos.js"></script>
-		<!--grafico-->
+		!--grafico-->
 
 		<script type="text/javascript">
+<<<<<<< 4208f213c520b57a132a1e99385b04378b6babbb
 			var alertaAtivo = false;
 			
+=======
+			var alertaAtivo = true;
+
+>>>>>>> 15bbcf87031121e7cafbbcb6b8b9e7e29acc9aa2
 			document.addEventListener("deviceready", onDeviceReady, false);
 
 			/**
 			 *	Evento quando o dispositivo estiver pronto
 			 */
 			function onDeviceReady() {
-				
-				
-				try{
+
+				try {
 					lerCfg();
-				}
-				catch(e){
+				} catch(e) {
 					console.log(e);
-				}
-				finally{
+				} finally {
 					// verificador de timer do alerta ativo ou nao
-					if(alertaAtivo){
+					if (alertaAtivo) {
 						ativarAlerta(true);
 					}
 				}
-	
+
 			}
 
 			/**
@@ -78,7 +80,7 @@
 					$("#mapa").show();
 					$("strong").html("Sae Móvel");
 					$("#mapaClima").hide();
-					
+
 				} else if (tela == "previsao") {
 					$("#mapa").hide();
 					$("#conteudo").hide();
@@ -87,12 +89,13 @@
 					$("#mapaClima").show();
 					$("strong").html(nome);
 					initializeWeather();
-				
+
 				} else if (tela == "simulacao") {
-					$("#botaoSimulacao").show();
-					$("#alerta").hide();
-			
+					$("#divSimulacao").show();				
+					passarImg('+');
+
 				} else {
+					$("#pac-input").hide();
 					$("#mapa").hide();
 					$("strong").html(nome);
 					$("#alerta").hide();
@@ -119,11 +122,11 @@
 	</head>
 	<body>
 		<!--barra superior com menus-->
-		<div style="margin-left: auto;" id="header">
+		<div id="header">
 			<div class="bar bar-header tabs-top bar-positive">
 				<h1 class="title"><strong>Sae Móvel</strong></h1>
 			</div>
-			<div style="margin-left: auto;" class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
+			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
 				<a onclick="alterarConteudo('home', 'Sae Móvel');" href="javascript:void(0);" class="tab-item active"> <i class="icon ion-home"></i> Home </a>
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i> Menu </a>
 				<a onclick="alterarConteudo('Servico', 'Serviço De Alertas');" class="tab-item" href="javascript:void(0);"> <i class="icon ion-gear-a"></i> Configurações </a>
@@ -172,12 +175,17 @@
 		<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive button-assertive button-energized">
 			Mais Informações
 		</button>
-		
+
 		<!-- botoes simulação-->
 		
-			<button onclick="passarImg("-");" id="btnVoltar" class="button button-full button-positive button-assertive button-energized">-</button>
-			<button onclick="passarImg("+")" id="btnProximo" class="button button-full button-positive button-assertive button-energized">+</button>
-			<button id="btnFechar" class="button button-full button-positive button-assertive button-energized">X</button>
+
+		<div id="divSimulacao" class="tabs tabs-background-positive tabs-positive ">
+			<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-minus-round" onclick="passarImg('-');"></i> voltar </a>
+			<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="passarImg('+');"></i> voltar </a>
+			altura = 1m
+			<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-close-round" onclick="passarImg('x');"></i> voltar </a>
 		
+		</div>
+
 	</body>
 </html>

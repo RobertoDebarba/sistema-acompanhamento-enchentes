@@ -2,26 +2,23 @@ var overlay;
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 var srcImage = './img/status-inundacao.png';
+var nImg = 0;
 function passarImg(acao) {
-	if (acao == "+") {
-		if (document.getElementById('btnProximo').value == 10) {
-			alert('Valor maximo atingido!');
-		} else {
-			document.getElementById('btnVoltar').value = document.getElementById('btnVoltar').value + 1;
-			document.getElementById('btnProximo').value = document.getElementById('btnProximo').value + 1;
-			var srcImage = './img/status-inundacao.png';
+	if (acao == '+') {
+		if (nImg < 2) {
+			nImg++;
+			srcImage = './img/' + nImg + '.png';
 		}
-		initialize();
-	} else if (acao == "-") {
-		if (document.getElementById('btnVoltar').value == 0) {
-			alert('Valor minimo atingido!');
-		} else {
-			document.getElementById('btnVoltar').value = document.getElementById('btnVoltar').value - 1;
-			document.getElementById('btnProximo').value = document.getElementById('btnProximo').value - 1;
-			var srcImage = './img/status-inundacao.png';
+	} else if (acao == '-') {
+		if (nImg > 1) {
+			nImg--;
+			srcImage = './img/' + nImg + '.png';
 		}
-		initialize();
-	};
+	} else {
+		var srcImage = './img/status-inundacao.png';
+		$('#botaoSimulacao').hide();	
+	}
+	initialize();
 
 }
 
