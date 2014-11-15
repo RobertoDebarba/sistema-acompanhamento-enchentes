@@ -296,12 +296,8 @@ function abrirModal(){
 /**
  * ler arquivo cfg
  * */
-function lerCfg(){
-	 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
-}
-
  function gotFile(fileSystem) {
-    fileSystem.root.getFile("sae", null, gotEntry, fail);
+    fileSystem.root.getFile("sae", gotEntry, fail);
 }
 
 function gotEntry(fileEntry) {
@@ -314,7 +310,8 @@ function gotFile(file){
 
 function readAsText(file) {
     var reader = new FileReader();
-    reader.onloadend = function(evt) {
+    
+    reader.onload = function(evt) {
        texto = evt.target.result;
        
        doisPontos = texto.indexOf(":");
@@ -333,6 +330,10 @@ function readAsText(file) {
        
        
     };
+    reader.onerror = function(evt) {
+    	alert(evt.target.result);
+    };
+    
     reader.readAsText(file);
 }
 /*****/
@@ -361,14 +362,12 @@ function gotFileWriter(writer) {
 
 
 function OpcoesMapaMetereologico() {
-	$("#painelInfo").show();
 	if ($("#painelOpcoesMapa").html() == "Mais Informações") {
 		$("#painelOpcoesMapa").html("Fechar");
 		$("#painelInfo").show();
 	} else {
 		$("#painelOpcoesMapa").html("Mais Informações");
 		$("#painelInfo").hide();
-		$("#mapaClima").show();
 	}
 
 }

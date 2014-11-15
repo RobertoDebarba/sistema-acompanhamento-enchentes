@@ -44,7 +44,7 @@ html, body {
 	transform: translateY(-50%);
 }
 
-#painelOpcoesMapa, #painelInfo {
+#divClima, #painelInfo {
 	display: none;
 }
 
