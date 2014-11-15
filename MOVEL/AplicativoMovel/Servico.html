@@ -1,12 +1,22 @@
 <!--Modal-->
-<div id="modal">
-		<h4> Forma de Localização</h4>
-		<button type="button" onclick="addLocal();" class="button button-positive">
-			GPS
-		</button>
-		<button type="button"  class="button button-positive">
-			Mapa
-		</button>
+<div id="modal" class="borda">
+		<div id="forma">
+			<h4> Forma de Localização</h4>
+			<button type="button" onclick="addLocal(true);" class="button button-positive bSize">
+				GPS
+			</button>
+			<button type="button"  onclick="buscaLocal();"class="button button-positive bSize">
+				Mapa
+			</button>
+		</div>
+		<div id="buscaLocal">
+			<div class="borda">
+			  <input id='pesquisar' onFocus="geolocateBusca()" type='text' placeholder='Digite um endereço... RUA NUMERO CIDADE'>
+			</div>		
+			<button type="button"  onclick="addLocal(false);"class="button button-positive bSize">
+				Ok
+			</button>
+		</div>
 </div>
 
 <div id="conteudoServico">
@@ -52,17 +62,14 @@
 	$("#enderecoLocal").html(local);	
 </script>
 
-<div style="margin: auto;" class="row"></div>
-
 <div style="margin: auto;" class="row">
 	<table class="table table-striped">
   		<tr>
-  			<td style="text-align; center">
-				<span id="enderecoLocal">Endereço:</span>			
+  			<td style="text-align; left">
+				<span id="enderecoLocal">Endereço</span>			
 			</td>
 			<td>
-				<a  style="float: right;" href="javascript:void(0);" class="tab-item"> <i class="icon ion-ios7-location" onclick="abrirModal();"></i> Buscar </a>
-
+				<a  style="float: right;" href="javascript:void(0);" class="tab-item" onclick="abrirModal();"> <i class="icon ion-ios7-location" ></i> Buscar Local</a>
 			</td>
 			
   		</tr>

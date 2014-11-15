@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,weather"></script>
 		<script type="text/javascript" src="./js/mapa.js"></script>
 		<script type="text/javascript" src="./js/mapaClima.js"></script>
+		<script type="text/javascript" src="./js/busca.js"></script>
 		<!-- MAPA -->
 
 		<!--grafico-->
@@ -30,18 +31,14 @@
 		<!--grafico-->
 
 		<script type="text/javascript">
-			var alertaAtivo = false;
 			
-
-			document.addEventListener("deviceready", onDeviceReady, false);
-
-			/**
-			 *	Evento quando o dispositivo estiver pronto
-			 */
-			function onDeviceReady(){		
-				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFile, fail);
+				/*le a cfg do sistema*/
+				//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+				
+				/*chama o preenchimento da barra de alerta*/
+				alteraBarraAlerta();
 	
-			}
+			
 
 			/**
 			 * exibi o menu +
@@ -94,23 +91,29 @@
 
 		</script>
 
-		<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--CSS-->
+				
 		<!--Bootstrap-->
+		<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 		<!--Bootstrap-->
 
+		<!--Ionic-->
 		<link href="./lib/ionic/css/ionic.min.css" rel="stylesheet">
 		<!--Ionic-->
-
-		<link href="./css/style.css" rel="stylesheet">
+		
 		<!--estilos-->
+		<link href="./css/style.css" rel="stylesheet">
+		
+		<!--Fonte-->
+		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:500' rel='stylesheet' type='text/css'>
 
 	</head>
 	<body>
 		<!--barra superior com menus-->
 		<div id="header">
 			<div class="bar bar-header tabs-top bar-positive">
-				<h1 class="title"><strong>Monitor de Enchentes Móvel</strong></h1>
+				<h1 class="title BFontSize"><strong>Monitor de Enchentes Móvel</strong></h1>
 			</div>
 			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
 				<a onclick="alterarConteudo('home', 'Monitor de Enchentes Móvel');" href="javascript:void(0);" class="tab-item active"> <i class="icon ion-home"></i> Home </a>
@@ -144,13 +147,13 @@
 			<div id='mapa'></div>
 			
 			<!--alerta rodapé-->
-			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized"></button>
+			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized BFontSize"></button>
 			
 			<!-- botoes simulação-->
-			<div id="divSimulacao" class="tabs tabs-background-positive tabs-positive ">
+			<div id="divSimulacao" class="tabs tabs-background-positive tabs-positive">
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-minus-round" onclick="passarImg('-');"></i> voltar </a>
+				<span class="tab-item BFontSize" id="spanSimula" >Nivel Rio 1m</span>
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="passarImg('+');"></i> voltar </a>
-				Nivel Rio 1m
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-close-round" onclick="passarImg('x');"></i> voltar </a>		
 			</div>
 		</div>
@@ -165,7 +168,7 @@
 			</div>
 			
 			<!-- mais informações mapa metereológico-->
-			<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive button-assertive button-energized">
+			<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive BFontSize">
 				Mais Informações
 			</button>
 		</div>

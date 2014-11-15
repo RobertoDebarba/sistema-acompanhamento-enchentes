@@ -1,25 +1,45 @@
 var overlay;
+var map;
+
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-var srcImage = './img/status-inundacao.png';
+
+
 var nImg = 0;
 function passarImg(acao) {
-	if (acao == '+') {
-		if (nImg < 2) {
-			nImg++;
-			srcImage = './img/' + nImg + '.png';
-		}
-	} else if (acao == '-') {
-		if (nImg > 1) {
-			nImg--;
-			srcImage = './img/' + nImg + '.png';
-		}
-	} else {
-		var srcImage = './img/status-inundacao.png';
-		$('#botaoSimulacao').hide();	
-	}
-	initialize();
+    var Image;
+    if (acao === '+') {
+        if (nImg < 2 ) {
+            nImg++;
+            Image = './img/' + nImg + '.png';
+            imagemOverlay(Image);        
+        }
+    } else if (acao === '-') {
+        if (nImg > 1) {
+            nImg--;
+            Image = './img/' + nImg + '.png';
+            imagemOverlay(Image);
+        }
+    } else {
+        var Image = './img/status-inundacao.png';
+        imagemOverlay(Image);
+        $('#divSimulacao').hide();    
+    }
+    
+    $('#spanSimula').html("Nivel do rio " + nImg + "m");
+}
 
+
+function imagemOverlay(Image) {
+    USGSOverlay.prototype.setMap(null);
+    
+    //Define posição da imagem
+    swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
+    neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
+    bounds = new google.maps.LatLngBounds(swBound, neBound);
+    
+    //Seta a imagem no mapa
+    overlay = new USGSOverlay(bounds, Image, map);
 }
 
 function initialize() {
@@ -30,22 +50,13 @@ function initialize() {
 		center : new google.maps.LatLng(-26.825, -49.268)
 	};
 
-	var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+	map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
 	// --- Imagem de inundação ---
+	var srcImage = './img/status-inundacao.png';
+    imagemOverlay(srcImage);
 
-	//Define posição da imagem
-	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
-	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
-	var bounds = new google.maps.LatLngBounds(swBound, neBound);
-
-	// Define imagem
-	//var srcImage = './img/status-inundacao.png';
-
-	//Seta a imagem no mapa
-	overlay = new USGSOverlay(bounds, srcImage, map);
-
-	// --- Marcador da regua ---
+	// --- Marcador da regua --
 
 	//Seta posição e propriedades
 	var latLngRegua = new google.maps.LatLng(-26.82682817, -49.27629948);
@@ -90,14 +101,16 @@ function initialize() {
 		if (places.length == 0) {
 			return;
 		}
-		for (var i = 0, marker; marker = markers[i]; i++) {
+		var i;
+		for (i = 0, marker; marker = markers[i]; i++) {
 			marker.setMap(null);
 		}
 
 		// For each place, get the icon, place name, and location.
 		markers = [];
 		var bounds = new google.maps.LatLngBounds();
-		for (var i = 0, place; place = places[i]; i++) {
+		var i;
+		for (i = 0, place; place = places[i]; i++) {
 			var image = {
 				url : place.icon,
 				size : new google.maps.Size(71, 71),

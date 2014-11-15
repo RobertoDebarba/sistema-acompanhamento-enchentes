@@ -10,15 +10,16 @@ function loadchart(){
  * pinta os graficos
  */
 function drawVisualization() {		
-    dataTable1 = google.visualization.arrayToDataTable(dataArray);
+    dataTable = google.visualization.arrayToDataTable(dataArray);
 
-	var options1 = {
-	    title: 'Histórico de Medições',
-		legend: { position: 'none' },
-		pointSize: 5
-	};
+	var options = {
+            title: 'Medição do Nível do Rio',
+            legend: { position: 'none' },
+            pointSize: 5,
+            'chartArea': {'width': '80%'}
+        };
 	
 	var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));				
 
-	chart.draw(dataTable1, options1);
+	chart.draw(dataTable, options);
 }
