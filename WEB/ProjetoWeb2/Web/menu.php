@@ -36,18 +36,30 @@
 							<li <?php if($menuAtivo == 2) {echo 'class="active"';} ?>>
 								<a href="page-previsao_tempo.php">Previsão do Tempo</a>
 							</li>
-							<li <?php if($menuAtivo == 3) {echo 'class="active"';} ?>>
+							<!-- Aparece apenas no Desktop -->
+							<li <?php if($menuAtivo == 3) {echo 'class="active"';} ?> class="hidden-xs hidden-sm">
 								<a href="page-galeria.php">Galeria</a>
 							</li>	
+							<li <?php if($menuAtivo == 4) {echo 'class="active"';} ?> class="hidden-xs hidden-sm">
+								<a href="page-simulador_rio.php">Simulador de Inundações</a>
+							</li>
+							<!-- -->
+							<!-- Aparece apenas no mobile -->
+							<li class="hidden-md hidden-lg">
+								<a data-toggle="modal" data-target="#modalBaixarApp">Aplicativo</a>
+							</li>
+							<!-- -->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mais<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li>
 										<a data-toggle="modal" data-target="#modalSitesUteis">Sites Uteis</a>
 									</li>
-									<li>
-										<a href="page-simulador_rio.php">Simulador de Inundações</a>
+									<!-- Aparece apenas no Desktop -->
+									<li class="hidden-xs hidden-sm">
+										<a data-toggle="modal" data-target="#modalBaixarApp">Baixe o Aplicativo</a>
 									</li>
+									<!-- -->
 									<li class="divider"></li>
 									<li>
 										<a href="#">Sobre</a>

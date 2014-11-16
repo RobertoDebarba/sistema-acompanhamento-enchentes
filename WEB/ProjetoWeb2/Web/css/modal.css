@@ -15,3 +15,11 @@ table {
 	font-weight: bold;
 	font-size: 18px;
 }
+
+#modalBaixarApp {
+	text-align: center;
+}
+
+#modalBaixarApp .col-md-6 {
+	margin-top: 15px;
+}

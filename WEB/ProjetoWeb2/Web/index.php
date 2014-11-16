@@ -94,6 +94,15 @@
 	</table>
 </div>
 
+<script type="text/javascript">  
+	//Se for mobile exibe o modal para baixar o APP  
+    $(window).load(function(){
+    	if( $(window).width() < 992 ) {
+	        $('#modalBaixarApp').modal('show');
+	    }
+    });
+</script>
+
 <!-- MAPA -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
 <script src="js/mapa.js" type="text/javascript"></script>
