@@ -41,7 +41,7 @@ ul li img {
 }
 
 .controls {
-	width: 50px;
+	width: 70px;
 	display: block;
 	font-size: 11px;
 	padding-top: 8px;
@@ -88,5 +88,31 @@ li .img-responsive {
 	clip: rect(0px,100px,100px,0px);
 }
 
-/* Modal emvio de imagens */
+#legenda {
+	width: 100%;
+	text-align: center;
+	padding-top: 8px;
+	margin-bottom: -4px;
+	color: black;
+}
 
+/* Modal envio de imagens */
+#filestye-3 {
+	position: absolute; clip: rect(0px 0px 0px 0px);
+}
+
+.modal-body {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.left {
+	float: left;
+	width: 48%;
+	margin-right: 5px;
+}
+
+.right {
+	float: right;
+	width: 50%;
+}

@@ -1,3 +1,6 @@
+//Array com informações da imagem
+var infoImagem;
+
 $(document).ready(function() {
 	$('li img').on('click', function() {
 		var src = $(this).attr('src');
@@ -8,34 +11,51 @@ $(document).ready(function() {
 			//Este catch corrige problema ao passar muitas vezes por essa linha
 		}
 		
-		var img = '<img src="' + src + '" class="img-responsive"/>';
+		//Busca informações da imagem no banco
+		nomeImagem = src.substring(src.lastIndexOf('/')+1, src.length);		
 
-		//start of new code new code
-		var index = $(this).parent('li').index();
+		$.ajax({
+	        url: "http://localhost/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/php/funcoes.php?getInfoImagem=?",
+			data: { 'nomeImagem' : nomeImagem},
+		    dataType:'jsonp',
+	        crossDomain: true,
+	
+			//Ao finalizar request executa o resto da pagina
+	        success: function(data){
+	        	infoImagem = data;
+	        	var img = '<img src="' + src + '" class="img-responsive"/>';
 
-		var html = '';
-		html += img;
-		html += '<div style="height:25px;clear:both;display:block;">';
-		html += '<a class="controls next" href="' + (index + 2) + '">next &raquo;</a>';
-		html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
-		html += '</div>';
-
-		$('#myModal').modal();
-		$('#myModal').on('shown.bs.modal', function() {
-			$('#myModal .modal-body').html(html);
-			//Novo código
-			$('a.controls').trigger('click');
-		})
-		$('#myModal').on('hidden.bs.modal', function() {
-			$('#myModal .modal-body').html('');
-		});
-
+				//start of new code new code
+				var index = $(this).parent('li').index();
+		
+				var legenda = '';
+				legenda = infoImagem['cidade'] +": "+infoImagem['bairro'] +" - Rua "+infoImagem['rua'];
+				legenda += "  |  "+ infoImagem['data'] +" - "+ infoImagem['hora'];
+				var html = '';
+				html += img;
+				html += '<div style="height:47px;clear:both;display:block;">';
+				html += '<div id="legenda">'+(legenda)+'</div>';
+				html += '<a class="controls next" href="' + (index + 2) + '">próximo &raquo;</a>';
+				html += '<a class="controls previous" href="' + (index) + '">&laquo; anterior</a>';
+				html += '</div>';
+		
+				$('#myModal').modal();
+				$('#myModal').on('shown.bs.modal', function() {
+					$('#myModal .modal-body').html(html);
+					//Novo código
+					$('a.controls').trigger('click');
+				});
+				$('#myModal').on('hidden.bs.modal', function() {
+					$('#myModal .modal-body').html('');
+				});
+	        }
+	    });
 	});
-
-})
+});
 
 //Novo código
 $(document).on('click', 'a.controls', function() {
+	
 	var index = $(this).attr('href');
 	var src = $('ul.row li:nth-child(' + index + ') img').attr('src');
 	//Altera URL da imagem de thumbs para imagens
@@ -63,13 +83,13 @@ $(document).on('click', 'a.controls', function() {
 	if (total === newNextIndex) {
 		$('a.next').hide();
 	} else {
-		$('a.next').show()
+		$('a.next').show();
 	}
 	//Esconde botão Anterior
 	if (newPrevIndex === 0) {
 		$('a.previous').hide();
 	} else {
-		$('a.previous').show()
+		$('a.previous').show();
 	}
 
 	return false;
