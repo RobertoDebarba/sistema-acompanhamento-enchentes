@@ -104,7 +104,7 @@
 </script>
 
 <!-- MAPA -->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&libraries=weather"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
 <script src="js/mapa.js" type="text/javascript"></script>
 
 <?php
