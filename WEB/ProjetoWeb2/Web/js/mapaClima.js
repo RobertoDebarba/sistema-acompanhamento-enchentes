@@ -37,6 +37,7 @@ function initialize() {
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
 
+		var markers = [];
 		if (places.length == 0) {
 			return;
 		}
@@ -45,7 +46,6 @@ function initialize() {
 		}
 
 		// For each place, get the icon, place name, and location.
-		markers = [];
 		var bounds = new google.maps.LatLngBounds();
 		for (var i = 0, place; place = places[i]; i++) {
 			var image = {
