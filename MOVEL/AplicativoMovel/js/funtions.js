@@ -18,7 +18,7 @@ var longitude;
  */
 function getLeituras(qtdLeituras) {
     $.ajax({
-        url : "http://localhost/jonathan/Projeto%20Web/final/funcoes.php/?getLeituras=?",
+        url : "http://54.232.207.63/Comum/php/funcoes.php/?getLeituras=?",
         data : { 'qtdLeituras' : qtdLeituras},
         dataType : 'jsonp',
         crossDomain : true,
@@ -35,7 +35,7 @@ function getLeituras(qtdLeituras) {
  */
 function getEstadoAlerta() {
     $.ajax({
-        url: "http://localhost/jonathan/Projeto%20Web/final/funcoes.php?getEstadoAlerta=?",
+        url: "http://54.232.207.63/Comum/php/funcoes.php?getEstadoAlerta=?",
         dataType : 'jsonp',
         crossDomain : true,
 
@@ -71,24 +71,30 @@ function carregaLeituras() {
  * altera o design da barra de alerta no rodapé
  */
 function alteraBarraAlerta() {
+    if((typeof leituras === 'undefined') | (typeof estado === 'undefined')){
+        getLeituras(12);
+        getEstadoAlerta();
+        alteraBarraAlerta();
+    }
+    
     medicoes = leituras[1];
 
-    if ((estado[0] === 0) && (estado[1] === 0)) {
+    if ((estado[0] == 0) & (estado[1] == 0)) {
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-energized");
         $("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva' + medicoes[3]);
     }
-    else if ((estado[0] === 1) || ((estado[1] === 1))) {
+    else if ((estado[0] == 1) | ((estado[1] == 1))) {
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-positive");
         $("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
     }
-    else if (estado[0] === 2) {
+    else if (estado[0] == 2) {
         $("#alerta").toggleClass("button-energized");
-        $("#alerta").toggleClass("button-positive");
+        $("#alerta").toggleClass("button-positive");     
         $("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
     }
-    else{
+    else{     
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-energized");
         $("#alerta").html("Dados indisponíveis");
@@ -112,7 +118,7 @@ function trataEnchentes(data) {
 
 function getEnchentes() {
 	$.ajax({
-		url : "http://localhost/jonathan/Projeto%20Web/final/functions.php?getEnchentes=?",
+		url : "http://54.232.207.63/Comum/php/funcoes.php?getEnchentes=?",
 		dataType : 'jsonp',
 		crossDomain : true,
 		

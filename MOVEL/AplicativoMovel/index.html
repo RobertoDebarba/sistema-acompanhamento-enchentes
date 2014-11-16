@@ -31,15 +31,6 @@
 		<!--grafico-->
 
 		<script type="text/javascript">
-			
-				/*le a cfg do sistema*/
-				//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
-				
-				/*chama o preenchimento da barra de alerta*/
-				alteraBarraAlerta();
-	
-			
-
 			/**
 			 * exibi o menu +
 			 */
@@ -147,7 +138,7 @@
 			<div id='mapa'></div>
 			
 			<!--alerta rodapé-->
-			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized BFontSize"></button>
+			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized"></button>
 			
 			<!-- botoes simulação-->
 			<div id="divSimulacao" class="tabs tabs-background-positive tabs-positive">
@@ -172,5 +163,14 @@
 				Mais Informações
 			</button>
 		</div>
+		
+		<script>
+			/*le a cfg do sistema*/
+			//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+		
+			/*chama o preenchimento da barra de alerta*/
+			alteraBarraAlerta();		
+
+		</script>
 	</body>
 </html>
