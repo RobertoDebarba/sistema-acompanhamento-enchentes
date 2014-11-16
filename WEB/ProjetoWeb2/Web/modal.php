@@ -24,9 +24,9 @@
 	
 							for ($i = 0; $i < count($leituras); $i++) {
 								echo "<tr>";
-								echo "<td>" . $leituras[$i][0] . "</td>";
-								echo "<td>" . $leituras[$i][1] . " m</td>";
-								echo "<td>" . $leituras[$i][2] . "</td>";
+								echo "<td>" . $leituras[$i][0] . " - " . $leituras[$i][1] . " h</td>";
+								echo "<td>" . $leituras[$i][2] . " m</td>";
+								echo "<td>" . $leituras[$i][3] . "</td>";
 								echo "</tr>";
 							}
 						?>
