@@ -1,22 +1,67 @@
 var overlay;
+var map;
+var bounds;
+
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-function initialize() {
+//INICIO Simulador
+var nImgInicial = 1;
+var nImg = nImgInicial;
+function passarImg(acao) {
+    var Image;
+    if (acao === '+') {
+        if (nImg < 2 ) {
+            nImg++;
+            Image = 'imagens/simulador/img' + nImg + '.png';
+            imagemOverlay(Image);        
+        }
+    } else if (acao === '-') {
+        if (nImg > 1) {
+            nImg--;
+            Image = 'imagens/simulador/img' + nImg + '.png';
+            imagemOverlay(Image);
+        }
+    } else if (acao === 'hide'){
+    	
+        var Image = 'imagens/status-inundacao.png';
+        imagemOverlay(Image);
+        $('#painelSimulador').hide(500);    
+    } else if (acao === 'show'){
+    	
+    	nImg = nImgInicial;
+    	$('#painelSimulador').show(500);
+    	Image = 'imagens/simulador/img' + nImg + '.png';
+    	setTimeout(function(){
+			imagemOverlay(Image);  
+		}, 500);	
+    }
+    
+    $('#nivelSimulador').html("Nível do Rio: " + nImg + "m");
+}
 
+function imagemOverlay(Image) {
+    overlay.setMap(null);
+
+    //Seta a imagem no mapa
+    overlay = new USGSOverlay(bounds, Image, map);
+}
+//FIM Simulador
+
+function initialize() {
+	
 	var markers = [];
 	var mapOptions = {
 		zoom : 14,
 		center : new google.maps.LatLng(-26.825, -49.268)
 	};
-
-	var map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+	map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
 	// --- Imagem de inundação ---
 
 	//Define posição da imagem
 	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
 	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
-	var bounds = new google.maps.LatLngBounds(swBound, neBound);
+	bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Define imagem
 	var srcImage = 'imagens/status-inundacao.png';

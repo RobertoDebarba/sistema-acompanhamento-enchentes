@@ -41,7 +41,7 @@
 								<a href="page-galeria.php">Galeria</a>
 							</li>	
 							<li <?php if($menuAtivo == 4) {echo 'class="active"';} ?> class="hidden-xs hidden-sm">
-								<a href="page-simulador_rio.php">Simulador de Inundações</a>
+								<a href="javascript:void(0);" onclick="passarImg('show');">Simulador de Inundações</a>
 							</li>
 							<!-- -->
 							<!-- Aparece apenas no mobile -->

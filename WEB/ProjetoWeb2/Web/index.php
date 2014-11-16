@@ -4,7 +4,7 @@
 
 	$meta['pag_inicial'] = true;
 	$meta['descricao'] = 'Sistema Online de Acompanhamento de Enchentes e Inundações';
-	$meta['css'] = array('css/index.css', 'css/mapa-index.css');
+	$meta['css'] = array('css/index.css', 'css/mapa-index.css', 'ionicons-1.5.2/css/ionicons.min.css');
 	$meta['menuAtivo'] = 0;
 
 	printHeader($meta);
@@ -46,6 +46,30 @@
 		?>
 	</div>
 </div>
+
+<!-- Painel Simulador -->
+<div id="painelSimulador">
+	<div class="row">
+		<div class="col-md-2">
+			<a href="javascript:void(0);" onclick="passarImg('-');" class="ion-minus-round"></a>
+		</div>
+		<div class="col-md-6" id="nivelSimulador">
+			Nível do Rio: 10m
+		</div>
+		<div class="col-md-2">
+			<a href="javascript:void(0);" onclick="passarImg('+');" class="ion-plus-round"></a>
+		</div>
+		<div class="col-md-2">
+			<a href="javascript:void(0);" onclick="passarImg('hide');" class="ion-close-round"></a>
+		</div>
+	</div>
+</div>
+
+<!-- Esconde Painel Simulador so iniciar a pagina -->
+<script>
+	$('#painelSimulador').hide();
+</script>
+
 
 <!--Painel de informações-->
 <div id="painelInfo" class="hidden-xs hidden-sm">
