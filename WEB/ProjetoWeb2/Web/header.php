@@ -9,7 +9,7 @@
 	 */
 	function printHeader($meta = array()) {
 		
-		$titulo = 'SOAA';
+		$titulo = 'Monitor de Enchentes';
 		$separador = ' - ';
 		$logo_url = 'imagens/foto-regua.jpg';
 		
@@ -23,7 +23,7 @@
 				# -- Titulo --
 				#Se for pagina inicial
 				if (isset($meta['pag_inicial']) && $meta['pag_inicial']) {
-					echo "<title>$titulo $separador Inicial</title>";
+					echo "<title>$titulo</title>";
 				#Se não for pagina inicial
 				} else {
 					$pagina = $meta['pagina'];

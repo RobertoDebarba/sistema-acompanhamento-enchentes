@@ -3,7 +3,7 @@
 	$meta = array();
 
 	$meta['pag_inicial'] = false;
-	$meta['pagina'] = 'Historico de Medições';
+	$meta['pagina'] = 'Histórico';
 	$meta['descricao'] = 'Historico de Medições';
 	$meta['css'] = array('css/page-historico_medicoes.css');
 	$meta['menuAtivo'] = 1;
