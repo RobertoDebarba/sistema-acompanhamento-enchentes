@@ -26,24 +26,20 @@ html, body {
     alignment-adjust: center;
 }
 
-#divInfoMapa {
-	width: 100%;
-}
-
 #imgMapaMetereologico {
-	width: 100%;
-	text-align: center;
 	max-height: 100%;
-	vertical-align: middle;
 }
 
 #painelInfo {
 	text-align: center;
-	z-index: 10;
-	position: absolute;
 	width: 100%;
-	top: 93px;
-	transform: translateY(-50%);
+	position: absolute;
+	top: 95px;
+}
+
+#divCpec{
+	width: auto;
+	margin-left: 50%;
 }
 
 #divClima, #painelInfo {
@@ -71,7 +67,7 @@ html, body {
 }
 
 #menuPlus {
-	top: 24%;
+	margin-top: 0;
 	opacity: 100;
 	width: auto;
 	display: none;

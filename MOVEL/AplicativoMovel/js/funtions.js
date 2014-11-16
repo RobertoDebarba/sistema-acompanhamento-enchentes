@@ -74,7 +74,6 @@ function alteraBarraAlerta() {
     if((typeof leituras === 'undefined') | (typeof estado === 'undefined')){
         getLeituras(12);
         getEstadoAlerta();
-        alteraBarraAlerta();
     }
     
     medicoes = leituras[1];
@@ -116,9 +115,10 @@ function trataEnchentes(data) {
 }
 
 
-function getEnchentes() {
+function getEnchentes(elevAtual) {
 	$.ajax({
 		url : "http://54.232.207.63/Comum/php/funcoes.php?getEnchentes=?",
+		data : { 'elevAtual' : elevAtual},
 		dataType : 'jsonp',
 		crossDomain : true,
 		
