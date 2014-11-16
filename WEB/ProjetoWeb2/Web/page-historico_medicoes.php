@@ -15,31 +15,35 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Data', 'Nível do Rio', ],
-			<?php
-				$leituras = getLeituras(15, true);
+		$(function() {
+			setTimeout(function(){
+				var data = google.visualization.arrayToDataTable([
+					['Data', 'Nível do Rio', ],
+					<?php
+						$leituras = getLeituras(15, true);
+						
+						foreach ($leituras as $leitura) {
+							echo "['$leitura[1]h', $leitura[2]],";
+						}
+					?>
+				]);
+			
+				var options = {
+					title: 'Medição do Nível do Rio',
+					legend: { position: 'none' },
+					pointSize: 5,
+					'chartArea': {'width': '80%'}
+				};
+			
+				var chart = new google.visualization.LineChart(document.getElementById('chartRio'));
 				
-				foreach ($leituras as $leitura) {
-					echo "['$leitura[1]h', $leitura[2]],";
-				}
-			?>
-		]);
-	
-		var options = {
-			title: 'Medição do Nível do Rio',
-			legend: { position: 'none' },
-			pointSize: 5,
-			'chartArea': {'width': '80%'}
-		};
-	
-		var chart = new google.visualization.LineChart(document.getElementById('chartRio'));
-		
-		chart.draw(data, options);
+				chart.draw(data, options);
+			}, 50);
+		});
 	}
 	
 	google.load("visualization", "1", {packages:["corechart"]});
-	google.setOnLoadCallback(drawChart);
+	google.setOnLoadCallback(drawChart);	
 </script>
 
 <div id="chartRio"></div>
