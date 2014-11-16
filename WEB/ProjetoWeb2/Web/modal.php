@@ -126,3 +126,39 @@
 		</div>
 	</div>
 </div>
+
+<!-- Sobre MODAL -->
+<div id="modalSobre" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Sistema Online de Acompanhamento de Enchentes e Inundações</h4>
+			</div>
+			<div class="modal-body">
+				<br />
+				<p>
+					Projeto submetido como TCC ao Curso Técnico em Informática com Habilitação em Desenvolvimento de Software.
+				</p>
+				<p>
+					CEDUP Timbó, 2014.
+				</p>
+				<br>
+				<p>
+					Jonathan Eli Suptitz,<br />
+					Luan Carlos Purim, <br />
+					Roberto Luiz Debarba
+				</p>
+				<br />
+				<p>
+					Copyright 2014.<br />
+					Timbó, Santa Catarina - Brasil.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					Fechar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

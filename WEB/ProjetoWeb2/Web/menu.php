@@ -62,7 +62,7 @@
 									<!-- -->
 									<li class="divider"></li>
 									<li>
-										<a href="#">Sobre</a>
+										<a data-toggle="modal" data-target="#modalSobre">Sobre</a>
 									</li>
 								</ul>
 							</li>
