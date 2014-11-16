@@ -6,7 +6,7 @@
 	$meta['pagina'] = 'Galeria';
 	$meta['descricao'] = 'Galeria Colaborativa';
 	$meta['css'] = array('css/page-galeria.css');
-	$meta['menuAtivo'] = 0;
+	$meta['menuAtivo'] = 3;
 	
 	//Define Botão Direito do menu navegador
 	$itensDireita = array();

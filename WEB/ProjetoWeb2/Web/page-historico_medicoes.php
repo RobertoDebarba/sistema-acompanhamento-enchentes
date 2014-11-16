@@ -6,7 +6,7 @@
 	$meta['pagina'] = 'Historico de Medições';
 	$meta['descricao'] = 'Historico de Medições';
 	$meta['css'] = array('css/page-historico_medicoes.css');
-	$meta['menuAtivo'] = 0;
+	$meta['menuAtivo'] = 1;
 
 	printHeader($meta);
 

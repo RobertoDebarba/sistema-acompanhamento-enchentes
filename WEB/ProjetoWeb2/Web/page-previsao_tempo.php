@@ -6,7 +6,7 @@
 	$meta['pagina'] = 'Previsão do Tempo';
 	$meta['descricao'] = 'Previsão do Tempo';
 	$meta['css'] = array('css/mapaClima.css', 'css/page-previsao_tempo.css');
-	$meta['menuAtivo'] = 0;
+	$meta['menuAtivo'] = 2;
 
 	printHeader($meta);
 
