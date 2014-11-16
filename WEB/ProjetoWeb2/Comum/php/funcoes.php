@@ -20,7 +20,23 @@
         header('content-type: application/json; charset=utf-8');
         header("access-control-allow-origin: *");   
 		
-        echo $_GET["getEnchentes"].' ('.json_encode(getEnchentes()).")";
+        echo $_GET["getEnchentes"].' ('.json_encode(getEnchentes($_GET['elevAtual'])).")";
+    }
+	
+	#Call do app mobile -> ImagensGaleria
+	if (isset($_GET['getImagensGaleria'])) {
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");   
+		
+        echo $_GET["getImagensGaleria"].' ('.json_encode(getInfoImagem()).")";
+    }
+	
+	#Call do app mobile -> InfoImagem
+	if (isset($_GET['getInfoImagem'])) {
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");   
+		
+        echo $_GET["getInfoImagem"].' ('.json_encode(getInfoImagem($_GET['nomeImagem'])).")";
     }
 	
 	/**
@@ -188,17 +204,162 @@
 		$db = $m -> mydb;
 		$collectionEnchentes = $db -> enchentes;
 		
-		$query = array('nivelRio' => array('$gte' => $elevAtual));
+		$query = array('NivelRio' => array('$gte' => $elevAtual));
 		$cursor = $collectionEnchentes -> find($query);
 		
 		$enchentes = array();
 		$i = 0;
 		foreach ($cursor as $document) {
-			$enchentes[$i][0] = $document['data'];
-			$enchentes[$i][1] =  $document['nivelRio'];
+			$enchentes[$i][0] = $document['Data'];
+			$enchentes[$i][1] =  $document['NivelRio'];
 			$i++;
 		}
 		
-		return $array;		
+		return $enchentes;		
+	}
+	
+	/**
+	 * Retorna todas as imagens da galeria
+	 * 
+	 * @return array[]
+	 */
+	function getImagensGaleria() {
+		
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionGaleria = $db -> galeria;
+		
+		$cursor = $collectionGaleria -> find() -> fields(array('imagem' => true));
+		
+		$galeria = array();
+		$i = 0;
+		foreach ($cursor as $document) {
+			$galeria[$i] = $document['imagem'];
+			$i++;
+		}
+		
+		return $galeria;	
+	}
+	
+	/**
+	 * Retorna todas as informações de uma imagem
+	 * 
+	 * @param nomeImagem Nome da Imagem salva no banco
+	 * @return array[] contendo 'imagem', 'cidade', 'bairro', 'rua', 'data', 'hora'
+	 */
+	function getInfoImagem($nomeImagem) {
+		
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionGaleria = $db -> galeria;
+		
+		$query = array('imagem' => $nomeImagem);
+		$cursor = $collectionGaleria -> find($query);
+		
+		$imagem = array();
+		foreach ($cursor as $document) {
+			$imagem['imagem'] = $document['imagem'];
+			$imagem['cidade'] = $document['cidade'];
+			$imagem['bairro'] =  $document['bairro'];
+			$imagem['rua'] =  $document['rua'];
+			$imagem['data'] =  $document['data'];
+			$imagem['hora'] =  $document['hora'];
+		}
+	  
+	    return $imagem;
+	}
+
+	/*
+	 * Executa ao enviar POST do formulario da page-galeria.php
+	 */
+	if (isset($_REQUEST['cidade'])) {
+		$tiposPermitidos = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
+	
+		$tamanhoMaximo = 1024 * 1024 * 2;
+	
+		$arqNome = $_FILES['imagem']['name'];
+		$arqType = $_FILES['imagem']['type'];
+		$arqSize = $_FILES['imagem']['size'];
+		$arqTemp = $_FILES['imagem']['tmp_name'];
+		$arqError = $_FILES['imagem']['error'];
+		
+		function printAlert($mensagem) {
+			echo "<script>alert('" . $mensagem . "')</script>";
+		}
+	
+		if ($arqError == 0) {
+			#Verifica tipo de arquivo
+			if (!in_array($arqType, $tiposPermitidos)) {
+				printAlert("Erro: Tipo de arquivo inválido!");
+			#Verifica tamanho de arquivo
+			} else if ($arqSize > $tamanhoMaximo) {
+				printAlert("Erro: Tamanho do arquivo maior que 2014 * 2014!");
+			#Envia arquivo
+			} else {
+				#Seta caminhos
+				$pastaImg = '/opt/lampp/htdocs/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/galeria/imagens/';
+				$pastaThumbs = '/opt/lampp/htdocs/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/galeria/thumbs/';
+				#Pega extenção da imagem
+				preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $_FILES['imagem']['name'], $ext);
+	    		$ext_imagem = $ext[1];
+				#Gera um nome único para a imagem
+				$nome_imagem = md5(uniqid(time()));
+	    		
+				#Redimenciona e move para pastas
+				#http://www.verot.net/php_class_upload.htm
+				include "lib/class.upload.php";
+				
+				$handle = new upload($_FILES['imagem']);
+			    if ($handle->uploaded) {
+			    	#Salva arquivo original
+			    	$handle->file_new_name_body   = $nome_imagem;
+			    	$handle->process($pastaImg);
+			        if ($handle->processed) {
+			        	
+			            #Redimencio e salva arquivo Thumbs
+						$handle->file_new_name_body   = $nome_imagem;
+				        $handle->image_resize         = true;
+				        $handle->image_x              = 250;
+				        $handle->image_y      		  = 170;
+				        $handle->process($pastaThumbs);
+				        if ($handle->processed) {
+							#Enviado com sucesso
+				            $handle->clean();
+							
+							#Salva no banco de dados
+							$cidade = $_REQUEST['cidade'];
+							$bairro = $_REQUEST['bairro'];
+							$rua = $_REQUEST['rua'];
+							$data = $_REQUEST['data'];
+							$hora = $_REQUEST['hora'];
+				
+							$m = new MongoClient();
+							$db = $m -> mydb;
+							$collectionGaleria = $db -> galeria;
+								
+							$query = array('imagem' => $nome_imagem . "." . $ext_imagem, 'cidade' => $cidade, 'bairro' => $bairro,
+								'rua' => $rua, 'data' => $data, 'hora' => $hora);
+							
+							$result = $collectionGaleria->insert($query);
+							if ($result['ok']) {
+								printAlert("Imagem enviada com sucesso!");
+							} else {
+								printAlert("Erro desconhecido ao enviar imagem!");
+							}
+				        } else {
+				        	printAlert("Erro desconhecido ao enviar imagem!");
+				            echo 'error : ' . $handle->error;
+				        }
+			        } else {
+			        	printAlert("Erro desconhecido ao enviar imagem!");
+			            echo 'error : ' . $handle->error;
+			        }	
+			    }		
+			}
+		} else {
+			$erro = 'Erro ao enviar arquivo';
+		}
 	}
 ?>
