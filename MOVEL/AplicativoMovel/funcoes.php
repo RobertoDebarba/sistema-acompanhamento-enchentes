@@ -6,13 +6,15 @@
 		date_default_timezone_set('America/Sao_Paulo');
 		global $collectionLeituras;
 		global $collectionEnchentes;
-		
+		global $collectionAlturaRio;
 		$con = new MongoClient("mongodb://localhost/mydb");
 		$db = $con->selectDB("mydb");
 		
 		$collectionEnchentes = new MongoCollection($db, 'enchentes');
 		
 		$collectionLeituras = new MongoCollection($db, 'leituras');
+		
+		$collectionAlturaRio = new MongoCollection($db, 'alturaRio');
 	}
 		
 	if (isset($_GET["getLeituras"])) {
@@ -40,6 +42,15 @@
 		MongoConnect();
 		
         echo $_GET["getEnchentes"].' ('.json_encode(getEnchentes()).")";
+    }
+	
+	if (isset($_GET['getAlturaRio'])) {
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");   
+		
+		MongoConnect();
+		
+        echo $_GET["getAlturaRio"].' ('.json_encode(getAlturaRio()).")";
     }
 
 	function getEnchentes () {
@@ -209,4 +220,14 @@
 		
 		return $leituras;
 	}
+	
+	function getAlturaRio() {
+		global $collectionAlturaRio;
+		$cursor = $collectionAlturaRio -> find();
+		foreach ($cursor as $document) {
+			$altura = $document["alturaRio"];
+		}
+		return $altura;
+	}
+	
 ?>

@@ -9,6 +9,8 @@ var dataArray = []; //array com data e nivel do rio
 var alturaAlerta;// altura do alerta salvo pelo usuario
 var local;//local do alerta salvo pelo usuario
 
+var alturaRio;
+
 var altitude;
 var latitude;
 var longitude;
@@ -104,25 +106,27 @@ function alteraBarraAlerta() {
 /**
  * Metodo que preenche a tabela na tela de verificação de locais
  */
-var alturaAtual = 4;/**>>>>>QG<<<<<<<*/
 
 function trataEnchentes(data) {
     var cont; //contador
 	for (cont in data) {
 		var alturaEnchente = data[cont];
-		if (alturaAtual < parseFloat(alturaEnchente[1])) {
-			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
-		}
+		$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
 	}
 }
 
 /**
  * Metodo que busca no banco o histórico de datas e alturas enchentes
  */
-function getEnchentes(elevAtual) {
+function getEnchentes() {
+	getAlturaRio();
+	console.log("1");
+	var nivelEnchente = altitude-alturaRio;
+	$("#nivelRioLocal").html(nivelEnchente);
+	
 	$.ajax({
 		url : "http://54.232.207.63/Comum/php/funcoes.php?getEnchentes=?",
-		data : { 'elevAtual' : elevAtual},
+		data : { 'elevAtual' : nivelEnchente},
 		dataType : 'jsonp',
 		crossDomain : true,
 		
@@ -146,7 +150,6 @@ function getAltura(gps) {
         latlng = geolocationBusca;
     }
     
-    alert(latlng);
     
     locations.push(latlng);
     positionalRequest = {
@@ -160,7 +163,7 @@ function getAltura(gps) {
                 $("#divbotao").hide();
                 $("#tabela").show();
                 altitude = results[0].elevation;
-                alert(altiturde);
+                getEnchentes();
             }
             else {
                 alert('No results found');
@@ -422,3 +425,21 @@ function buscaLocal(){
  * */  
 getLeituras(12);
 getEstadoAlerta();
+
+
+/**
+ *  Função que carrega a aultura zero do rio
+ */
+
+function getAlturaRio() {
+	$.ajax({
+		url : "http://localhost/luan/git/SAEnchentes/MOVEL/AplicativoMovel/funcoes.php?getAlturaRio=?",
+		dataType : 'jsonp',
+		crossDomain : true,
+		
+		 success: function (data) {
+            alturaRio = data;
+            conseole.log(data);
+        }
+	});
+}

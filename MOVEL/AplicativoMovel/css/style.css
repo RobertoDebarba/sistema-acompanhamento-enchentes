@@ -23,7 +23,6 @@ html, body {
 	padding : 10%;
     position: relative;
     top: 10%;
-    alignment-adjust: center;
 }
 
 #imgMapaMetereologico {
@@ -215,10 +214,6 @@ html, body {
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
 	right: 0px;
-}
-
-#tabelaCorpo {
-	alignment-adjust: center;
 }
 
 #buscaLocal{
