@@ -31,6 +31,18 @@
 		<!--grafico-->
 
 		<script type="text/javascript">
+			document.addEventListener("deviceready", pronto, false);
+			
+			function pronto() {
+				/*le a cfg do sistema*/
+				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+			
+				/*chama o preenchimento da barra de alerta*/
+				alteraBarraAlerta();	
+				
+			}
+				
+		
 			/**
 			 * exibi o menu +
 			 */
@@ -164,14 +176,5 @@
 				Mais Informações
 			</button>
 		</div>
-		
-		<script>
-			/*le a cfg do sistema*/
-			//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
-		
-			/*chama o preenchimento da barra de alerta*/
-			alteraBarraAlerta();		
-
-		</script>
 	</body>
 </html>

@@ -105,9 +105,9 @@ function alteraBarraAlerta() {
 var alturaAtual = 4;/**>>>>>QG<<<<<<<*/
 
 function trataEnchentes(data) {
-    var dado, teste;
+    var dado;
 	for (dado in data) {
-		teste = data[dado];
+		var teste = data[dado];
 		if (alturaAtual < parseFloat(teste[1])) {
 			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + teste[0] + '</td> </tr>');
 		}
@@ -139,9 +139,10 @@ function getAltura(gps) {
        latlng = new google.maps.LatLng(latitude, longitude);
     }
     else{
-        alert(geolocationBusca);
         latlng = geolocationBusca;
     }
+    
+    alert(latlng);
     
     locations.push(latlng);
     positionalRequest = {
@@ -155,9 +156,10 @@ function getAltura(gps) {
                 $("#divbotao").hide();
                 $("#tabela").show();
                 altitude = results[0].elevation;
+                alert(altiturde);
             }
             else {
-                return ('No results found');
+                alert('No results found');
             }
         }
         else{
@@ -180,7 +182,6 @@ function coordenadas() {
 		$("#latitudeLocal").html(latitude);
 	
 		$("#longitudeLocal").html(longitude);
-
 	};
 
 	function onError(error) {
@@ -192,16 +193,16 @@ function coordenadas() {
 		timeout : 60000,
 		enableHighAccuracy : true
 	};
-
-	navigator.geolocation.watchPosition(onSuccess, onError, options);
-
+    
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 }
 
 
 function geocodificacaoReversa(gps) {
-	var geocoder, latlng;
+	var geocoder;
+	var latlng;
 	
-	geocoder = new google.maps.Geocoder();
+	var geocoder = new google.maps.Geocoder();
 	
 	if(gps){
 	   latlng = new google.maps.LatLng(latitude, longitude);
@@ -257,9 +258,7 @@ function gotFile(file){
 
 function readAsText(file) {
     var reader = new FileReader();
-    
-    
-    
+    alert("readastext");  
     reader.onload = function(evt) {
        texto = evt.target.result;
        
@@ -320,13 +319,13 @@ function addLocal(gps){
             console.log(exception);
         }   
         finally{
-            //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
         }
     }
     else{
         geocodificacaoReversa(false);
         
-        //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
     
     $("#forma").show();
