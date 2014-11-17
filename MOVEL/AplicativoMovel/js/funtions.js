@@ -101,20 +101,24 @@ function alteraBarraAlerta() {
 }
 
 
-
+/**
+ * Metodo que preenche a tabela na tela de verificação de locais
+ */
 var alturaAtual = 4;/**>>>>>QG<<<<<<<*/
 
 function trataEnchentes(data) {
-    var dado;
-	for (dado in data) {
-		var teste = data[dado];
-		if (alturaAtual < parseFloat(teste[1])) {
-			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + teste[0] + '</td> </tr>');
+    var cont; //contador
+	for (cont in data) {
+		var alturaEnchente = data[cont];
+		if (alturaAtual < parseFloat(alturaEnchente[1])) {
+			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
 		}
 	}
 }
 
-
+/**
+ * Metodo que busca no banco o histórico de datas e alturas enchentes
+ */
 function getEnchentes(elevAtual) {
 	$.ajax({
 		url : "http://54.232.207.63/Comum/php/funcoes.php?getEnchentes=?",
@@ -169,7 +173,9 @@ function getAltura(gps) {
         
 }
 
-
+/**
+ * Metodo que busca as cordenadas de geolocalização com gps ou pela rede
+ */
 
 function coordenadas() {
 	var onSuccess = function(position) {
@@ -197,7 +203,9 @@ function coordenadas() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 }
 
-
+/**
+ * Metodo que utiliza as cordenadas de geolocalização para captar o endereço
+ */
 function geocodificacaoReversa(gps) {
 	var geocoder;
 	var latlng;
@@ -345,6 +353,9 @@ function abrirModal(){
 }
 
 
+/**
+ * Metodo que mostra e esconde o gif no mapa metereologico
+ */
 
 function OpcoesMapaMetereologico() {
 	if ($("#painelOpcoesMapa").html() == "Mais Informações") {
@@ -407,7 +418,7 @@ function buscaLocal(){
 }
 
 /**
- * chama a obtenção de dadod do servidor
+ * chama a obtenção de dado do servidor
  * */  
 getLeituras(12);
 getEstadoAlerta();
