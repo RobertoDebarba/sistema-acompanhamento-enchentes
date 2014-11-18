@@ -28,7 +28,7 @@
         header('content-type: application/json; charset=utf-8');
         header("access-control-allow-origin: *");   
 		
-        echo $_GET["getImagensGaleria"].' ('.json_encode(getInfoImagem()).")";
+        echo $_GET["getImagensGaleria"].' ('.json_encode(getImagensGaleria()).")";
     }
 	
 	#Call do app mobile -> InfoImagem
@@ -37,6 +37,14 @@
         header("access-control-allow-origin: *");   
 		
         echo $_GET["getInfoImagem"].' ('.json_encode(getInfoImagem($_GET['nomeImagem'])).")";
+    }
+    
+    #Call do app mobile -> AlturaRio
+	if (isset($_GET['getAlturaRio'])) {
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");   
+		
+        echo $_GET["getAlturaRio"].' ('.json_encode(getAlturaRio()).")";
     }
 	
 	/**
@@ -204,7 +212,7 @@
 		$db = $m -> mydb;
 		$collectionEnchentes = $db -> enchentes;
 		
-		$query = array('NivelRio' => array('$gte' => $elevAtual));
+		$query = array('NivelRio' => array('$gte' => (double) $elevAtual));
 		$cursor = $collectionEnchentes -> find($query);
 		
 		$enchentes = array();
@@ -269,6 +277,24 @@
 		}
 	  
 	    return $imagem;
+	}
+	
+	/**
+	 * Retorna a altura do rio em relação ao nivel do mar
+	 * 
+	 * @return double com altura
+	 */
+	function getAlturaRio() {
+		#Conecta ao MongoDB
+		$m = new MongoClient();
+		$db = $m -> mydb;
+		$collectionAlturaRio = $db -> alturaRio;
+		
+		$cursor = $collectionAlturaRio -> find();
+		foreach ($cursor as $document) {
+			$altura = $document["alturaRio"];
+		}
+		return $altura;
 	}
 
 	/*
