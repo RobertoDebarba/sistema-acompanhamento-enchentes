@@ -33,11 +33,11 @@
 		}
 
 		if (($alerta[0] == 0) & ($alerta[1] == 0)) {
-			echo('<div class="alert alert-info" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</div> ');
+			echo('<div class="alert alert-info" role="alert">Nivel do rio: ' . $leituras[0][2] . ' m | Chuva ' . $leituras[0][3] . '</div> ');
 		} else if (($alerta[0] == 1) | (($alerta[1] == 1))) {
-			echo('<div class="alert alert-warning" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</div> ');
+			echo('<div class="alert alert-warning" role="alert">Nivel do rio: ' . $leituras[0][2] . ' m | Chuva ' . $leituras[0][3] . '</div> ');
 		} else if ($alerta[0] == 2) {
-			echo('<div class="alert alert-danger" role="alert">Nivel do rio: ' . $leituras[0][1] . 'm | Chuva ' . $leituras[0][2] . '</div> ');
+			echo('<div class="alert alert-danger" role="alert">Nivel do rio: ' . $leituras[0][2] . ' m | Chuva ' . $leituras[0][3] . '</div> ');
 		}
 
 		if ($alerta[1]) {
