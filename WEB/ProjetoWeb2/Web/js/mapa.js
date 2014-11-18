@@ -2,6 +2,9 @@ var overlay;
 var map;
 var bounds;
 
+// Define imagem
+var srcImage = '../Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
+
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 //INICIO Simulador
@@ -23,7 +26,7 @@ function passarImg(acao) {
         }
     } else if (acao === 'hide'){
     	
-        var Image = '../Comum/imagens/status-inundacao.png';
+        var Image = srcImage;
         imagemOverlay(Image);
         $('#painelSimulador').hide(500);    
     } else if (acao === 'show'){
@@ -62,9 +65,6 @@ function initialize() {
 	var swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
 	var neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
 	bounds = new google.maps.LatLngBounds(swBound, neBound);
-
-	// Define imagem
-	var srcImage = '../Comum/imagens/status-inundacao.png';
 
 	//Seta a imagem no mapa
 	overlay = new USGSOverlay(bounds, srcImage, map);
