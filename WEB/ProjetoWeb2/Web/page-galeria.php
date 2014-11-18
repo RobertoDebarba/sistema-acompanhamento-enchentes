@@ -131,7 +131,7 @@
 		$dados = $( this ).serialize();
 	    $.ajax({
 			type: "POST",
-			url: "http://localhost/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/php/funcoes.php",
+			url: "./Comum/php/funcoes.php",
 			data: dados,
 			success: function(result){
 				alert(result);
