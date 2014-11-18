@@ -1,79 +1,73 @@
 <!--Modal-->
-<div id="modal" class="borda">
-		<div id="forma">
-			<h4> Forma de Localização</h4>
-			<button type="button" onclick="addLocal(true);" class="button button-positive bSize">
-				GPS
-			</button>
-			<button type="button"  onclick="buscaLocal();"class="button button-positive bSize">
-				Mapa
-			</button>
+<div id="modalBuscaLocal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+
+				<div id="forma">
+					<h4> Forma de Localização</h4>
+					<button type="button" onclick="addLocal(true);" data-dismiss="modal" class="button button-positive bSize">
+						GPS
+					</button>
+					<button type="button"  onclick="buscaLocal();"class="button button-positive bSize">
+						Mapa
+					</button>
+				</div>
+				<div id="buscaLocal">
+					<div class="borda">
+						<input id='pesquisar' onFocus="geolocateBusca()" type='text' placeholder='RUA NUMERO CIDADE'>
+					</div>
+					<button type="button"  onclick="addLocal(false);"class="button button-positive bSize">
+						Ok
+					</button>
+				</div>
+			</div>
 		</div>
-		<div id="buscaLocal">
-			<div class="borda">
-			  <input id='pesquisar' onFocus="geolocateBusca()" type='text' placeholder='RUA NUMERO CIDADE'>
-			</div>		
-			<button type="button"  onclick="addLocal(false);"class="button button-positive bSize">
-				Ok
-			</button>
-		</div>
+	</div>
 </div>
 
-<div id="conteudoServico">
-	
-<div style="margin: auto; margin-top: 20px;" class="row">
-	<span style="font-size: 20px;">Alertas</span>
-	<div style="margin-left: auto;" class="onoffswitch">
-	    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
-	    <label class="onoffswitch-label" for="myonoffswitch">
-	        <span class="onoffswitch-inner"></span>
-	        <span class="onoffswitch-switch"></span>
-	    </label>
-	</div>	
-</div>
-<script>
-	/***
-	 * inicia a tela com o batao ativado ou nao
-	 */
-	if(alertaAtivo){
-		$('#myonoffswitch').prop('checked', true);
-	}
-	else{
-		$('#myonoffswitch').prop('checked', false);
-	}
-	
-	$('#myonoffswitch').click(function() {
-		    if($(this).is(':checked')) {
-			      try{
-			      	addLocal();
-			      }
-			      catch(e){
-			      	console.log(e);
-			      }
-			      finally{
-			      	ativarAlerta(true);
-			      }
-		      
-		    } else {
-		       ativarAlerta(false);
-		    }
+	<div style="margin: auto; margin-top: 20px;" class="row">
+		<span style="font-size: 20px;">Alertas</span>
+		<div style="margin-left: auto;" class="onoffswitch">
+			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
+			<label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+		</div>
+	</div>
+	<script>
+		/***
+		 * inicia a tela com o batao ativado ou nao
+		 */
+		if (alertaAtivo) {
+			$('#myonoffswitch').prop('checked', true);
+		} else {
+			$('#myonoffswitch').prop('checked', false);
+		}
+
+		$('#myonoffswitch').click(function() {
+			if ($(this).is(':checked')) {
+				try {
+					addLocal();
+				} catch(e) {
+					console.log(e);
+				} finally {
+					ativarAlerta(true);
+				}
+
+			} else {
+				ativarAlerta(false);
+			}
 		});
-		
-	$("#enderecoLocal").html(local);	
-</script>
 
-<div style="margin: auto;" class="row">
-	<table class="table table-striped">
-  		<tr>
-  			<td style="text-align; left">
-				<span id="enderecoLocal">Endereço</span>			
-			</td>
-			<td>
-				<a  style="float: right;" href="javascript:void(0);" class="tab-item" onclick="abrirModal();"> <i class="icon ion-ios7-location" ></i> Buscar Local</a>
-			</td>
-			
-  		</tr>
-	</table>
-</div>
+		$("#enderecoLocal").html(local);
+	</script>
 
-</div>
+	<div style="margin: auto;" class="row">
+		<table class="table table-striped">
+			<tr>
+				<td style="text-align; left"><span id="enderecoLocal">Endereço</span></td>
+				<td><a  style="float: right;" href="javascript:void(0);" class="tab-item"
+				data-toggle="modal" data-target="#modalBuscaLocal" onclick="abrirModal();"> <i class="icon ion-ios7-location" ></i> Buscar Local</a></td>
+			</tr>
+		</table>
+	</div>
+

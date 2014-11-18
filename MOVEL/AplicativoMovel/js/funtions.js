@@ -353,9 +353,7 @@ function addLocal(gps){
     }
     
     $("#forma").show();
-    $("#buscaLocal").hide();
-    $("#modal").hide();
-    $("#conteudoServico").show();       
+    $("#buscaLocal").hide();  
     $("#buscarLocal").html("Alterar Local");
 }
 
@@ -364,8 +362,8 @@ function addLocal(gps){
  * abrir modal
  * */
 function abrirModal(){
-    $("#conteudoServico").hide();
-    $("#modal").show();
+	$("#buscaLocal").hide()
+   	$("#forma").show();
 }
 
 
