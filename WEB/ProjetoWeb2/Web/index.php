@@ -118,6 +118,11 @@
 	</table>
 </div>
 
+<!-- MAPA -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+<script src="js/mapa.js" type="text/javascript"></script>
+
+<!-- Utilidades -->
 <script type="text/javascript">  
 	//Se for mobile exibe o modal para baixar o APP  
     $(window).load(function(){
@@ -125,11 +130,29 @@
 	        $('#modalBaixarApp').modal('show');
 	    }
     });
+    
+    /**
+     * Busca parametros na url
+     */
+    function getQueryParams(qs) {
+	    qs = qs.split("?")[1];
+	
+	    var params = {}, tokens,
+	        re = /[?&]?([^=]+)=([^&]*)/g;
+	
+	    while (tokens = re.exec(qs)) {
+	        params[decodeURIComponent(tokens[1])]
+	            = decodeURIComponent(tokens[2]);
+	    }
+	
+	    return params;
+	}
+	
+	//Verifica se simulador deve estar ativo pelos parametros
+	if (getQueryParams(document.URL).simulador == 'true') {
+		passarImg('show');
+	}
 </script>
-
-<!-- MAPA -->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
-<script src="js/mapa.js" type="text/javascript"></script>
 
 <?php
 	include 'footer.php';

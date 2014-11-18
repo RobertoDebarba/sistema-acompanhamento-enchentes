@@ -58,6 +58,9 @@
 				<!-- JQuery -->
 				<script src="js/geral/jquery.min.js"></script>
 				
+				<!-- Simulador de inundações -->
+				<script src="js/simulador.js"></script>
+				
 			<?php 
 				# -- Importações --
 				#Estilo
