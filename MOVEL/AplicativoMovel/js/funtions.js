@@ -118,10 +118,9 @@ function trataEnchentes(data) {
 /**
  * Metodo que busca no banco o histórico de datas e alturas enchentes
  */
-function getEnchentes() {
-	getAlturaRio();
-	console.log("1");
-	var nivelEnchente = altitude-alturaRio;
+function getEnchentes(data) {
+	console.log(data);
+	var nivelEnchente = altitude-data;
 	$("#nivelRioLocal").html(nivelEnchente);
 	
 	$.ajax({
@@ -163,7 +162,7 @@ function getAltura(gps) {
                 $("#divbotao").hide();
                 $("#tabela").show();
                 altitude = results[0].elevation;
-                getEnchentes();
+                getAlturaRio();
             }
             else {
                 alert('No results found');
@@ -438,8 +437,7 @@ function getAlturaRio() {
 		crossDomain : true,
 		
 		 success: function (data) {
-            alturaRio = data;
-            conseole.log(data);
+            getEnchentes(data);
         }
 	});
 }
