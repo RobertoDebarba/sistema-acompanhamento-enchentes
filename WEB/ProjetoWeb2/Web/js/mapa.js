@@ -23,11 +23,11 @@ function passarImg(acao) {
         }
     } else if (acao === 'hide'){
     	
-        var Image = 'imagens/status-inundacao.png';
+        var Image = '../Comum/imagens/status-inundacao.png';
         imagemOverlay(Image);
         $('#painelSimulador').hide(500);    
     } else if (acao === 'show'){
-    	
+        
     	nImg = nImgInicial;
     	$('#painelSimulador').show(500);
     	Image = 'imagens/simulador/img' + nImg + '.png';
@@ -64,7 +64,7 @@ function initialize() {
 	bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Define imagem
-	var srcImage = 'imagens/status-inundacao.png';
+	var srcImage = '../Comum/imagens/status-inundacao.png';
 
 	//Seta a imagem no mapa
 	overlay = new USGSOverlay(bounds, srcImage, map);
