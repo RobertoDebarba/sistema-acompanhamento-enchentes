@@ -57,7 +57,7 @@
 			 * */
 			function alterarConteudo(tela, nome) {
 				$("strong").html(nome);
-				$("#menuPlus").toggle('slow');
+				$("#menuPlus").hide('fast');
 
 				if (tela == "home") {
 					$("#mapaconteiner").show();	
@@ -124,7 +124,6 @@
 
 		<!--menu plus-->
 		<div id="menuPlus" class="dropdown button">
-			<div class="arrow"></div>
 			<div class="popover-content">
 				<a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);"> Medições </a>
 				<!--<a class="item" href="#"> História </a-->
