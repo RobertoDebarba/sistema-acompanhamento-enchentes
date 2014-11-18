@@ -35,7 +35,7 @@
 			
 			function pronto() {
 				/*le a cfg do sistema*/
-				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
+				//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
 			
 				/*chama o preenchimento da barra de alerta*/
 				alteraBarraAlerta();	
@@ -57,7 +57,7 @@
 			 * */
 			function alterarConteudo(tela, nome) {
 				$("strong").html(nome);
-				$("#menuPlus").hide('fast');
+				$("#menuPlus").toggle('slow');
 
 				if (tela == "home") {
 					$("#mapaconteiner").show();	
@@ -107,10 +107,7 @@
 		
 		<!--estilos-->
 		<link href="./css/style.css" rel="stylesheet">
-		
-		<!--Fonte-->
-		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:500' rel='stylesheet' type='text/css'>
-
+		<link href="./css/galeria.css" rel="stylesheet">
 	</head>
 	<body>
 		<!--barra superior com menus-->
@@ -126,14 +123,14 @@
 		</div>
 
 		<!--menu plus-->
-		<div id="menuPlus" class="popover bottom ">
+		<div id="menuPlus" class="dropdown button">
 			<div class="arrow"></div>
 			<div class="popover-content">
 				<a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);"> Medições </a>
-				<a class="item" href="#"> História </a>
+				<!--<a class="item" href="#"> História </a-->
 				<a onclick="alterarConteudo('previsao', 'Previsão do Tempo');" class="item" href="javascript:void(0);"> Previsão do Tempo </a>
 				<a onclick="alterarConteudo('linksUteis', 'Links Uteis');" class="item" href="javascript:void(0);"> Links Úteis </a>
-				<a class="item" href="#"> Galeria </a>
+				<a onclick="alterarConteudo('galeria', 'Galeria');" class="item" href="javascript:void(0);"> Galeria </a>
 				<a onclick="alterarConteudo('simulacao', 'Simulação');" class="item" href="javascript:void(0);"> Simulador </a>
 				<a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);"> Verificar Local </a>
 			</div>

@@ -2,7 +2,7 @@ html, body {
 	height: 100%;
 	width: 100%;
 	overflow-y: none;
-	font-family: 'Maven Pro', sans-serif !important;
+	font-family: sans-serif !important;
 }
 
 #tabelaLinksUteis{
@@ -44,7 +44,7 @@ html, body {
 	display: none;
 }
 
-#alerta, #painelOpcoesMapa {
+#alerta, #painelOpcoesMapa, #btnEnviarImagem{
 	position: fixed;
 	margin-bottom: 0;
 	bottom: 0;
@@ -93,8 +93,9 @@ html, body {
 #conteudo {
 	text-align: center;
 	display: none;
-	overflow: scroll;
+	overflow: hidden;
 	margin-top: 93px;
+	padding:0;
 	height: 100%;
 	width: 100%;
 }
