@@ -31,71 +31,68 @@
 		<!--grafico-->
 
 		<script type="text/javascript">
-			document.addEventListener("deviceready", pronto, false);
-			
-			function pronto() {
-				/*le a cfg do sistema*/
-				//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
-			
-				/*chama o preenchimento da barra de alerta*/
-				alteraBarraAlerta();	
-				
-			}
-				
-		
-			/**
-			 * exibi o menu +
-			 */
-			function exibirMenuPlus() {
-				$("#menuPlus").slideToggle('fast');
-			}
+            document.addEventListener("deviceready", pronto, false);
 
-			/**
-			 * Abre um conteudo dentro do div 'conteudos'
-			 * @param tela: nome do arquivo html sem a extenção
-			 * @param nome: nome a ser exibido no topo do App
-			 * */
-			function alterarConteudo(tela, nome) {
-				$("strong").html(nome);
-				$("#menuPlus").hide('fast');
+            function pronto() {
+                /*le a cfg do sistema*/
+                //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
 
-				if (tela == "home") {
-					$("#mapaconteiner").show();	
-					
-					$("#conteudo").hide();			
-					$("#divClima").hide();
-					$("#divSimulacao").hide();
-					initialize();		
-				} 
-				else if (tela == "previsao") {
-					$("#conteudo").hide();					
-					$("#mapaconteiner").hide();
-					
-					$("#divClima").show();
-					initializeWeather();
-				} 
-				else if (tela == "simulacao") {
-					$("#conteudo").hide();				
-					$("#divClima").hide();
-					
-					$("#mapaconteiner").show();
-					$("#divSimulacao").css("display", "inline-flex");				
-					passarImg('+');
-				} 
-				else {
-					$("#mapaconteiner").hide();					
-					$("#divSimulacao").hide();		
-					$("#divClima").hide();
-					
-					$("#conteudo").load(tela + ".html");
-					$("#conteudo").show();
-				}
-			}
+                /*chama o preenchimento da barra de alerta*/
+                alteraBarraAlerta();
+
+            }
+
+            /**
+             * exibi o menu +
+             */
+            function exibirMenuPlus() {
+                $("#menuPlus").slideToggle("fast");
+            }
+
+            /**
+             * Abre um conteudo dentro do div 'conteudos'
+             * @param tela: nome do arquivo html sem a extenção
+             * @param nome: nome a ser exibido no topo do App
+             * */
+            function alterarConteudo(tela, nome) {
+            	$("#menuPlus").hide("fast");
+                $("#mapaconteiner").show('fast');
+                $("strong").html(nome);
+
+                if (tela == "home") {
+                    $("#mapaconteiner").show();
+
+                    $("#conteudo").hide();
+                    $("#divClima").hide();
+                    $("#divSimulacao").hide();
+                    initialize();
+                } else if (tela == "previsao") {
+                    $("#conteudo").hide();
+                    $("#mapaconteiner").hide();
+
+                    $("#divClima").show();
+                    initializeWeather();
+                } else if (tela == "simulacao") {
+                    $("#conteudo").hide();
+                    $("#divClima").hide();
+
+                    $("#mapaconteiner").show();
+                    $("#divSimulacao").css("display", "inline-flex");
+                    passarImg('+');
+                } else {
+                    $("#mapaconteiner").hide();
+                    $("#divSimulacao").hide();
+                    $("#divClima").hide();
+
+                    $("#conteudo").load(tela + ".html");
+                    $("#conteudo").show();
+                }
+            }
 
 		</script>
 
 		<!--CSS-->
-				
+
 		<!--Bootstrap-->
 		<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -104,7 +101,7 @@
 		<!--Ionic-->
 		<link href="./lib/ionic/css/ionic.min.css" rel="stylesheet">
 		<!--Ionic-->
-		
+
 		<!--estilos-->
 		<link href="./css/style.css" rel="stylesheet">
 		<link href="./css/galeria.css" rel="stylesheet">
@@ -117,22 +114,20 @@
 			</div>
 			<div class="tabs tabs-top tabs-background-positive tabs-light tabs-positive">
 				<a onclick="alterarConteudo('home', 'Monitor de Enchentes Móvel');" href="javascript:void(0);" class="tab-item active"> <i class="icon ion-home"></i> Home </a>
-				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="exibirMenuPlus();"></i> Menu </a>
+				<a href="javascript:void(0);" class="tab-item" onclick="exibirMenuPlus();"> <i class="icon ion-plus-round"></i> Menu </a>
 				<a onclick="alterarConteudo('Servico', 'Serviço De Alertas');" class="tab-item" href="javascript:void(0);"> <i class="icon ion-gear-a"></i> Configurações </a>
 			</div>
 		</div>
 
 		<!--menu plus-->
 		<div id="menuPlus" class="dropdown button">
-			<div class="popover-content">
-				<a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);"> Medições </a>
-				<!--<a class="item" href="#"> História </a-->
-				<a onclick="alterarConteudo('previsao', 'Previsão do Tempo');" class="item" href="javascript:void(0);"> Previsão do Tempo </a>
-				<a onclick="alterarConteudo('linksUteis', 'Links Uteis');" class="item" href="javascript:void(0);"> Links Úteis </a>
-				<a onclick="alterarConteudo('galeria', 'Galeria');" class="item" href="javascript:void(0);"> Galeria </a>
-				<a onclick="alterarConteudo('simulacao', 'Simulação');" class="item" href="javascript:void(0);"> Simulador </a>
-				<a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);"> Verificar Local </a>
-			</div>
+			<a onclick="alterarConteudo('medicoes', 'Medições');" class="item" href="javascript:void(0);"> Medições </a>
+			<!--<a class="item" href="#"> História </a-->
+			<a onclick="alterarConteudo('previsao', 'Previsão do Tempo');" class="item" href="javascript:void(0);"> Previsão do Tempo </a>
+			<a onclick="alterarConteudo('linksUteis', 'Links Uteis');" class="item" href="javascript:void(0);"> Links Úteis </a>
+			<a onclick="alterarConteudo('galeria', 'Galeria');" class="item" href="javascript:void(0);"> Galeria </a>
+			<a onclick="alterarConteudo('simulacao', 'Simulação');" class="item" href="javascript:void(0);"> Simulador </a>
+			<a onclick="alterarConteudo('verificarLocal', 'Verificar Local');" class="item" href="javascript:void(0);"> Verificar Local </a>
 		</div>
 
 		<!--Conteúdo adicionais-->
@@ -144,29 +139,29 @@
 		<div id="mapaconteiner" >
 			<input id='pac-input' class='controls' type='text' placeholder='Digite um endereço...'>
 			<div id='mapa'></div>
-			
+
 			<!--alerta rodapé-->
 			<button onclick="alterarConteudo('medicoes', 'Medições');" id="alerta" class="button button-full button-positive button-assertive button-energized"></button>
-			
+
 			<!-- botoes simulação-->
 			<div id="divSimulacao" class="tabs tabs-background-positive tabs-positive">
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-minus-round" onclick="passarImg('-');"></i> voltar </a>
 				<span class="tab-item BFontSize" id="spanSimula" >Nivel Rio 1m</span>
 				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-plus-round" onclick="passarImg('+');"></i> voltar </a>
-				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-close-round" onclick="passarImg('x');"></i> voltar </a>		
+				<a href="javascript:void(0);" class="tab-item"> <i class="icon ion-close-round" onclick="passarImg('x');"></i> voltar </a>
 			</div>
 		</div>
-		
+
 		<div id='divClima'>
 			<div id='mapaClima'></div>
 			<div id="painelInfo">
 				<div id="divcptec">
 					<iframe allowtransparency="true" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"
-					 src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=n&c=909090&f=ffffff" height="46px" width="312px"></iframe>	
+					src="http://www.cptec.inpe.br/widget/widget.php?p=5400&w=n&c=909090&f=ffffff" height="46px" width="312px"></iframe>
 				</div>
 				<img id="imgMapaMetereologico" src="http://ciram.epagri.sc.gov.br/ciram_arquivos/arquivos/saidas_scripts/img/satelite/goes13IR/anima.gif"/>
 			</div>
-			
+
 			<!-- mais informações mapa metereológico-->
 			<button onclick="OpcoesMapaMetereologico();"  id="painelOpcoesMapa" class="button button-full button-positive BFontSize">
 				Mais Informações

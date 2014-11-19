@@ -1,7 +1,7 @@
 html, body {
 	height: 100%;
 	width: 100%;
-	overflow-y: none;
+	overflow-y: scroll;
 	font-family: sans-serif !important;
 }
 
@@ -18,12 +18,6 @@ html, body {
 	font-size: 100%;
 }
 
-#modal {
-	display: none;
-	padding : 10%;
-    position: relative;
-    top: 10%;
-}
 
 #imgMapaMetereologico {
 	max-height: 100%;
@@ -54,25 +48,23 @@ html, body {
 	border: none;
 }
 
-.popover-content {
-	height: 100%;
-	width: 100%;
-	background-color: #4a87e0;
-}
-
 #header {
 	position: static;
 }
 
 #menuPlus {
-	margin-top: 93px;
-	margin: 0;
-	width: 100%;
 	display: none;
+	margin-top: 93px;
+	position: absolute;
+	padding: 1px;
+	left:0;
+	right:0;
+	background-color: #4d90fe;
+	z-index: 2;
 	height: auto;
 }
 
-#mapaconteiner , #divClima{
+#mapaconteiner, #divClima{
 	top: 100px;
 	height: 79%;
 	width: 100%;
@@ -103,9 +95,9 @@ html, body {
 .item {
 	width: auto;
 	height : auto;
-	padding-top: 6%;
 	text-align: center;
 	padding: 0;
+	margin: 3px;
 }
 
 .controls {
@@ -218,11 +210,6 @@ html, body {
 
 #buscaLocal{
 	display: none;
-}
-
-.borda{
-	border: #bab6b6 1px solid;
-	border-radius: 5px;
 }
 
 .bSize{
