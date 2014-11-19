@@ -16,22 +16,6 @@ var latitude;
 var longitude;
 
 /**
- * obtem as imagems da galeria
- * */
-function getImagensGaleria() {
-    $.ajax({
-        url : "http://54.232.207.63/Comum/php/funcoes.php/?getImagensGaleria=?",
-        dataType : 'jsonp',
-        crossDomain : true,
-
-        success : function (data) {
-            console.log(data);
-            return data;
-        }
-    });
-}
-
-/**
  * obtem as leituras do php no servidor
  */
 function getLeituras(qtdLeituras) {
@@ -176,7 +160,7 @@ function getAltura(gps) {
                 $("#divbotao").hide();
                 $("#tabela").show();
                 altitude = results[0].elevation;
-                  getAlturaRio();
+                getAlturaRio();
             }
             else {
                 alert('No results found');
@@ -444,7 +428,7 @@ getEstadoAlerta();
 
 function getAlturaRio() {
 	$.ajax({
-		url : "http://localhost/luan/git/SAEnchentes/MOVEL/AplicativoMovel/funcoes.php?getAlturaRio=?",
+		url : "http://54.232.207.63/Comum/php/funcoes.php?getAlturaRio=?",
 		dataType : 'jsonp',
 		crossDomain : true,
 		

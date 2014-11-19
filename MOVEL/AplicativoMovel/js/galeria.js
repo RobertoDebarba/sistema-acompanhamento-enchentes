@@ -1,3 +1,27 @@
+function carregarImagensGaleria(links) {
+    var cont; //contador
+    for (cont in links) {
+        var itemgaleria = links[cont];
+        $("#exibirImagens").append(
+            "<li><img class='img-responsive' src='http://54.232.207.63/Comum/galeria/thumbs/"+ itemgaleria + "'></li>");
+    }
+}
+
+/**
+ * obtem as imagems da galeria
+ * */
+function getImagensGaleria() {
+    $.ajax({
+        url : "http://54.232.207.63/Comum/php/funcoes.php/?getImagensGaleria=?",
+        dataType : 'jsonp',
+        crossDomain : true,
+
+        success : function (data) {
+            carregarImagensGaleria(data);
+        }
+    });
+}
+
 //Array com informações da imagem
 var infoImagem;
 

@@ -88,7 +88,7 @@ html, body {
 	overflow: hidden;
 	margin-top: 93px;
 	padding:0;
-	height: 100%;
+	height: auto;
 	width: 100%;
 }
 

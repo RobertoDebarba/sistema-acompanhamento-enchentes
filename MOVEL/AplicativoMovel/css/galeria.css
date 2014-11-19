@@ -1,3 +1,12 @@
+#corpo{
+	width: auto;
+}
+
+#containerImagens{
+	left : auto;
+	right : auto;
+}
+
 /* Galeria */
 ul {
 	padding: 0 0 0 0;
