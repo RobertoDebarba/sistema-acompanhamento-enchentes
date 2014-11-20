@@ -3,8 +3,6 @@ var map;
 
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-
-
 var nImg = 0;
 function passarImg(acao) {
     var Image;
@@ -21,7 +19,7 @@ function passarImg(acao) {
             imagemOverlay(Image);
         }
     } else {
-        var Image = './img/status-inundacao.png';
+        var Image = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
         imagemOverlay(Image);
         $('#divSimulacao').hide();    
     }
@@ -53,7 +51,7 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
 	// --- Imagem de inundação ---
-	var srcImage = './img/status-inundacao.png';
+	var srcImage = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
     imagemOverlay(srcImage);
 
 	// --- Marcador da regua --
