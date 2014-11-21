@@ -1,0 +1,130 @@
+WARN   | wrapper  | 2014/11/20 21:49:57 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:49:57 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:49:57 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:49:57 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:49:57 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:49:57 | 
+STATUS | wrapper  | 2014/11/20 21:49:58 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:49:58 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:49:58 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 21:49:58 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 21:50:00 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:50:01 | <-- Wrapper Stopped
+WARN   | wrapper  | 2014/11/20 21:50:27 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:50:27 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:50:27 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:50:27 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:50:27 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:50:27 | 
+STATUS | wrapper  | 2014/11/20 21:50:27 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:50:27 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:50:28 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 21:50:28 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 21:50:28 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:50:29 | <-- Wrapper Stopped
+STATUS | wrapper  | 2014/11/20 21:52:55 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:52:55 | Java Service Wrapper Community Edition 64-bit 3.5.17
+STATUS | wrapper  | 2014/11/20 21:52:55 |   Copyright (C) 1999-2012 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:52:55 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:52:55 | 
+STATUS | wrapper  | 2014/11/20 21:52:56 | Launching a JVM...
+STATUS | wrapper  | 2014/11/20 21:52:56 | INT trapped.  Shutting down.
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager: WARNING - The Wrapper jar file currently in use is version "3.5.25"
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager:           while the version of the Wrapper which launched this JVM is
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager:           "3.5.17".
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager:           The Wrapper may appear to work correctly but some features may
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager:           not function correctly.  This configuration has not been tested
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager:           and is not supported.
+INFO   | jvm 1    | 2014/11/20 21:52:56 | WrapperManager: 
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager: WARNING - The version of the Wrapper which launched this JVM is
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager:           "3.5.17" while the version of the native library
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager:           is "3.5.25".
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager:           The Wrapper may appear to work correctly but some features may
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager:           not function correctly.  This configuration has not been tested
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager:           and is not supported.
+INFO   | jvm 1    | 2014/11/20 21:52:57 | WrapperManager: 
+STATUS | wrapper  | 2014/11/20 21:52:58 | INT trapped.  Forcing immediate shutdown.
+ERROR  | wrapper  | 2014/11/20 21:52:58 | JVM did not exit on request, terminated
+STATUS | wrapper  | 2014/11/20 21:52:58 | JVM received a signal SIGKILL (9).
+STATUS | wrapper  | 2014/11/20 21:52:58 | <-- Wrapper Stopped
+STATUS | wrapper  | 2014/11/20 21:53:04 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:53:04 | Java Service Wrapper Community Edition 64-bit 3.5.17
+STATUS | wrapper  | 2014/11/20 21:53:04 |   Copyright (C) 1999-2012 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:53:04 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:53:04 | 
+STATUS | wrapper  | 2014/11/20 21:53:04 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager: WARNING - The Wrapper jar file currently in use is version "3.5.25"
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           while the version of the Wrapper which launched this JVM is
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           "3.5.17".
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           The Wrapper may appear to work correctly but some features may
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           not function correctly.  This configuration has not been tested
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           and is not supported.
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager: 
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager: WARNING - The version of the Wrapper which launched this JVM is
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           "3.5.17" while the version of the native library
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           is "3.5.25".
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           The Wrapper may appear to work correctly but some features may
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           not function correctly.  This configuration has not been tested
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager:           and is not supported.
+INFO   | jvm 1    | 2014/11/20 21:53:05 | WrapperManager: 
+INFO   | jvm 1    | 2014/11/20 21:53:05 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 21:53:05 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 21:53:09 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:53:10 | <-- Wrapper Stopped
+WARN   | wrapper  | 2014/11/20 21:54:48 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:54:48 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:54:48 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:54:48 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:54:48 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:54:48 | 
+STATUS | wrapper  | 2014/11/20 21:54:48 | Launching a JVM...
+STATUS | wrapper  | 2014/11/20 21:54:49 | INT trapped.  Shutting down.
+WARN   | wrapper  | 2014/11/20 21:54:49 | JVM exited unexpectedly while stopping the application.
+STATUS | wrapper  | 2014/11/20 21:54:49 | <-- Wrapper Stopped
+WARN   | wrapper  | 2014/11/20 21:54:56 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:54:56 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:54:56 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:54:56 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:54:56 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:54:56 | 
+STATUS | wrapper  | 2014/11/20 21:54:57 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:54:57 | WrapperManager: Initializing...
+STATUS | wrapper  | 2014/11/20 21:54:57 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:55:00 | <-- Wrapper Stopped
+WARN   | wrapper  | 2014/11/20 21:55:03 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:55:03 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:55:03 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:55:03 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:55:03 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:55:03 | 
+STATUS | wrapper  | 2014/11/20 21:55:03 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:55:03 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:55:04 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 21:55:04 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 21:55:04 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:55:05 | <-- Wrapper Stopped
+WARN   | wrapper  | 2014/11/20 21:56:49 | The version of the script (3.5.17) doesn't match the version of this Wrapper (3.5.25). This might cause some problems
+STATUS | wrapper  | 2014/11/20 21:56:49 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 21:56:49 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 21:56:49 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 21:56:49 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 21:56:49 | 
+STATUS | wrapper  | 2014/11/20 21:56:49 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 21:56:49 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 21:56:50 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 21:56:50 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 21:56:50 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 21:56:51 | <-- Wrapper Stopped
+STATUS | wrapper  | 2014/11/20 22:34:31 | --> Wrapper Started as Console
+STATUS | wrapper  | 2014/11/20 22:34:31 | Java Service Wrapper Community Edition 64-bit 3.5.25
+STATUS | wrapper  | 2014/11/20 22:34:31 |   Copyright (C) 1999-2014 Tanuki Software, Ltd. All Rights Reserved.
+STATUS | wrapper  | 2014/11/20 22:34:31 |     http://wrapper.tanukisoftware.com
+STATUS | wrapper  | 2014/11/20 22:34:31 | 
+STATUS | wrapper  | 2014/11/20 22:34:31 | Launching a JVM...
+INFO   | jvm 1    | 2014/11/20 22:34:33 | WrapperManager: Initializing...
+INFO   | jvm 1    | 2014/11/20 22:34:34 | Iniciada execução de tarefas.
+INFO   | jvm 1    | 2014/11/20 22:34:34 | Efetuando leitura...
+STATUS | wrapper  | 2014/11/20 22:34:36 | INT trapped.  Shutting down.
+STATUS | wrapper  | 2014/11/20 22:34:36 | <-- Wrapper Stopped
