@@ -33,11 +33,9 @@
 }
 
 .controls {
-	width: 70px;
-	display: block;
+	width: 90px;
 	font-size: 11px;
-	padding-top: 8px;
-	font-weight: bold;
+	display: block;
 }
 
 .next {

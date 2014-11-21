@@ -1,3 +1,6 @@
+var src;
+var nomeImagem; //Nome da imagem retirado do link
+
 function carregarImagensGaleria(links) {
     var cont; 
     var i = 1; //contador
@@ -23,7 +26,7 @@ function getImagensGaleria() {
     });
 }
 
-var nomeImagem; //Nome da imagem retirado do link
+
 
 /**
  * Busca nome da imagem no link e salva na var nomeImagem
@@ -56,87 +59,80 @@ function atualizarLegenda() {
     });
 }
 
-$(document).on('click', "img.imgflex", function() {
-        console.log("teste");
-        var src = $(this).attr('src');
-        //Altera URL da imagem de thumbs para imagens
-        try {
-            src = src.replace("thumbs", "imagens");
-        } catch(err) {
-            console.log(err);
-        }
-        
-        //Salva nome da imagem na var nomeImagem
-        getNomeImagem(src); 
-        
-        var img = '<img src="' + src + '" class="img-responsive"/>';
 
-        //start of new code new code
-        var index = $(this).parent('li').index();
-         
-        var html = '';
-        html += img;
-        html += '<div style="height:47px;clear:both;display:block;">';
-        html += '<div id="legenda"></div>';
-        html += '<a class="controls next" href="' + (index + 2) + '">próximo &raquo;</a>';
-        html += '<a class="controls previous" href="' + (index) + '">&laquo; anterior</a>';
-        html += '</div>';
+$(document).on('click', "img.imgflex", function() {      
+    //start of new code new code
+    var index = $(this).index();
+     
+    var html = '';
+    html += '<img onload="imgload()" src="" class="img-responsive"/>';
+    html += '<div style="height:47px;clear:both;display:block;">';
+    html += '<div id="legenda"></div>';
+    html += '<a id="' + (index + 1) + '" class="button button-positive controls next">próximo</a>';
+    html += '<a id="' + (index - 1) + '" class="button button-positive controls previous">anterior</a>';
+    html += '</div>';
 
-        $('#myModal').modal();
-        $('#myModal').on('shown.bs.modal', function() {
-            $('#myModal .modal-body').html(html);
-            //Novo código
-            $('a.controls').trigger('click');
-        });
-        $('#myModal').on('hidden.bs.modal', function() {
-            $('#myModal .modal-body').html('');
-        });
+    $('#myModal').modal();
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myModal .modal-body').html(html);
+        abrirImgModal(index); 
     });
+});
 
+var elem;
 //Novo código
-$(document).on('click', 'a.controls', function() {
-
-    var index = $(this).attr('href');
-    var src = $('ul.row li:nth-child(' + index + ') img').attr('src');
+$(".modal-body").on('click', "a.button", function(event) {        
+    elem = $(event.target);
+    
+    var id = $(elem).attr("id");
+    
+    abrirImgModal(id);
+});
+    
+function abrirImgModal(index) { 
+    $("img.img-responsive").hide();
+      
+    src = $('#exibirImagens img:eq(' + index + ')').attr('src');
+    
     //Altera URL da imagem de thumbs para imagens
-    try {
-        src = src.replace("thumbs", "imagens");
-    } catch(err) {
-        console.log(err);
-    }
+    src = src.replace("thumbs", "imagens");
     
     //Salva nome da imagem na var nomeImagem
     getNomeImagem(src);
     
     //Atualiza legenda
     atualizarLegenda();
+    
+    var anteriorIndex = parseInt(index) - 1;
+    var proximoIndex = parseInt(index) + 1;
 
-    $('.modal-body img').attr('src', src);
-
-    var newPrevIndex = parseInt(index) - 1;
-    var newNextIndex = parseInt(newPrevIndex) + 2;
-
-    if ($(this).hasClass('previous')) {
-        $(this).attr('href', newPrevIndex);
-        $('a.next').attr('href', newNextIndex);
+    if ($(elem).hasClass('previous')) {
+        $('a.previous').attr('id', anteriorIndex);
+        $('a.next').attr('id', index);
     } else {
-        $(this).attr('href', newNextIndex);
-        $('a.previous').attr('href', newPrevIndex);
+        $(".a.next").attr('id', proximoIndex);
+        $('a.previous').attr('id', index);
     }
 
-    var total = $('ul.row li').length + 1;
+    var total = $('#exibirImagens img').length-1;
+    
+    $('a.next').show();
+    $('a.previous').show();
+    
     //Esconde botão Próximo
-    if (total === newNextIndex) {
+    if (index === total) {
         $('a.next').hide();
-    } else {
-        $('a.next').show();
     }
     //Esconde botão Anterior
-    if (newPrevIndex === 0) {
+    if (index === 0) {
         $('a.previous').hide();
-    } else {
-        $('a.previous').show();
-    }
 
-    return false;
-});  
+    }
+    
+    $("img.img-responsive").attr('src',src);
+}
+
+
+function imgload(){
+    $("img.img-responsive").show();
+}
