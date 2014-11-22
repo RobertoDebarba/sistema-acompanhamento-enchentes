@@ -2,7 +2,17 @@ var overlay;
 var map;
 
 USGSOverlay.prototype = new google.maps.OverlayView();
-
+/*
+        timer = setInterval(
+            function () {
+                imagemOverlay('http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1));
+                console.log("joj");
+                getLeituras(12);
+                getEstadoAlerta();
+            },
+            1000 * 2
+        );
+*/
 function imagemOverlay(Image) {
     USGSOverlay.prototype.setMap(null);
     
