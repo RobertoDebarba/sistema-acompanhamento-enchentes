@@ -1,6 +1,3 @@
-<!-- Import do script de galeria -->
-<script src="js/galeria.js"></script>
-
 <script>
     getImagensGaleria();
 
@@ -62,14 +59,22 @@
 						</div>
 						<div class="form-group left">
 							<label for="ano">Data:</label>
-							<input type="text" class="form-control" name="data" id="data" placeholder="Digite a data...">
+							<input type="date" class="form-control" name="data" id="data" placeholder="Digite a data...">
 						</div>
 						<div class="form-group right">
 							<label for="ano">Hora:</label>
-							<input type="text" class="form-control" name="hora" id="hora" placeholder="Digite a hora...">
+							<input type="time" class="form-control" name="hora" id="hora" placeholder="Digite a hora...">
 						</div>
 						<label for="imagem">Imagem:</label>
-						<input type="file" class="filestyle" name="imagem" id="filestyle-3" tabindex="-1">
+						<div class="bootstrap-filestyle input-group">
+							<input type="text" class="form-control " disabled=""> 
+							<span class="group-span-filestyle input-group-btn" tabindex="0">
+								<label for="filestyle-3" class="btn btn-default ">
+									<span class="glyphicon glyphicon-folder-open"></span>
+									<span class="buttonText">Selecionar Imagem</span>
+								</label>
+							</span>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">

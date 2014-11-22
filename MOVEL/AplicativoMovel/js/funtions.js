@@ -32,6 +32,7 @@ function getLeituras(qtdLeituras) {
 }
 
 
+
 /**
  * obtem alertas da defesa civil do php no servidor
  */
@@ -73,19 +74,19 @@ function carregaLeituras() {
  * altera o design da barra de alerta no rodapé
  */
 function alteraBarraAlerta() {
-    if((typeof leituras === 'undefined') | (typeof estado === 'undefined')){
+    if((leituras === 'undefined') || (estado === 'undefined')){
         getLeituras(12);
         getEstadoAlerta();
     }
     
-    medicoes = leituras[1];
+    var medicoes = leituras[1];
 
-    if ((estado[0] == 0) & (estado[1] == 0)) {
+    if ((estado[0] == 0) && (estado[1] == 0)) {
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-energized");
         $("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva' + medicoes[3]);
     }
-    else if ((estado[0] == 1) | ((estado[1] == 1))) {
+    else if ((estado[0] == 1) || ((estado[1] == 1))) {
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-positive");
         $("#alerta").html('Nivel do rio: ' + medicoes[2] + 'm | Chuva ' + medicoes[3]);
@@ -109,8 +110,9 @@ function alteraBarraAlerta() {
 
 function trataEnchentes(data) {
     var cont; //contador
+    var alturaEnchente;
 	for (cont in data) {
-		var alturaEnchente = data[cont];
+		alturaEnchente = data[cont];
 		$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
 	}
 }
@@ -134,27 +136,44 @@ function getEnchentes(data) {
 	});
 }
 
+/**
+ *  Função que carrega a aultura zero do rio
+ */
+
+function getAlturaRio() {
+    $.ajax({
+        url : "http://54.232.207.63/Comum/php/funcoes.php?getAlturaRio=?",
+        dataType : 'jsonp',
+        crossDomain : true,
+        
+         success: function (data) {
+            getEnchentes(data);
+        }
+    });
+}
+
 
 function getAltura(gps) {
     var locations = [];
+    
     var latlng;
 
-    elevator = new google.maps.ElevationService();
+    var elevator = new google.maps.ElevationService();
     
     if(gps){
-       latlng = new google.maps.LatLng(latitude, longitude);
+        latlng = new google.maps.LatLng(latitude, longitude);
     }
     else{
         latlng = geolocationBusca;
     }
     
     locations.push(latlng);
-    positionalRequest = {
+    var positionalRequest = {
         'locations' : locations
     };
 
     elevator.getElevationForLocations(positionalRequest, function(results, status) {
-        if (status === google.maps.ElevationStatus.OK) {
+        if (status == google.maps.ElevationStatus.OK) {
             if (results[0]) {
                 $("#elevacaoLocal").html(results[0].elevation);
                 $("#divbotao").hide();
@@ -171,6 +190,49 @@ function getAltura(gps) {
         }
     });
         
+}
+
+
+/**
+ * Metodo que utiliza as cordenadas de geolocalização para captar o endereço
+ */
+function geocodificacaoReversa(gps) {
+    var geocoder;
+    var latlng;
+    
+    geocoder = new google.maps.Geocoder();
+    
+    if(gps){
+       latlng = new google.maps.LatLng(latitude, longitude);
+    }
+    else{
+        latlng = geolocationBusca;
+    }
+    
+    geocoder.geocode ({
+        'latLng' : latlng
+    }, 
+    function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                local = results[0].formatted_address;
+                if(!gps){
+                   local = $("#pesquisar").val();
+                }
+                $("#enderecoLocal").html(local);
+                
+                if(gps){
+                   getAltura(true);
+                }
+                else{
+                    getAltura(false);
+                }
+            } 
+            else {
+                alert("Geocoder failed due to: " + status);
+            }
+        }
+    });
 }
 
 /**
@@ -194,7 +256,7 @@ function coordenadas() {
 		console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	}
 
-	options = {
+	var options = {
 		maximumAge : 3,
 		timeout : 60000,
 		enableHighAccuracy : true
@@ -203,116 +265,68 @@ function coordenadas() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 }
 
-/**
- * Metodo que utiliza as cordenadas de geolocalização para captar o endereço
- */
-function geocodificacaoReversa(gps) {
-	var geocoder;
-	var latlng;
-	
-	var geocoder = new google.maps.Geocoder();
-	
-	if(gps){
-	   latlng = new google.maps.LatLng(latitude, longitude);
-	}
-	else{
-	    latlng = geolocationBusca;
-	}
-	
-	geocoder.geocode ({
-		'latLng' : latlng
-	}, 
-	function(results, status) {
-		if (status === google.maps.GeocoderStatus.OK) {
-			if (results[0]) {
-				local = results[0].formatted_address;
-				if(!gps){
-                   local = $("#pesquisar").val();
-                }
-				$("#enderecoLocal").html(local);
-				
-				if(gps){
-                   getAltura(true);
-                }
-                else{
-                    getAltura(false);
-                }
-			} 
-			else {
-				alert("Geocoder failed due to: " + status);
-			}
-		}
-	});
+/*Erro para leitura ou escrita de arquivos*/
+ function fail(error) {
+    console.log(error.code);
 }
-
-
-
-
-
-/**
- * ler arquivo cfg
- * */
- function gotFileSystem(fileSystem) {
-    fileSystem.root.getFile("sae", gotEntry, fail);
-}
-
-function gotEntry(fileEntry) {
-    fileEntry.file(gotFile, fail);
-}
-
-function gotFile(file){
-    readAsText(file);
-}
-
-function readAsText(file) {
-    var reader = new FileReader();
-    alert("readastext");  
-    reader.onload = function(evt) {
-       texto = evt.target.result;
-       
-       doisPontos = texto.indexOf(":");
-       pontoVirgula = texto.indexOf(";");
-       
-       alturaAlerta = texto.substring(0,ponto);
-       
-       local = texto.substring(pontoVirgula,doisPontos);
-              
-       $("#enderecoLocal").html(local);       
-              
-       if (texto.substring(doisPontos,texto.length) === "false") {       
-			$('#myonoffswitch').prop('checked', true);
-			alertaAtivo = true;
-       }
-    };
-       
-    reader.onload = function(e) {
-	   alert(reader.result);
-	};
-	
-	reader.readAsText(file);
-}
-/*****/
-
 
 /**
  * escrevendo arquivo
  * */
-function gotFS(fileSystem) {
-    fileSystem.root.getFile("sae", {create: true, exclusive: false}, gotFileEntry, fail);
+function gotFileWriter(writer) {
+    writer.write(altitude+";"+local+":"+alertaAtivo);
 }
 
 function gotFileEntry(fileEntry) {
     fileEntry.createWriter(gotFileWriter, fail);
 }
 
-function gotFileWriter(writer) {
-    writer.write(altitude+";"+local+":"+alertaAtivo);
+function gotFS(fileSystem) {
+    fileSystem.root.getFile("sae", {create: true, exclusive: false}, gotFileEntry, fail);
 }
-/****/
 
-/*Erro para leitura ou escrita de arquivos*/
- function fail(error) {
-    console.log(error.code);
+/**
+ * ler arquivo cfg
+ * */
+function readAsText(file) {
+    var reader;
+    reader = new FileReader();
+    
+    reader.onload = function(evt) {
+       var texto = evt.target.result;
+       
+       var doisPontos = texto.indexOf(":");
+       var pontoVirgula = texto.indexOf(";");
+       
+       alturaAlerta = texto.substring(0,pontoVirgula);
+       
+       local = texto.substring(pontoVirgula,doisPontos);
+              
+       $("#enderecoLocal").html(local);       
+              
+       if (texto.substring(doisPontos,texto.length) == "false") {       
+            $('#myonoffswitch').prop('checked', true);
+            alertaAtivo = true;
+       }
+    };
+    reader.onload = function(e) {
+       alert(reader.result);
+       alert(e);
+    };
+    
+    reader.readAsText(file);
+}
+
+function gotFile(file){
+    readAsText(file);
+}
+
+function gotEntry(fileEntry) {
+    fileEntry.file(gotFile, fail);
+}
+
+ function gotFileSystem(fileSystem) {
+    fileSystem.root.getFile("sae", gotEntry, fail);
 }
 
 /**
@@ -346,7 +360,7 @@ function addLocal(gps){
  * abrir modal
  * */
 function abrirModal(){
-	$("#buscaLocal").hide()
+	$("#buscaLocal").hide();
    	$("#forma").show();
 }
 
@@ -420,20 +434,3 @@ function buscaLocal(){
  * */  
 getLeituras(12);
 getEstadoAlerta();
-
-
-/**
- *  Função que carrega a aultura zero do rio
- */
-
-function getAlturaRio() {
-	$.ajax({
-		url : "http://54.232.207.63/Comum/php/funcoes.php?getAlturaRio=?",
-		dataType : 'jsonp',
-		crossDomain : true,
-		
-		 success: function (data) {
-            getEnchentes(data);
-        }
-	});
-}

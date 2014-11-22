@@ -1,13 +1,14 @@
-var src;
+var src; //caminhoo do imagen
 var nomeImagem; //Nome da imagem retirado do link
+var elem; //arqmazena o botao clicado na imagem
 
 function carregarImagensGaleria(links) {
-    var cont; 
-    var i = 1; //contador
+    var cont;
+    var itemgaleria;
     for (cont in links) {
-        var itemgaleria = links[cont];
+        itemgaleria = links[cont];
         $("#exibirImagens").append(
-            "<img class='imgflex col-lg-2 col-md-3 col-sm-4 col-xs-6' src='http://54.232.207.63/Comum/galeria/thumbs/"+ itemgaleria + "'>");      
+            "<img class='imgflex col-lg-2 col-md-3 col-sm-4 col-xs-6' src='http://54.232.207.63/Comum/galeria/thumbs/" + itemgaleria + "'>");
     }
 }
 
@@ -28,13 +29,6 @@ function getImagensGaleria() {
 
 
 
-/**
- * Busca nome da imagem no link e salva na var nomeImagem
- * @param {Object} src
- */
-function getNomeImagem(src) {
-    nomeImagem = src.substring(src.lastIndexOf('/')+1, src.length); 
-}
 
 /**
  * Atualiza a legenda da imagem com base na var nomeImagem
@@ -47,25 +41,72 @@ function atualizarLegenda() {
         crossDomain: true,
 
         //Ao finalizar request executa o resto da pagina
-        success: function(data){
-            infoImagem = data;
+        success: function(data){            
+            var legenda = '';
             
-            legenda = '';
-            legenda = infoImagem['cidade'] +": "+infoImagem['bairro'] +" - Rua "+infoImagem['rua'];
-            legenda += "  |  "+ infoImagem['data'] +" - "+ infoImagem['hora'];
+            legenda = data['cidade'] + ": " + data['bairro'] + " - Rua " + data['rua'];
+            legenda += "  |  " + data['data'] + " - " + data['hora'];
             
             $('#legenda').html(legenda);
         }
     });
 }
 
+    
+function abrirImgModal(index) { 
+    
+    src = $('#exibirImagens img:eq(' + index + ')').attr('src');
+    
+    //Altera URL da imagem de thumbs para imagens
+    src = src.replace("thumbs", "imagens");
+    
+    //Salva nome da imagem na var nomeImagem
+    nomeImagem = src.substring(src.lastIndexOf('/') + 1, src.length); 
+    
+    //Atualiza legenda
+    atualizarLegenda();  
+    
+    var anteriorIndex = parseInt(index, 10) - 1;
+    var proximoIndex = parseInt(anteriorIndex, 10) + 2;
+     
+    if ($(elem).hasClass('previous')) {
+        console.log("has");
+        $(elem).attr('id', anteriorIndex);
+        $('a.next').attr('id', proximoIndex);
+    } else {
+          console.log("hasn't ");
+        $(elem).attr('id', proximoIndex);
+        $('a.previous').attr('id', anteriorIndex);
+    }
+    
+    var total = $('#exibirImagens img').length - 1;//qtd de <img> na div 
+    
+    $('a.next').show();
+    $('a.previous').show();
+    
+    //Esconde botão Próximo
+    if (index == total) {
+        $('a.next').hide();
+    }
+    //Esconde botão Anterior
+    if (index == 0) {
+        $('a.previous').hide();
+    }
+    
+    $("img.img-responsive").attr('src',src);
+}
+
+
+/***
+ * evento do clic das imagens
+ */
 
 $(document).on('click', "img.imgflex", function() {      
     //start of new code new code
     var index = $(this).index();
-     
+    
     var html = '';
-    html += '<img onload="imgload()" src="" class="img-responsive"/>';
+    html += '<img src="" class="img-responsive"/>';
     html += '<div style="height:47px;clear:both;display:block;">';
     html += '<div id="legenda"></div>';
     html += '<a id="' + (index + 1) + '" class="button button-positive controls next">próximo</a>';
@@ -79,60 +120,15 @@ $(document).on('click', "img.imgflex", function() {
     });
 });
 
-var elem;
-//Novo código
+/**
+ * evento de click dos botoe proximo e anterior
+ * pega a id do que foi clicado
+ */
 $(".modal-body").on('click', "a.button", function(event) {        
     elem = $(event.target);
     
     var id = $(elem).attr("id");
-    
+    console.log(id);
+
     abrirImgModal(id);
 });
-    
-function abrirImgModal(index) { 
-    $("img.img-responsive").hide();
-      
-    src = $('#exibirImagens img:eq(' + index + ')').attr('src');
-    
-    //Altera URL da imagem de thumbs para imagens
-    src = src.replace("thumbs", "imagens");
-    
-    //Salva nome da imagem na var nomeImagem
-    getNomeImagem(src);
-    
-    //Atualiza legenda
-    atualizarLegenda();
-    
-    var anteriorIndex = parseInt(index) - 1;
-    var proximoIndex = parseInt(index) + 1;
-
-    if ($(elem).hasClass('previous')) {
-        $('a.previous').attr('id', anteriorIndex);
-        $('a.next').attr('id', index);
-    } else {
-        $(".a.next").attr('id', proximoIndex);
-        $('a.previous').attr('id', index);
-    }
-
-    var total = $('#exibirImagens img').length-1;
-    
-    $('a.next').show();
-    $('a.previous').show();
-    
-    //Esconde botão Próximo
-    if (index === total) {
-        $('a.next').hide();
-    }
-    //Esconde botão Anterior
-    if (index === 0) {
-        $('a.previous').hide();
-
-    }
-    
-    $("img.img-responsive").attr('src',src);
-}
-
-
-function imgload(){
-    $("img.img-responsive").show();
-}

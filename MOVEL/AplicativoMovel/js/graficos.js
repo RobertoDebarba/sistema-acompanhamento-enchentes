@@ -10,7 +10,7 @@ function loadchart(){
  * pinta os graficos
  */
 function drawVisualization() {		
-    dataTable = google.visualization.arrayToDataTable(dataArray);
+    var dataTable = google.visualization.arrayToDataTable(dataArray);
 
 	var options = {
             title: 'Medição do Nível do Rio',

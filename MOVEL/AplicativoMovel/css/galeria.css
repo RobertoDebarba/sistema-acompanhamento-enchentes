@@ -33,8 +33,7 @@
 }
 
 .controls {
-	width: 90px;
-	font-size: 11px;
+	width: 100px;
 	display: block;
 }
 
@@ -90,8 +89,7 @@
 
 .left {
 	float: left;
-	width: 48%;
-	margin-right: 5px;
+	width: 50%;
 }
 
 .right {

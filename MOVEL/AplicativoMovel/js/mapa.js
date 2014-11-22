@@ -3,6 +3,19 @@ var map;
 
 USGSOverlay.prototype = new google.maps.OverlayView();
 
+function imagemOverlay(Image) {
+    USGSOverlay.prototype.setMap(null);
+    
+    //Define posição da imagem
+    swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
+    neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
+    bounds = new google.maps.LatLngBounds(swBound, neBound);
+    
+    //Seta a imagem no mapa
+    overlay = new USGSOverlay(bounds, Image, map);
+}
+
+
 var nImg = 0;
 function passarImg(acao) {
     var Image;
@@ -19,7 +32,7 @@ function passarImg(acao) {
             imagemOverlay(Image);
         }
     } else {
-        var Image = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
+        Image = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
         imagemOverlay(Image);
         $('#divSimulacao').hide();    
     }
@@ -28,17 +41,7 @@ function passarImg(acao) {
 }
 
 
-function imagemOverlay(Image) {
-    USGSOverlay.prototype.setMap(null);
-    
-    //Define posição da imagem
-    swBound = new google.maps.LatLng(-26.8744997, -49.30611066);
-    neBound = new google.maps.LatLng(-26.7894996999999, -49.23311066000017);
-    bounds = new google.maps.LatLngBounds(swBound, neBound);
-    
-    //Seta a imagem no mapa
-    overlay = new USGSOverlay(bounds, Image, map);
-}
+
 
 function initialize() {
 
@@ -87,8 +90,7 @@ function initialize() {
 		document.getElementById('pac-input'));
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-	var searchBox = new google.maps.places.SearchBox(
-	/** @type {HTMLInputElement} */(input));
+	var searchBox = new google.maps.places.SearchBox(input);
 
 	// [START region_getplaces]
 	// Listen for the event fired when the user selects an item from the
@@ -107,8 +109,8 @@ function initialize() {
 		// For each place, get the icon, place name, and location.
 		markers = [];
 		var bounds = new google.maps.LatLngBounds();
-		var i;
-		for (i = 0, place; place = places[i]; i++) {
+		var x;
+		for (x = 0, place; place = places[i]; x++) {
 			var image = {
 				url : place.icon,
 				size : new google.maps.Size(71, 71),
