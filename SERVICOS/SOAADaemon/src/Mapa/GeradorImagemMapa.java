@@ -67,6 +67,15 @@ public class GeradorImagemMapa{
 
         //Conecta à collection
 		DBCollection coll = db.getCollection("pontosMapa");
+		DBCollection collAlturaRio = db.getCollection("alturaRio");
+		
+		//Pega altura 0 do rio
+		DBCursor cursor = collAlturaRio.find();
+		double alturaRioZero = 0;
+        while (cursor.hasNext()) { 
+           DBObject doc = cursor.next();
+           alturaRioZero = Double.parseDouble(doc.get("alturaRio")+"");
+        }
 		
 		//Captura quantidade de pontos de latitude
 		//Comando no MongoDB = db.pontosMapa.distinct('lat').length
@@ -85,11 +94,11 @@ public class GeradorImagemMapa{
 		double[] elevacoes = new double[X * Y];
 		
 		//Preenche um array com as elevações
-		DBCursor cursor = coll.find();
+		cursor = coll.find();
 		int cont = 0;
         while (cursor.hasNext()) { 
            DBObject doc = cursor.next();
-           elevacoes[cont] = (double) doc.get("elevacao");
+           elevacoes[cont] = Double.parseDouble(doc.get("elevacao")+"");
            
            cont++;
         }
@@ -108,7 +117,7 @@ public class GeradorImagemMapa{
                 y = j * tamBloco;
                 
                 //Define cor do bloco
-                if (elevacoes[cont] > leitura.getNivelRio()) {
+                if (elevacoes[cont] > (alturaRioZero + leitura.getNivelRio())) {
                 	
                 	g.setColor(new Color(0, 0, 0, 0));
                 } else {
