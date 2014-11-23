@@ -1,6 +1,7 @@
 <!-- Import do script de galeria -->
 <script src="js/galeria.js"></script>
 <script src="./bootstrap/js/bootstrap-filestyle.js"> </script>
+<script src="./js/face.js"> </script>
 <script src="./js/jquery.maskedinput.js" type="text/javascript"></script>
 
 <script>
@@ -100,13 +101,28 @@
 		</div>
 	</div>
 	
+	
+	<!-- Modal login -->
+	<div id="modalLogin" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="fb-root"></div>
+
+					<div class="fb-login-button" scope="public_profile,publish_actions, user_photos" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Lista de imagens -->
 	<div id="imageCont" class="container">
 		<div id="exibirImagens">
 		</div>
 	</div>
 
-	<button style="z-index: 20;" data-toggle="modal" data-target="#modalEnviarImagens" id="btnEnviarImagem" class="button button-full button-positive BFontSize">
+	<button style="z-index: 20;" data-toggle="modal" data-target="#modalLogin" id="btnEnviarImagem" class="button button-full button-positive BFontSize">
 		Enviar Imagem
 	</button>
 </div>

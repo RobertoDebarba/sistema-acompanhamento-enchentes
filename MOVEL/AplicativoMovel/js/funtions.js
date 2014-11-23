@@ -31,8 +31,6 @@ function getLeituras(qtdLeituras) {
     });
 }
 
-
-
 /**
  * obtem alertas da defesa civil do php no servidor
  */
@@ -69,7 +67,6 @@ function carregaLeituras() {
     }
 }
 
-
 /**
  * altera o design da barra de alerta no rodapé
  */
@@ -103,11 +100,9 @@ function alteraBarraAlerta() {
     }
 }
 
-
 /**
  * Metodo que preenche a tabela na tela de verificação de locais
  */
-
 function trataEnchentes(data) {
     var cont; //contador
     var alturaEnchente;
@@ -139,7 +134,6 @@ function getEnchentes(data) {
 /**
  *  Função que carrega a aultura zero do rio
  */
-
 function getAlturaRio() {
     $.ajax({
         url : "http://54.232.207.63/Comum/php/funcoes.php?getAlturaRio=?",
@@ -151,7 +145,6 @@ function getAlturaRio() {
         }
     });
 }
-
 
 function getAltura(gps) {
     var locations = [];
@@ -191,7 +184,6 @@ function getAltura(gps) {
     });
         
 }
-
 
 /**
  * Metodo que utiliza as cordenadas de geolocalização para captar o endereço
@@ -266,7 +258,7 @@ function coordenadas() {
 }
 
 /*Erro para leitura ou escrita de arquivos*/
- function fail(error) {
+function fail(error) {
     console.log(error.code);
 }
 
@@ -289,6 +281,7 @@ function gotFS(fileSystem) {
  * ler arquivo cfg
  * */
 function readAsText(file) {
+    alert("readastext");
     var reader;
     reader = new FileReader();
     
@@ -318,14 +311,17 @@ function readAsText(file) {
 }
 
 function gotFile(file){
+    alert("gfile");
     readAsText(file);
 }
 
 function gotEntry(fileEntry) {
+    alert("gotentre");
     fileEntry.file(gotFile, fail);
 }
 
- function gotFileSystem(fileSystem) {
+function gotFileSystem(fileSystem) {
+    alert("gotfiles");
     fileSystem.root.getFile("sae", gotEntry, fail);
 }
 
@@ -355,7 +351,6 @@ function addLocal(gps){
     $("#buscarLocal").html("Alterar Local");
 }
 
-
 /**
  * abrir modal
  * */
@@ -363,7 +358,6 @@ function abrirModal(){
 	$("#buscaLocal").hide();
    	$("#forma").show();
 }
-
 
 /**
  * Metodo que mostra e esconde o gif no mapa metereologico
@@ -380,8 +374,6 @@ function OpcoesMapaMetereologico() {
 	}
 
 }
-
-
 
 /**
  *  o alerta
@@ -429,8 +421,5 @@ function buscaLocal(){
     initializeBusca();
 }
 
-/**
- * chama a obtenção de dado do servidor
- * */  
 getLeituras(12);
 getEstadoAlerta();

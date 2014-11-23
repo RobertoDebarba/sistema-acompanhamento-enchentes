@@ -2,6 +2,7 @@ var overlay;
 var map;
 
 USGSOverlay.prototype = new google.maps.OverlayView();
+
 /*
         timer = setInterval(
             function () {
@@ -24,7 +25,6 @@ function imagemOverlay(Image) {
     //Seta a imagem no mapa
     overlay = new USGSOverlay(bounds, Image, map);
 }
-
 
 var nImg = 0;
 function passarImg(acao) {
@@ -50,15 +50,12 @@ function passarImg(acao) {
     $('#spanSimula').html("Nivel do rio " + nImg + "m");
 }
 
-
-
-
 function initialize() {
 
 	var markers = [];
 	var mapOptions = {
-		zoom : 14,
-		center : new google.maps.LatLng(-26.825, -49.268)
+		zoom : 13,
+		center : new google.maps.LatLng(-26.830499, -49.268748)
 	};
 
 	map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
@@ -98,7 +95,7 @@ function initialize() {
 	// Create the search box and link it to the UI element.
 	var input = /** @type {HTMLInputElement} */(
 		document.getElementById('pac-input'));
-	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push((/** @type {HTMLInputElement} */input));
 
 	var searchBox = new google.maps.places.SearchBox(input);
 
@@ -169,8 +166,6 @@ function initialize() {
 	});
 }
 
-// [END region_initialization]
-
 // [START region_constructor]
 /** @constructor */
 function USGSOverlay(bounds, image, map) {
@@ -188,8 +183,6 @@ function USGSOverlay(bounds, image, map) {
 	// Explicitly call setMap on this overlay.
 	this.setMap(map);
 }
-
-// [END region_constructor]
 
 // [START region_attachment]
 /**
@@ -217,7 +210,6 @@ USGSOverlay.prototype.onAdd = function() {
 	var panes = this.getPanes();
 	panes.overlayLayer.appendChild(div);
 };
-// [END region_attachment]
 
 // [START region_drawing]
 USGSOverlay.prototype.draw = function() {
@@ -240,7 +232,6 @@ USGSOverlay.prototype.draw = function() {
 	div.style.width = (ne.x - sw.x) + 'px';
 	div.style.height = (sw.y - ne.y) + 'px';
 };
-// [END region_drawing]
 
 // [START region_removal]
 // The onRemove() method will be called automatically from the API if
@@ -249,8 +240,6 @@ USGSOverlay.prototype.onRemove = function() {
 	this.div_.parentNode.removeChild(this.div_);
 	this.div_ = null;
 };
-// [END region_removal]
 
 //Adiciona mapa
-
 google.maps.event.addDomListener(window, 'load', initialize);

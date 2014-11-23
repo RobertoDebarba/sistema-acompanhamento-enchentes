@@ -96,11 +96,14 @@ function abrirImgModal(index) {
     $("img.img-responsive").attr('src',src);
 }
 
+function loginFace() {
+    $("").show();
+    $(".modal-content").show();
+};    
 
 /***
  * evento do clic das imagens
  */
-
 $(document).on('click', "img.imgflex", function() {      
     //start of new code new code
     var index = $(this).index();

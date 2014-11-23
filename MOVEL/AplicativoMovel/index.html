@@ -57,7 +57,7 @@
              * */
             function alterarConteudo(tela, nome) {
             	$("#menuPlus").hide("fast");
-                //$("#mapaconteiner").show('fast');
+                $("#mapaconteiner").show('fast');
                 $("strong").html(nome);
 
                 if (tela == "home") {
@@ -69,7 +69,7 @@
                     initialize();
                 } else if (tela == "previsao") {
                     $("#conteudo").hide();
-                    //$("#mapaconteiner").hide();
+                    $("#mapaconteiner").hide();
 
                     $("#divClima").show();
                     initializeWeather();
@@ -77,11 +77,11 @@
                     $("#conteudo").hide();
                     $("#divClima").hide();
 
-                    //$("#mapaconteiner").show();
+                    $("#mapaconteiner").show();
                     $("#divSimulacao").css("display", "inline-flex");
                     passarImg('+');
                 } else {
-                    //$("#mapaconteiner").hide();
+                    $("#mapaconteiner").hide();
                     $("#divSimulacao").hide();
                     $("#divClima").hide();
 
