@@ -163,3 +163,49 @@
 		</div>
 	</div>
 </div>
+<!-- Web Service MODAL -->
+<div id="modalWS" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Sistema Online de Acompanhamento de Enchentes e Inundações</h4>
+			</div>
+			<div class="modal-body">
+				<br />
+				<p>
+					Para ter acesso aos dados de enchentes, o sistema disponibiliza um WebService que faz uma busca no banco de dados
+					e retorna os valores das leituras de:
+					<p>
+						Nível de rio: medida em metros em que o rio se encontrava no momento da medição;
+					</p>
+					<p>
+						Nível de chuva: valores entre 0 e 2 (0 = chuva nula; 1 = chuva moderada; 2 = chuva intensa);
+					</p> 
+					<p>
+						Data/Hora: data e hora em que as leituras foram efetivadas(formato ISO 8601);
+					</p>
+					<p>
+						O WebService é baseado no protocolo SOAP e o cliente pode ser desenvolvido em qualquer linguagem que suporte o mesmo protocolo. 
+					O metodo à ser chamado é o "leituras()" e os parametros a serem passados são:
+					</p>  
+					<p>*Quantidade de Leituras: a quantidade de leituras a serem buscadas;
+						Obs: Limite de 15 leituras por busca.
+					</p>
+					<p>*Data/hora: texto com a data e hora em que as leituras foram feitas;
+						Obs: a data/hora deve ser passado no formato ISO 8601 (yyyy-mm-ddTHH:mmZ);
+					 </p>
+					 A busca retornará qualquer leitura efetivada anteriormente à data e horário passados como parâmetro.
+					 <p>
+					 	<a href="url" target="_blank">Link para a pagina do Web Service</a> 
+					 </p>
+				</p>
+				<p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					Fechar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

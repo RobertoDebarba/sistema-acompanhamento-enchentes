@@ -59,6 +59,10 @@
 									<li class="hidden-xs hidden-sm">
 										<a data-toggle="modal" data-target="#modalBaixarApp">Baixe o Aplicativo</a>
 									</li>
+									<!-- Aparece apenas no Desktop -->
+									<li class="hidden-xs hidden-sm">
+										<a data-toggle="modal" data-target="#modalWS">Web Service</a>
+									</li>
 									<!-- -->
 									<li class="divider"></li>
 									<li>
