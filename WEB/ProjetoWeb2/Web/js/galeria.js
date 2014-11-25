@@ -13,7 +13,7 @@ function getNomeImagem(src) {
  */
 function atualizarLegenda() {
     $.ajax({
-        url: "http://localhost/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/php/funcoes.php?getInfoImagem=?",
+        url: "../Comum/php/funcoes.php?getInfoImagem=?",
         data: { 'nomeImagem' : nomeImagem},
         dataType:'jsonp',
         crossDomain: true,

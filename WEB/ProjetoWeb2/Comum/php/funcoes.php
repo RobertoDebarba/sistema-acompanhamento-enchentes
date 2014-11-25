@@ -325,8 +325,8 @@
 			#Envia arquivo
 			} else {
 				#Seta caminhos
-				$pastaImg = '/opt/lampp/htdocs/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/galeria/imagens/';
-				$pastaThumbs = '/opt/lampp/htdocs/roberto/SAEnchentes/WEB/ProjetoWeb2/Comum/galeria/thumbs/';
+				$pastaImg = dirname(dirname(__FILE__)) . '/galeria/imagens/';
+				$pastaThumbs = dirname(dirname(__FILE__)) . '/galeria/thumbs/';
 				#Pega extenção da imagem
 				preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $_FILES['imagem']['name'], $ext);
 	    		$ext_imagem = $ext[1];
