@@ -5,7 +5,11 @@ var nomeImagem; //Nome da imagem retirado do link
  * @param {Object} src
  */
 function getNomeImagem(src) {
-    nomeImagem = src.substring(src.lastIndexOf('/')+1, src.length); 
+	try {
+    	nomeImagem = src.substring(src.lastIndexOf('/')+1, src.length);
+    } catch(err) {
+    	//
+    } 
 }
 
 /**
