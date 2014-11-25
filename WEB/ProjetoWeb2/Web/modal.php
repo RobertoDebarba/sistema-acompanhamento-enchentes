@@ -99,7 +99,8 @@
   					</div>
   					<!-- Apple Store -->
   					<div class="col-md-6">
-  						<a target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/pt_br//images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/pt_br//images/web/linkmaker/badge_appstore-lrg.svg);}">
+  						<a>
+  							<img src="imagens/apple-store.png" width="130px" height="45px"/>
 						</a>
   					</div>
 				</div>	
