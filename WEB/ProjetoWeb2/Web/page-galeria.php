@@ -128,7 +128,7 @@
 	
 	//Envia POST do formulario de cadastro de imagem
 	$('#form').submit(function(){
-		$dados = $( this ).serialize();
+		dados = $( this ).serialize();
 	    $.ajax({
 			type: "POST",
 			url: "./Comum/php/funcoes.php",
