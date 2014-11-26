@@ -1,12 +1,8 @@
-#corpo{
-	width: auto;
-	height: auto;
-}
-
 #imageCont{
 	position: static; 
 	left: auto;
 	width: 100%;
+	margin-bottom: 60px;
 }
 
 #exibirImagens{
@@ -21,8 +17,9 @@
 }
 
 
-.modal-body {
-	padding: 5px !important;
+.modalUm{
+	padding: 5px;
+	display: none;
 }
 
 

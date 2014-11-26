@@ -27,9 +27,6 @@ function getImagensGaleria() {
     });
 }
 
-
-
-
 /**
  * Atualiza a legenda da imagem com base na var nomeImagem
  */
@@ -70,11 +67,9 @@ function abrirImgModal(index) {
     var proximoIndex = parseInt(anteriorIndex, 10) + 2;
      
     if ($(elem).hasClass('previous')) {
-        console.log("has");
         $(elem).attr('id', anteriorIndex);
         $('a.next').attr('id', proximoIndex);
     } else {
-          console.log("hasn't ");
         $(elem).attr('id', proximoIndex);
         $('a.previous').attr('id', anteriorIndex);
     }
@@ -131,7 +126,5 @@ $(".modal-body").on('click', "a.button", function(event) {
     elem = $(event.target);
     
     var id = $(elem).attr("id");
-    console.log(id);
-
     abrirImgModal(id);
 });
