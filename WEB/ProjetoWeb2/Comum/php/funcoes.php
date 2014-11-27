@@ -296,82 +296,96 @@
 		}
 		return $altura;
 	}
-
-	/*
-	 * Executa ao enviar POST do formulario da page-galeria.php
+	
+	/**
+	 * Rotina invoda no metodo POST do formulario de envio de imagens da page-galeria.php
 	 */
-	if (isset($_REQUEST['cidade'])) {
-		$tiposPermitidos = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
-	
-		$tamanhoMaximo = 1024 * 1024 * 2;
-	
-		$arqNome = $_FILES['imagem']['name'];
-		$arqType = $_FILES['imagem']['type'];
-		$arqSize = $_FILES['imagem']['size'];
-		$arqTemp = $_FILES['imagem']['tmp_name'];
-		$arqError = $_FILES['imagem']['error'];
-		
-		function printAlert($mensagem) {
-			echo "<script>alert('" . $mensagem . "')</script>";
-		}
-	
-		if ($arqError == 0) {
-			#Verifica tipo de arquivo
-			if (!in_array($arqType, $tiposPermitidos)) {
-				printAlert("Erro: Tipo de arquivo inválido!");
-			#Verifica tamanho de arquivo
-			} else if ($arqSize > $tamanhoMaximo) {
-				printAlert("Erro: Tamanho do arquivo maior que 2014 * 2014!");
-			#Envia arquivo
-			} else {
-				#Seta caminhos
-				$pastaImg = dirname(dirname(__FILE__)) . '/galeria/imagens/';
-				$pastaThumbs = dirname(dirname(__FILE__)) . '/galeria/thumbs/';
-				#Pega extenção da imagem
-				preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $_FILES['imagem']['name'], $ext);
-	    		$ext_imagem = $ext[1];
-				#Gera um nome único para a imagem
-				$nome_imagem = md5(uniqid(time()));
-	    		
-				/*
-				 * Biblioteca de manipulação de imagens
-				 * http://www.codeforest.net/upload-crop-and-resize-images-with-php
-				 */
-				require_once('lib/ImageManipulator.php');
-
-		        $manipulator = new ImageManipulator($_FILES['imagem']['tmp_name']);
-				#Salva imagem original
-				$manipulator->save("$pastaImg/$nome_imagem.$ext_imagem");
-		        
-				#Redimensiona e salva imagem thumbs
-		        $manipulator->resample(250, 170, false);
-		        $manipulator->save("$pastaThumbs/$nome_imagem.$ext_imagem");
-
-				/*
-				 * Salva informações no banco de dados
-				 */
-				$cidade = $_REQUEST['cidade'];
-				$bairro = $_REQUEST['bairro'];
-				$rua = $_REQUEST['rua'];
-				$data = $_REQUEST['data'];
-				$hora = $_REQUEST['hora'];
-	
-				$m = new MongoClient();
-				$db = $m -> mydb;
-				$collectionGaleria = $db -> galeria;
-					
-				$query = array('imagem' => $nome_imagem . "." . $ext_imagem, 'cidade' => $cidade, 'bairro' => $bairro,
-					'rua' => $rua, 'data' => $data, 'hora' => $hora);
+	if (isset($_POST['action'])) {
+		switch ($_POST['action']) {
+			case 'envia_imagem' :
+				$tiposPermitidos = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
+				$tamanhoMaximo = 1024 * 1024 * 2;
+			
+				$arqNome = $_FILES['imagem']['name'];
+				$arqType = $_FILES['imagem']['type'];
+				$arqSize = $_FILES['imagem']['size'];
+				$arqTemp = $_FILES['imagem']['tmp_name'];
+				$arqError = $_FILES['imagem']['error'];
 				
-				$result = $collectionGaleria->insert($query);
-				if ($result['ok']) {
-					printAlert("Imagem enviada com sucesso!");
+				function printAlert($mensagem) {
+					echo "<script>alert('" . $mensagem . "')</script>";
+				}
+			
+				if ($arqError == 0) {
+					#Verifica tipo de arquivo
+					if (!in_array($arqType, $tiposPermitidos)) {
+						printAlert("Erro: Tipo de arquivo inválido!");
+					#Verifica tamanho de arquivo
+					} else if ($arqSize > $tamanhoMaximo) {
+						printAlert("Erro: Tamanho do arquivo maior que 1024 * 1024!");
+					#Envia arquivo
+					} else {
+						try {
+							#Seta caminhos
+							$pastaImg = dirname(dirname(__FILE__)) . '/galeria/imagens/';
+							$pastaThumbs = dirname(dirname(__FILE__)) . '/galeria/thumbs/';
+							#Pega extenção da imagem
+							preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $_FILES['imagem']['name'], $ext);
+				    		$ext_imagem = $ext[1];
+							#Gera um nome único para a imagem
+							$nome_imagem = md5(uniqid(time()));
+				    		
+							/*
+							 * Biblioteca de manipulação de imagens
+							 * http://www.codeforest.net/upload-crop-and-resize-images-with-php
+							 * 
+							 * Só mexa nessa rotina se quiser se encomodar.
+							 */
+							require_once('lib/ImageManipulator.php');
+			
+					        $manipulator = new ImageManipulator($_FILES['imagem']['tmp_name']);
+							#Salva imagem original
+							$manipulator->save("$pastaImg/$nome_imagem.$ext_imagem");
+					        
+							#Redimensiona e salva imagem thumbs
+					        $manipulator->resample(250, 170, false);
+					        $manipulator->save("$pastaThumbs/$nome_imagem.$ext_imagem");
+			
+							/*
+							 * Salva informações no banco de dados
+							 */
+							$cidade = $_REQUEST['cidade'];
+							$bairro = $_REQUEST['bairro'];
+							$rua = $_REQUEST['rua'];
+							$data = $_REQUEST['data'];
+							$hora = $_REQUEST['hora'];
+				
+							$m = new MongoClient();
+							$db = $m -> mydb;
+							$collectionGaleria = $db -> galeria;
+								
+							$query = array('imagem' => $nome_imagem . "." . $ext_imagem, 'cidade' => $cidade, 'bairro' => $bairro,
+								'rua' => $rua, 'data' => $data, 'hora' => $hora);
+							
+							$result = $collectionGaleria->insert($query);
+							if ($result['ok']) {
+								printAlert("Imagem enviada com sucesso!");
+							} else {
+								printAlert("Erro desconhecido ao enviar imagem!");
+								print_r($result);
+								break;
+							}
+						} catch(Exception $e) {
+							printAlert("Erro ao salvar imagem!");
+							echo $e->getMessage();
+							break;
+						}
+					}
 				} else {
-					printAlert("Erro desconhecido ao enviar imagem!");
-				}   
-			}
-		} else {
-			$erro = 'Erro ao enviar arquivo';
+					printAlert("Erro ao enviar imagem!");
+				}
+				
+			break;
 		}
 	}
 ?>

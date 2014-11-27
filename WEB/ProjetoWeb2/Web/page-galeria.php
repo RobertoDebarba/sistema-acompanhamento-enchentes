@@ -125,19 +125,6 @@
 			alert("Todos os campos são obrigatorios!");
 		}
 	});
-	
-	//Envia POST do formulario de cadastro de imagem
-	$('#form').submit(function(){
-		dados = $( this ).serialize();
-	    $.ajax({
-			type: "POST",
-			url: "./Comum/php/funcoes.php",
-			data: dados,
-			success: function(result){
-				alert(result);
-			}
-		});
-	});
 </script>
 
 <?php
