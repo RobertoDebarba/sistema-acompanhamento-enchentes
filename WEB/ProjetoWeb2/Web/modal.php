@@ -94,7 +94,7 @@
 					<!-- Google Play -->
 					<div class="col-md-6">
 				  		<a>
-							<img alt="Get it on Google Play" src="https://developer.android.com/images/brand/pt-br_generic_rgb_wo_45.png" />
+							<img src="imagens/google-play.png" />
 						</a>
   					</div>
   					<!-- Apple Store -->
