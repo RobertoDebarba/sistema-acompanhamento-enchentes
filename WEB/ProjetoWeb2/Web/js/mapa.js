@@ -8,20 +8,20 @@ var srcImage = '../Comum/imagens/status-inundacao.png?'+Math.floor((Math.random(
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 //INICIO Simulador
-var nImgInicial = 1;
+var nImgInicial = 0.5;
 var nImg = nImgInicial;
 function passarImg(acao) {
     var Image;
     if (acao === '+') {
-        if (nImg < 2 ) {
-            nImg++;
-            Image = 'imagens/simulador/img' + nImg + '.png';
+        if (nImg < 10 ) {
+            nImg += 0.5;;
+            Image = './imagens/simulador/' + nImg + '.png';
             imagemOverlay(Image);        
         }
     } else if (acao === '-') {
-        if (nImg > 1) {
-            nImg--;
-            Image = 'imagens/simulador/img' + nImg + '.png';
+        if (nImg > 0.5) {
+            nImg -= 0.5;
+            Image = './imagens/simulador/' + nImg + '.png';
             imagemOverlay(Image);
         }
     } else if (acao === 'hide'){
@@ -33,7 +33,7 @@ function passarImg(acao) {
         
     	nImg = nImgInicial;
     	$('#painelSimulador').show(500);
-    	Image = 'imagens/simulador/img' + nImg + '.png';
+    	Image = 'imagens/simulador/' + nImg + '.png';
     	setTimeout(function(){
 			imagemOverlay(Image);  
 		}, 500);	
