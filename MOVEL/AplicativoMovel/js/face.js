@@ -5,8 +5,8 @@ var faceToken;
 function statusChangeCallback(response) {
     console.log(response);
     if (response.status === 'connected') {
-       $(".modalUm").show();
-       $("#contente").hide();
+       //$(".modalUm").show();
+       //$("#contente").hide();
        
         faceToken = response.authResponse.accessToken;
     }
@@ -22,8 +22,7 @@ function checkLoginState() {
   }
 
 function ativaFace(){
-    $("contente").show();
-    
+    $("contente").show();  
     window.fbAsyncInit = function() {
         FB.init({
           appId      : '381317252022767',

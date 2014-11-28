@@ -49,7 +49,9 @@ function atualizarLegenda() {
     });
 }
 
-    
+/**
+ * abre o modal que exibe a imagem
+ */    
 function abrirImgModal(index) { 
     
     src = $('#exibirImagens img:eq(' + index + ')').attr('src');
@@ -90,11 +92,7 @@ function abrirImgModal(index) {
     
     $("img.img-responsive").attr('src',src);
 }
-
-function loginFace() {
-    $("").show();
-    $(".modal-content").show();
-};    
+ 
 
 /***
  * evento do clic das imagens
@@ -105,10 +103,10 @@ $(document).on('click', "img.imgflex", function() {
     
     var html = '';
     html += '<img src="" class="img-responsive"/>';
-    html += '<div style="height:47px;clear:both;display:block;">';
+    html += '<div style="height:40px;clear:both;">';
     html += '<div id="legenda"></div>';
-    html += '<a id="' + (index + 1) + '" class="button button-positive controls next">próximo</a>';
-    html += '<a id="' + (index - 1) + '" class="button button-positive controls previous">anterior</a>';
+    html += '<a id="' + (index + 1) + '" class="btn btn-primary controls next"> Próximo >> </a>';
+    html += '<a id="' + (index - 1) + '" class="btn btn-primary controls previous"> << Anterior </a>';
     html += '</div>';
 
     $('#myModal').modal();
@@ -122,7 +120,7 @@ $(document).on('click', "img.imgflex", function() {
  * evento de click dos botoe proximo e anterior
  * pega a id do que foi clicado
  */
-$(".modal-body").on('click', "a.button", function(event) {        
+$(".modal-body").on('click', "a.btn", function(event) {        
     elem = $(event.target);
     
     var id = $(elem).attr("id");

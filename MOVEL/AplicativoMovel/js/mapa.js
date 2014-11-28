@@ -26,23 +26,23 @@ function imagemOverlay(Image) {
     overlay = new USGSOverlay(bounds, Image, map);
 }
 
-var nImg = 0;
+var nImg = 0.5;
 function passarImg(acao) {
     var Image;
     if (acao === '+') {
-        if (nImg < 2 ) {
-            nImg++;
-            Image = './img/' + nImg + '.png';
+        if (nImg < 10 ) {
+            nImg = nImg + 0.5;
+            Image = './img/imagensSimulador/' + nImg + '.png';
             imagemOverlay(Image);        
         }
     } else if (acao === '-') {
-        if (nImg > 1) {
-            nImg--;
-            Image = './img/' + nImg + '.png';
+        if (nImg > 0.5) {
+            nImg = nImg - 0.5;
+            Image = './img/imagensSimulador/' + nImg + '.png';
             imagemOverlay(Image);
         }
     } else {
-        Image = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 1);
+        Image = 'http://54.232.207.63/Comum/imagens/status-inundacao.png?'+Math.floor((Math.random() * 9999) + 0.5);
         imagemOverlay(Image);
         $('#divSimulacao').hide();    
     }

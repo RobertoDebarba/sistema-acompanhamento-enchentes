@@ -6,7 +6,7 @@ var leituras;// array com leituras completas de mediçoes
 
 var dataArray = []; //array com data e nivel do rio
 
-var alturaAlerta;// altura do alerta salvo pelo usuario
+var alturaAlerta = 7;// altura do alerta salvo pelo usuario
 var local;//local do alerta salvo pelo usuario
 
 var alturaRio;
@@ -27,6 +27,7 @@ function getLeituras(qtdLeituras) {
 
         success : function (data) {
             leituras = data;
+            alteraBarraAlerta();
         }
     });
 }
@@ -42,6 +43,7 @@ function getEstadoAlerta() {
 
         success: function (data) {
             estado = data;
+            alteraBarraAlerta();
         }
     });   
 }
@@ -281,7 +283,8 @@ function gotFS(fileSystem) {
  * ler arquivo cfg
  * */
 function readAsText(file) {
-    alert("readastext");
+    /*
+alert("readastext");
     var reader;
     reader = new FileReader();
     
@@ -290,18 +293,18 @@ function readAsText(file) {
        
        var doisPontos = texto.indexOf(":");
        var pontoVirgula = texto.indexOf(";");
+       */
+       alturaAlerta = 6//texto.substring(0,pontoVirgula);
        
-       alturaAlerta = texto.substring(0,pontoVirgula);
-       
-       local = texto.substring(pontoVirgula,doisPontos);
+       local = "Rua Seara 278, Imigrantes, Timbó" //texto.substring(pontoVirgula,doisPontos);
               
        $("#enderecoLocal").html(local);       
               
-       if (texto.substring(doisPontos,texto.length) == "false") {       
+       //if (texto.substring(doisPontos,texto.length) == "false") {       
             $('#myonoffswitch').prop('checked', true);
             alertaAtivo = true;
-       }
-    };
+/*      // }
+    };*/
     reader.onload = function(e) {
        alert(reader.result);
        alert(e);
@@ -396,9 +399,15 @@ function ativarAlerta(sim) {
     if (sim) {
         timer = setInterval(
             function () {
-                alerta();
+                getAlturaRio();
+                
+                nivelLocal = 6 - alturaRio;
+                
+                if(nivelLocal + 2 <= medicoes[2]){
+                    alerta();
+                }
             },
-            1000 /*5*/ * 15
+            1000 /*5*/ * 10
         );
 
         alertaAtivo = true;

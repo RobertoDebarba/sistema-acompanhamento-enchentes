@@ -1,43 +1,23 @@
-<script src="./js/face.js"> </script><!-- Import do script de galeria -->
 <script src="js/galeria.js"></script>
+<script src="./js/jquery.maskedinput.js"> </script>
 <script src="./bootstrap/js/bootstrap-filestyle.js"> </script>
-<script src="./js/jquery.maskedinput.js" type="text/javascript"></script>
+<script src="./js/face.js"> </script><!-- Import do script de galeria -->
 
 <script>
-	$("#data").mask("99/99/9999");
+$("#data").mask("99/99/9999");
 	$("#hora").mask("99:99 h");
-
-    getImagensGaleria();
-
-    //Testa se campos foram preenchidos
-    $('form').submit(function(e) {
-        if (($("#filestyle-3").val() == '') || ($("#cidade").val() == '') || ($("#bairro").val() == '') || ($("#rua").val() == '') || ($("#data").val() == '') || ($("#hora").val() == '')) {
-			
-            e.preventDefault();
-            alert("Todos os campos são obrigatorios!");
-        }
-    });
 	
-    //Envia POST do formulario de cadastro de imagem
-    $('#form').submit(function() {
-    	faceMensagem = "Rua " + $("#rua").val() + ", " +  $("#bairro").val() + "-" + $("#cidade").val() + ". " +  $("#data").val() + " " + $("#hora").val();
-    	
-        var dados = $("#form").serializeArray();
-        $.ajax({
-            type : "POST",
-            url : "http://54.232.207.63/Comum/php/function.php",
-            data : dados,
-            success : function(result) {
-            	faceImagem = result[0];
-            	console.log(result+faceImagem);
-            	if (result === "undefined"){
-            		alert("Não foi possível enviar a imagem")
-            	}else{
-            		sendImage();
-            	}
-            }
-        });
-    }); 
+    getImagensGaleria();
+    
+    function ativaEnvio(){    	
+    	$("#modalEnviarImagens").modal();
+    
+		//ativaFace();
+		
+    	//$("#imagemServidor").load("enviarImagem.html");
+    }
+    
+    
 </script>
 
 <div id="corpo">
@@ -48,61 +28,9 @@
 				<div class="modal-body"></div>
 			</div>
 		</div>
+		
 	</div>
-	
-	<!-- Modal de envio de imagens -->
-	<div id="modalEnviarImagens" class="modal fade">
-		<div class="modal-dialog">
-			<div  class="modal-content">
-				<div id="contente">
-					<div id="fb-root">
-					</div>
-					<div class="fb-login-button" scope="public_profile,publish_actions, user_photos" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();">	
-					</div>
-				</div>
-				<!-- Inicio FORM -->
-				<form role="form" action="" method="post" id="form" enctype="multipart/form-data">
-					<!-- Inicio MODAL -->
-					<div class="modal-body modalUm">
-						<h6 class="modal-title">Enviar Imagens</h6>
-						<input type="hidden" name="action" value="envia_imagem" />
-	
-						<div class="form-group">
-							<label for="cidade">Cidade:</label>
-							<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Digite a cidade...">
-						</div>
-						<div class="form-group">
-							<label for="ano">Bairro:</label>
-							<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Digite o bairro...">
-						</div>
-						<div class="form-group">
-							<label for="ano">Rua:</label>
-							<input type="text" class="form-control" name="rua" id="rua" placeholder="Digite a rua...">
-						</div>
-						<div class="form-group left">
-							<label for="ano">Data:</label>
-							<input type="date" class="form-control" name="data" id="data" placeholder="Digite a data...">
-						</div>
-						<div class="form-group right">
-							<label for="ano">Hora:</label>
-							<input type="time" class="form-control" name="hora" id="hora" placeholder="Digite a hora...">
-						</div>
-						<label for="imagem">Imagem:</label>
-						<input type="file" class="filestyle" name="imagem" id="filestyle-3" tabindex="-1">
-					</div>
-					<div class="modal-footer modalUm">
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Fechar
-						<button type="submit" class="btn btn-primary">
-							Enviar
-						</button>
-					</div>
-					<!-- Fim MODAL -->
-				</form>
-				<!-- Fim FORM -->
-			</div>
-		</div>
-	</div>
+
 	
 	<!-- Lista de imagens -->
 	<div id="imageCont" class="container">
@@ -110,8 +38,103 @@
 		</div>
 	</div>
 
-	<button onclick="ativaFace();" style="z-index: 20;" data-toggle="modal" data-target="#modalEnviarImagens" id="btnEnviarImagem" class="button button-full button-positive BFontSize">
+	<button onclick="ativaEnvio();" id="btnEnviarImagem" class="button button-full button-positive BFontSize">
 		Enviar Imagem
 	</button>
+
+<!-- Modal de envio de imagens -->
+<div id="modalEnviarImagens" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- Inicio FORM -->
+			<form role="form" action="" method="post" id="form" enctype="multipart/form-data">
+				<!-- Inicio MODAL -->
+				<div class="modal-header">
+					<h4 class="modal-title">Enviar Imagens</h4>
+				</div>
+				
+				<div class="modal-body">				
+					<input type="hidden" name="action" value="envia_imagem" />
+					
+					<div class="form-group">
+						<label for="cidade">Cidade:</label>
+						<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Digite a cidade...">
+					</div>
+					<div class="form-group">
+						<label for="ano">Bairro:</label>
+						<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Digite o bairro...">
+					</div>
+					<div class="form-group">
+						<label for="ano">Rua:</label>
+						<input type="text" class="form-control" name="rua" id="rua" placeholder="Digite a rua...">
+					</div>
+					<div class="form-group left">
+						<label for="ano">Data:</label>
+						<input type="text" class="form-control" name="data" id="data" placeholder="Digite a data...">
+					</div>
+					<div class="form-group right">
+						<label for="ano">Hora:</label>
+						<input type="text" class="form-control" name="hora" id="hora" placeholder="Digite a hora...">
+					</div>
+					<label for="imagem">Imagem:</label>
+					<input type="file" class="filestyle" name="imagem" id="filestyle-3" tabindex="-1">
+				</div>				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Fechar
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Enviar
+					</button>
+				</div>
+				<!-- Fim MODAL -->
+			</form>
+			<!-- Fim FORM -->
+		</div>
+	</div>
 </div>
+
+<!-- Import do script de galeria -->
+<script src="js/galeria.js"></script>
+
+<script type="text/javascript">
+	// Define mascaras do modal de envio
+	$("#data").mask("99/99/9999");
+	$("#hora").mask("99:99 h");
+	
+	//Testa se campos foram preenchidos
+	$('form').submit(function(e) { 
+		if (($("#filestyle-3").val()=='') || 
+			($("#cidade").val()=='') || 
+			($("#bairro").val()=='') ||
+			($("#rua").val()=='') || 
+			($("#data").val()=='') || 
+			($("#hora").val()=='')) {
+			
+			e.preventDefault();
+			alert("Todos os campos são obrigatorios!");
+		}
+	});
+	
+	//Envia POST do formulario de cadastro de imagem
+$(function(){	
+	$('#form').submit(function(){
+	    $.ajax({
+			type: "POST",
+			url: "http://54.232.207.63/Comum/php/funcoes.php",
+			data: $( this ).serializeArray(),
+			success: function(result){
+				alert(result);
+			},
+			error: function(jqXHR, textStatus, errorThrown) 
+        {
+        	alert(textStatus+errorThrown);  
+        }
+		});
+	});
+});
+</script>
+
+</div>
+
 

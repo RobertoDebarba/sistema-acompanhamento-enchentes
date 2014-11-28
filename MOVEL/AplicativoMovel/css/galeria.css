@@ -18,10 +18,12 @@
 
 
 .modalUm{
-	padding: 5px;
-	display: none;
+	//display: none;
 }
 
+div.modal-body{
+	padding : 2px;
+}
 
 
 .modal-dialog img {
@@ -72,7 +74,8 @@
 
 
 #legenda {
-	width: 100%;
+	word-wrap: break-word;
+	width: auto;
 	text-align: center;
 	padding-top: 8px;
 	margin-bottom: -4px;

@@ -45,14 +45,8 @@
 
 		$('#myonoffswitch').click(function() {
 			if ($(this).is(':checked')) {
-				try {
-					addLocal();
-				} catch(e) {
-					console.log(e);
-				} finally {
+				
 					ativarAlerta(true);
-				}
-
 			} else {
 				ativarAlerta(false);
 			}
