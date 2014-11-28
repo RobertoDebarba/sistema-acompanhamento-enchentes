@@ -6,7 +6,7 @@ var leituras;// array com leituras completas de mediçoes
 
 var dataArray = []; //array com data e nivel do rio
 
-var alturaAlerta = 7;// altura do alerta salvo pelo usuario
+var alturaAlerta;// altura do alerta salvo pelo usuario
 var local;//local do alerta salvo pelo usuario
 
 var alturaRio;
@@ -14,6 +14,8 @@ var alturaRio;
 var altitude;
 var latitude;
 var longitude;
+
+var nivelRio;
 
 /**
  * obtem as leituras do php no servidor
@@ -79,6 +81,7 @@ function alteraBarraAlerta() {
     }
     
     var medicoes = leituras[1];
+    nivelRio = medicoes[2];
 
     if ((estado[0] == 0) && (estado[1] == 0)) {
         $("#alerta").toggleClass("button-assertive");
@@ -143,6 +146,7 @@ function getAlturaRio() {
         crossDomain : true,
         
          success: function (data) {
+            alturaRio = data;
             getEnchentes(data);
         }
     });
@@ -401,13 +405,13 @@ function ativarAlerta(sim) {
             function () {
                 getAlturaRio();
                 
-                nivelLocal = 6 - alturaRio;
+                nivelLocal = 65 - alturaRio;
                 
-                if(nivelLocal + 2 <= medicoes[2]){
+                if(nivelLocal <= nivelRio + 2){
                     alerta();
                 }
             },
-            1000 /*5*/ * 10
+            1000 /*5*/ * 2
         );
 
         alertaAtivo = true;
