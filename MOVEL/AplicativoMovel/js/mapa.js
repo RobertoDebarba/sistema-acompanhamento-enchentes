@@ -26,7 +26,7 @@ function imagemOverlay(Image) {
     overlay = new USGSOverlay(bounds, Image, map);
 }
 
-var nImg = 0.5;
+var nImg = 5;
 function passarImg(acao) {
     var Image;
     if (acao === '+') {
@@ -36,7 +36,7 @@ function passarImg(acao) {
             imagemOverlay(Image);        
         }
     } else if (acao === '-') {
-        if (nImg > 0.5) {
+        if (nImg > 5) {
             nImg = nImg - 0.5;
             Image = './img/imagensSimulador/' + nImg + '.png';
             imagemOverlay(Image);

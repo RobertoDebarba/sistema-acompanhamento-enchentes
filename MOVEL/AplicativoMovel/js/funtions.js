@@ -80,9 +80,8 @@ function alteraBarraAlerta() {
         getEstadoAlerta();
     }
     
-    var medicoes = leituras[1];
+    var medicoes = leituras[0];
     nivelRio = medicoes[2];
-
     if ((estado[0] == 0) && (estado[1] == 0)) {
         $("#alerta").toggleClass("button-assertive");
         $("#alerta").toggleClass("button-energized");
@@ -404,10 +403,11 @@ function ativarAlerta(sim) {
         timer = setInterval(
             function () {
                 getAlturaRio();
+                alteraBarraAlerta();
                 
-                nivelLocal = 65 - alturaRio;
+                nivelLocal = 66.2 - alturaRio;
                 
-                if(nivelLocal <= nivelRio + 2){
+                if(nivelLocal <= nivelRio - 2){
                     alerta();
                 }
             },
