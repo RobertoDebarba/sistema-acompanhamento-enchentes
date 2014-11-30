@@ -8,7 +8,7 @@ var srcImage = '../Comum/imagens/status-inundacao.png?'+Math.floor((Math.random(
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 //INICIO Simulador
-var nImgInicial = 0.5;
+var nImgInicial = 5;
 var nImg = nImgInicial;
 function passarImg(acao) {
     var Image;
@@ -19,7 +19,7 @@ function passarImg(acao) {
             imagemOverlay(Image);        
         }
     } else if (acao === '-') {
-        if (nImg > 0.5) {
+        if (nImg > 5) {
             nImg -= 0.5;
             Image = './imagens/simulador/' + nImg + '.png';
             imagemOverlay(Image);
