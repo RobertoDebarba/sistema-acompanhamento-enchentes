@@ -71,7 +71,7 @@
 			
 			try {
 				#Palavras chave de pesquisa
-				$palavrasChave = array('Timbó', 'Blumenau', 'Litoral Norte');
+				$palavrasChave = array('Timbó', 'Blumenau', 'Médio Vale', 'Rio dos Cedros');
 				
 				#Busca quadr de informações no site da defesa civil
 				include "lib/simple_html_dom.php";
