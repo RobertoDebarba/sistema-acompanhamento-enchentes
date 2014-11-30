@@ -10,6 +10,8 @@
 	printHeader($meta);
 
 	$alerta = getEstadoAlerta();
+	
+	$siteDefesaCivil = "http://www.defesacivil.sc.gov.br/";
 ?>
 
 <!-- Corpo -->
@@ -29,7 +31,7 @@
 		$leituras = getLeituras(1, true);
 
 		if ($alerta[1]) {
-			echo '<a href="https://www.google.com.br">';
+			echo "<a target=\"_blank\" href=\"$siteDefesaCivil\">";
 		}
 
 		if (($alerta[0] == 0) & ($alerta[1] == 0)) {
@@ -77,7 +79,7 @@
 	<!-- Quadro de alerta -->
 	<?php
 	if ($alerta[1]) {
-		echo '<a href="https://www.google.com.br">';
+		echo "<a target=\"_blank\" href=\"$siteDefesaCivil\">";
 	}
 
 	if (($alerta[0] == 0) & ($alerta[1] == 0)) {
