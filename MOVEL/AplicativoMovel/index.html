@@ -28,68 +28,67 @@
 		<!--grafico-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript" src="./js/graficos.js"></script>
-		<!--grafico-->		
-		
+		<!--grafico-->
+
 		<script type="text/javascript">
-		 	alteraBarraAlerta();
-            document.addEventListener("deviceready", pronto, false);
+			alteraBarraAlerta();
+			document.addEventListener("deviceready", pronto, false);
 
-            function pronto() {
-            	alteraBarraAlerta();
-                /*le a cfg do sistema*/
-                //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fail);
-            }
+			function pronto() {
+				getLeituras(12);
+				getEstadoAlerta();
 
-            /**
-             * exibi o menu +
-             */
-            function exibirMenuPlus() {
-                $("#menuPlus").slideToggle("fast");
-            }
+			}
 
-            /**
-             * Abre um conteudo dentro do div 'conteudos'
-             * @param tela: nome do arquivo html sem a extenção
-             * @param nome: nome a ser exibido no topo do App
-             * */
-            function alterarConteudo(tela, nome) {
-            	$("#menuPlus").hide("fast");
-                $("#mapaconteiner").show('fast');
-                $("strong").html(nome);
+			/**
+			 * exibi o menu +
+			 */
+			function exibirMenuPlus() {
+				$("#menuPlus").slideToggle("fast");
+			}
 
-                if (tela == "home") {
-                    $("#mapaconteiner").show();
+			/**
+			 * Abre um conteudo dentro do div 'conteudos'
+			 * @param tela: nome do arquivo html sem a extenção
+			 * @param nome: nome a ser exibido no topo do App
+			 * */
+			function alterarConteudo(tela, nome) {
+				$("#menuPlus").hide("fast");
+				$("#mapaconteiner").show('fast');
+				$("strong").html(nome);
 
-                    $("#conteudo").hide();
-                    $("#divClima").hide();
-                    $("#divSimulacao").hide();
-                    initialize();
-                    getLeituras(12);
+				if (tela == "home") {
+					$("#mapaconteiner").show();
+
+					$("#conteudo").hide();
+					$("#divClima").hide();
+					$("#divSimulacao").hide();
+					getLeituras(12);
 					getEstadoAlerta();
-					alteraBarraAlerta();
-                    
-                } else if (tela == "previsao") {
-                    $("#conteudo").hide();
-                    $("#mapaconteiner").hide();
+					google.maps.event.addDomListener(window, 'load', initialize);
 
-                    $("#divClima").show();
-                    initializeWeather();
-                } else if (tela == "simulacao") {
-                    $("#conteudo").hide();
-                    $("#divClima").hide();
+				} else if (tela == "previsao") {
+					$("#conteudo").hide();
+					$("#mapaconteiner").hide();
 
-                    $("#mapaconteiner").show();
-                    $("#divSimulacao").css("display", "inline-flex");
-                    passarImg('+');
-                } else {
-                    $("#mapaconteiner").hide();
-                    $("#divSimulacao").hide();
-                    $("#divClima").hide();
+					$("#divClima").show();
+					initializeWeather();
+				} else if (tela == "simulacao") {
+					$("#conteudo").hide();
+					$("#divClima").hide();
 
-                    $("#conteudo").load(tela + ".html");
-                    $("#conteudo").show();
-                }
-            }
+					$("#mapaconteiner").show();
+					$("#divSimulacao").css("display", "inline-flex");
+					passarImg('+');
+				} else {
+					$("#mapaconteiner").hide();
+					$("#divSimulacao").hide();
+					$("#divClima").hide();
+
+					$("#conteudo").load(tela + ".html");
+					$("#conteudo").show();
+				}
+			}
 
 		</script>
 
