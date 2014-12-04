@@ -409,7 +409,7 @@ function ativarAlerta(sim) {
                 
                 nivelLocal = 66.2 - alturaRio;
                 
-                if(nivelLocal <= nivelRio - 2){
+                if(nivelLocal - 2 <= nivelRio ){
                     alerta();
                 }
             },
