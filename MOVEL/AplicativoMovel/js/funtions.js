@@ -344,13 +344,13 @@ function addLocal(gps){
             console.log(exception);
         }   
         finally{
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+           // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
         }
     }
     else{
         geocodificacaoReversa(false);
         
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+       // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
     
     $("#forma").show();
@@ -362,6 +362,7 @@ function addLocal(gps){
  * abrir modal
  * */
 function abrirModal(){
+    $('#modalBuscaLocal').show();
 	$("#buscaLocal").hide();
    	$("#forma").show();
 }

@@ -212,6 +212,17 @@ html, body {
 	display: none;
 }
 
+.modal{
+	z-index: 10;
+}
+
+#pesquisar{
+	width : 95%;
+	margin: 6px;
+	border: 1px solid gray;
+	z-index: 20;
+}
+
 .bSize{
 	margin: 20px;
 	height: 60px;
