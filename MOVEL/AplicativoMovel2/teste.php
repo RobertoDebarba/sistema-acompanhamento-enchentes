@@ -1,4 +1,5 @@
 <?php
 	include 'funcoes.php';
-	getDadosCeops(10);	
+	
+	var_dump(getEstadoAlerta());
 ?>

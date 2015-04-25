@@ -12,18 +12,17 @@ var longitude;//longitude do local atual
 
 var nivelRio; // nivel do rio atual
 
-var altEnc = 5.35;
-
 /**
  * preenche tabela com as ultimas medições
  */
 function preencheTabela() {
-	$.getJSON("funcoes.php?getDadosCeops=12", function (leituras) {
+	$.getJSON("funcoes.php?getLeituras&qtdLeituras=12", function (leituras) {
 	    var key, object ;
 	    for (key in leituras) {
 	        if (leituras.hasOwnProperty(key)) {
 	            object = leituras[key];
-		        $('#tabela').append('<tr><td>' + object['data'] + '</td> <td>' + object['vlr_nivel'] + ' m</td>S </tr>');
+		        $('#tabela').append('<tr><td>' + object['data'] + 
+		        '</td><td>' + object['vlr_nivel'] + 'm</td><td>' + object['vlr_precipitacao'] + '%</td></tr>');
 	        }
    		}	
 	});
@@ -33,7 +32,7 @@ function preencheTabela() {
  * Gera o grafico
  */
 function carregaGrafico(){	
-	$.getJSON("funcoes.php?getDadosCeops=24", function (data) { 
+	$.getJSON("funcoes.php?getLeituras&qtdLeituras=24", function (data) { 
 		data = MG.convert.date(data, 'data',"%Y-%m-%dT%H:%M:%S");	
         MG.data_graphic({
 		  	data: data,
@@ -42,7 +41,7 @@ function carregaGrafico(){
 	        right: 40,
 	        left: 120,
 		  	min_y_from_data: true,
-		  	width: 800,
+		  	width: 600,
 		  	height: 600,
 		  	xax_count:6,
 		  	y_extended_ticks: true,
@@ -57,25 +56,28 @@ function carregaGrafico(){
 
 /**
  * altera o design da barra de alerta no rodapé
+ * 
+ * estado[0] = Nivel do Rio: 0- Normal, 1- Alerta, 2- Inundação
+ * estado[1] = Defesa Civil: 0- Nada encontrado, 1- Aviso encontrado
+ * estado[2] = nivel do rio
+ * estado[3] = % chuva
  */
 function barraAlerta() { 
-	$.getJSON("funcoes.php?getDadosCeops=1", function (dados) { 
-	    var medicoes = dados[0];
-	    if ( medicoes["vlr_nivel"] <= ( altEnc / 2 ) ) {
+	$.getJSON("funcoes.php?getEstadoAlerta", function (estado) { 
+	    if ((estado[0] == 0) && (estado[1] == 0)) {
 	        $("#alerta").attr('class',"button button-full button-positive BFontSize	");
-	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel']+ ' Metros');
+	        $("#alerta").html('Nivel do rio: ' + estado[2]+ 'm | Chuva ' + estado[3]+'%');
 	    }
-	    else if ( ( medicoes['vlr_nivel'] < altEnc ) && ( medicoes['vlr_nivel'] > ( altEnc / 2 ) ) ) {
+	    else if ((estado[0] == 1) || ((estado[1] == 1))) {
 	        $("#alerta").attr('class',"button button-full button-energized BFontSize");
-	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
+	        $("#alerta").html('Nivel do rio: ' + estado[2] + 'm | Chuva ' + estado[3]+'%');
 	    }
-	    else if ( medicoes['vlr_nivel'] >= altEnc ) {  
+	    else if (estado[0] == 2) {
 	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");   
-	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
+	        $("#alerta").html('Nivel do rio: ' + estado[2] + 'm | Chuva ' + estado[3]+'%');
 	    }
 	    else{     
-	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");
-	        
+	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");	        
 	        $("#alerta").html("Dados indisponíveis");
 	    }
 	});
