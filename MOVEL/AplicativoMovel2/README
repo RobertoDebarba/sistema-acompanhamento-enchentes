@@ -1,0 +1,36 @@
+PROJETO phonegap/cordova
+
+criar projeto
+phonegap create NOME - cordova create NOME
+
+instalar plataformas
+phonegap local install android/firefox etc - cordova platform add android/firefox etc
+
+executar no celular/simulador (esse comando compila antes de executar)
+phonegap local run android/ios etc - cordova run
+
+prepara arquivos para firefox
+phonegap local prepare (para FIREFOXOS)
+
+
+phonegap local plugin add NOMEPLUGIN
+
+lista plugins necessaria até o momento
+
+phonegap local plugin add org.apache.cordova.file
+
+phonegap local plugin add org.apache.cordova.dialogs
+
+phonegap local plugin add org.apache.cordova.device
+
+phonegap local plugin add de.appplant.cordova.plugin.background-mode
+
+phonegap local plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
+
+cordova plugin add org.apache.cordova.inappbrowser
+
+
+PARA RODAR O APLICATIVO
+
+Adicionar na pasta WWW dentro do projeto phonegap/cordova os arquivos do projeto AplicativoMovel
+dar um phonegap local run android/ios etc - cordova run

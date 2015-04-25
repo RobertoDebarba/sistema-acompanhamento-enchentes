@@ -1,0 +1,40 @@
+
+/**
+ *chama o garregamento dos graficos
+ * 
+function loadchart(){		    	
+	google.load("visualization", "1.0", {"callback" : drawVisualization, packages:["corechart"]});	
+}
+
+/**
+ * pinta os graficos
+ *
+function drawVisualization() {		
+    var dataTable = google.visualization.arrayToDataTable(dataArray);
+
+	var options = {
+            title: 'Medição do Nível do Rio',
+            legend: { position: 'none' },
+            pointSize: 5,
+            'chartArea': {'width': '80%'}
+        };
+	
+	var chart = new google.visualization.LineChart(document.getElementById('graficoRio'));				
+
+	chart.draw(dataTable, options);
+}*/
+
+d3.json('fake_users1.son', function(data) {
+    data = MG.convert.date(data, 'date');
+    MG.data_graphic({
+        title: "Line Chart",
+        description: "This is a simple line chart. You can remove the area portion by adding area: false to the arguments list.",
+        data: data,
+        width: 600,
+        height: 200,
+        right: 40,
+        target: document.getElementById('graficoRio'),
+        x_accessor: 'date',
+        y_accessor: 'value'
+    });
+});

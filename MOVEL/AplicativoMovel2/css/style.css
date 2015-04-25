@@ -1,0 +1,230 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow-y: scroll;
+	font-family: sans-serif !important;
+}
+
+#tabelaLinksUteis{
+	text-align: center;
+}
+
+#divSimulacao{
+	display: none;
+	text-align: center;
+}
+
+.BFontSize{
+	font-size: 100%;
+}
+
+
+#imgMapaMetereologico {
+	max-height: 100%;
+}
+
+#painelInfo {
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	top: 95px;
+}
+
+#divCpec{
+	margin-left: 50%;
+}
+
+#divClima, #painelInfo {
+	display: none;
+}
+
+#alerta, #painelOpcoesMapa, #btnEnviarImagem{
+	position: fixed;
+	margin-bottom: 0;
+	bottom: 0;
+}
+
+.button-full, #header, .tabs-top {
+	border: none;
+}
+
+#header {
+	position: static;
+}
+
+#menuPlus {
+	display: none;
+	margin-top: 93px;
+	position: absolute;
+	padding: 1px;
+	left:0;
+	right:0;
+	background-color: #4d90fe;
+	z-index: 2;
+	height: auto;
+}
+
+#mapaconteiner, #divClima{
+	top: 100px;
+	height: 79%;
+	width: 100%;
+	margin-bottom: 26px;
+}
+
+#graficoRio {
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+#mapa, #mapaClima{
+	top: 93px;
+	height: 100%;
+	width: 100%
+}
+
+#conteudo {
+	text-align: center;
+	display: none;
+	overflow: hidden;
+	margin-top: 93px;
+	padding:0;
+	height: auto;
+	width: 100%;
+}
+
+.item {
+	width: auto;
+	height : auto;
+	text-align: center;
+	padding: 0;
+	margin: 3px;
+}
+
+.controls {
+	margin-top: 16px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #fff;
+	padding: 0 11px 0 13px;
+	width: 60%;
+	font-size: 15px;
+	font-weight: 300;
+	text-overflow: ellipsis;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+	margin-left: -1px;
+	padding-left: 14px; /* Regular padding-left + 1. */
+	width: 61%;
+}
+
+.onoffswitch {
+	position: relative;
+	width: 90px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+.onoffswitch-checkbox {
+	display: none;
+}
+
+.onoffswitch-label {
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid #666666;
+	border-radius: 5px;
+}
+.onoffswitch-inner {
+	display: block;
+	width: 200%;
+	margin-left: -100%;
+	-moz-transition: margin 0.3s ease-in 0s;
+	-webkit-transition: margin 0.3s ease-in 0s;
+	-o-transition: margin 0.3s ease-in 0s;
+	transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+	display: block;
+	float: left;
+	width: 50%;
+	height: 30px;
+	padding: 0;
+	line-height: 30px;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+	content: "ON";
+	padding-right: 20px;
+	background-color: #4a87e0;
+	color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+	content: "OFF";
+	padding-right: 10px;
+	background-color: #F8F8F8;
+	color: #666666;
+	text-align: right;
+}
+.onoffswitch-switch {
+	display: block;
+	width: 35px;
+	margin: 0px;
+	background: #FFFFFF;
+	border: 2px solid #666666;
+	border-radius: 5px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 51px;
+	-moz-transition: all 0.3s ease-in 0s;
+	-webkit-transition: all 0.3s ease-in 0s;
+	-o-transition: all 0.3s ease-in 0s;
+	transition: all 0.3s ease-in 0s;
+	background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+	background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+	margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+	right: 0px;
+}
+
+#buscaLocal{
+	display: none;
+}
+
+.modal{
+	z-index: 10;
+}
+
+#pesquisar{
+	width : 95%;
+	margin: 6px;
+	border: 1px solid gray;
+	z-index: 20;
+}
+
+.bSize{
+	margin: 20px;
+	height: 60px;
+	width: 80px;
+}
