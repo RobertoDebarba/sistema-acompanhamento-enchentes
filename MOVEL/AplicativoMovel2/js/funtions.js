@@ -1,8 +1,6 @@
 var timer; // variavel que recebe o timer de alertas
 var alertaAtivo = false; //define o alerta desativado antes de ler cfg
 
-var leituras;// array com leituras completas de mediçoes
-
 var alturaAlerta;// altura do alerta salvo pelo usuario
 var local;//local do alerta salvo pelo usuario
 
@@ -15,16 +13,6 @@ var longitude;//longitude do local atual
 var nivelRio; // nivel do rio atual
 
 var altEnc = 5.35;
-
-/**
- * obtem as leituras do php no servidor
- */
-function getLeituras(qtdLeituras) {
-    $.getJSON("funcoes.php?getDadosCeops="+qtdLeituras, function (data) { 
-        leituras = data;
-        alteraBarraAlerta(data);
-    });
-}
 
 /**
  * preenche tabela com as ultimas medições
@@ -41,6 +29,9 @@ function preencheTabela() {
 	});
 }
 
+/**
+ * Gera o grafico
+ */
 function carregaGrafico(){	
 	$.getJSON("funcoes.php?getDadosCeops=24", function (data) { 
 		data = MG.convert.date(data, 'data',"%Y-%m-%dT%H:%M:%S");	
@@ -49,7 +40,7 @@ function carregaGrafico(){
 		  	animate_on_load: true,
 	        area: false,
 	        right: 40,
-	        left: 100,
+	        left: 120,
 		  	min_y_from_data: true,
 		  	width: 800,
 		  	height: 600,
@@ -67,25 +58,27 @@ function carregaGrafico(){
 /**
  * altera o design da barra de alerta no rodapé
  */
-function alteraBarraAlerta(dados) {  
-    var medicoes = dados[0];
-    if ( medicoes["vlr_nivel"] <= ( altEnc / 2 ) ) {
-        $("#alerta").attr('class',"button button-full button-positive BFontSize");
-        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel']+ ' Metros');
-    }
-    else if ( ( medicoes['vlr_nivel'] < altEnc ) && ( medicoes['vlr_nivel'] > ( altEnc / 2 ) ) ) {
-        $("#alerta").attr('class',"button button-full button-energized BFontSize");
-        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
-    }
-    else if ( medicoes['vlr_nivel'] >= altEnc ) {  
-        $("#alerta").attr('class',"button button-full button-assertive BFontSize");   
-        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
-    }
-    else{     
-        $("#alerta").attr('class',"button button-full button-assertive BFontSize");
-        
-        $("#alerta").html("Dados indisponíveis");
-    }
+function barraAlerta() { 
+	$.getJSON("funcoes.php?getDadosCeops=1", function (dados) { 
+	    var medicoes = dados[0];
+	    if ( medicoes["vlr_nivel"] <= ( altEnc / 2 ) ) {
+	        $("#alerta").attr('class',"button button-full button-positive BFontSize	");
+	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel']+ ' Metros');
+	    }
+	    else if ( ( medicoes['vlr_nivel'] < altEnc ) && ( medicoes['vlr_nivel'] > ( altEnc / 2 ) ) ) {
+	        $("#alerta").attr('class',"button button-full button-energized BFontSize");
+	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
+	    }
+	    else if ( medicoes['vlr_nivel'] >= altEnc ) {  
+	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");   
+	        $("#alerta").html('Nivel do rio: ' + medicoes['vlr_nivel'] + ' Metros');
+	    }
+	    else{     
+	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");
+	        
+	        $("#alerta").html("Dados indisponíveis");
+	    }
+	});
 }
 
 /**
@@ -418,4 +411,56 @@ function buscaLocal(){
     $("#buscaLocal").show();
     
     initializeBusca();
+}
+
+/**
+ * exibi o menu +
+ */
+function exibirMenuPlus() {
+	$("#menuPlus").slideToggle("fast");
+}
+
+/**
+ * Abre um conteudo dentro do div 'conteudos'
+ * @param tela: nome do arquivo html sem a extenção
+ * @param nome: nome a ser exibido no topo do App
+ * */
+function alterarConteudo(tela, nome) {
+	$("#menuPlus").hide("fast");
+	$("#mapaconteiner").show('fast');
+	$("strong").html(nome);
+
+	if (tela == "home") {
+		$("#mapaconteiner").show();
+
+		$("#conteudo").hide();
+		$("#divClima").hide();
+		$("#divSimulacao").hide();
+		
+		barraAlerta();
+		
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+	} else if (tela == "previsao") {
+		$("#conteudo").hide();
+		$("#mapaconteiner").hide();
+
+		$("#divClima").show();
+		
+		initializeWeather();
+	} else if (tela == "simulacao") {
+		$("#conteudo").hide();
+		$("#divClima").hide();
+
+		$("#mapaconteiner").show();
+		$("#divSimulacao").css("display", "inline-flex");
+		passarImg('+');
+	} else {
+		$("#mapaconteiner").hide();
+		$("#divSimulacao").hide();
+		$("#divClima").hide();
+
+		$("#conteudo").load(tela + ".html");
+		$("#conteudo").show();
+	}
 }

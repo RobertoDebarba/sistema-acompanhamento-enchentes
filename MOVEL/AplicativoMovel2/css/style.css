@@ -76,6 +76,12 @@ html, body {
 	margin-bottom: 20px;
 }
 
+svg{
+	float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
 #mapa, #mapaClima{
 	top: 93px;
 	height: 100%;
