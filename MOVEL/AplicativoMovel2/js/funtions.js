@@ -4,7 +4,7 @@ var alertaAtivo = false; //define o alerta desativado antes de ler cfg
 var alturaAlerta;// altura do alerta salvo pelo usuario
 var local;//local do alerta salvo pelo usuario
 
-var alturaRio; //altura do fundo do rio
+var elevacaoRio; //altura do fundo do rio
 
 var altitude;//altitude do local
 var latitude;// latitude do local atual
@@ -80,129 +80,95 @@ function barraAlerta() {
 	        $("#alerta").attr('class',"button button-full button-assertive BFontSize");	        
 	        $("#alerta").html("Dados indisponíveis");
 	    }
+	    $nivelRio = estado[2];
 	});
 }
 
 /**
- * Metodo que preenche a tabela na tela de verificação de locais
+ * Metodo que busca na base o histórico de datas e alturas de enchentes
+ * e preenche a tabela na tela de verificação de locais
  */
-function trataEnchentes(data) {
-    var cont; //contador
-    var alturaEnchente;
-	for (cont in data) {
-		alturaEnchente = data[cont];
-		$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
-	}
-}
-
-/**
- * Metodo que busca no banco o histórico de datas e alturas enchentes
- */
-function getEnchentes(data) {
-	var nivelEnchente = altitude-data;
+function getEnchentes(dados) {	
+	var nivelEnchente = altitude-dados;
+        
 	$("#nivelRioLocal").html(nivelEnchente);
 	
-	$.ajax({
-		url : "http://54.232.207.63/Comum/php/funcoes.php?getEnchentes=?",
-		data : { 'elevAtual' : nivelEnchente},
-		dataType : 'jsonp',
-		crossDomain : true,
-		
-		success : function(data) {
-			trataEnchentes(data);
+	$.getJSON("./funcoes.php?getEnchentes&elevAtual="+nivelEnchente, function (altura) {
+        console.log(altura);
+
+		var cont;
+		for (cont in altura) {
+			var alturaEnchente = altura[cont];
+			$("#tabelaHistoricoInundacoes").append('<tr> <td>' + alturaEnchente[0] + '</td> </tr>');
 		}
 	});
 }
 
 /**
- *  Função que carrega a aultura zero do rio
+ *  Função que carrega a altura zero do rio
  */
-function getAlturaRio() {
-    $.ajax({
-        url : "http://54.232.207.63/Comum/php/funcoes.php?getAlturaRio=?",
-        dataType : 'jsonp',
-        crossDomain : true,
+function getElevacaoRio() {
+    $.getJSON("./funcoes.php?getElevacaoRio", function(altura) {
+        elevacaoRio = altura;
         
-         success: function (data) {
-            alturaRio = data;
-            getEnchentes(data);
-        }
+        getEnchentes(altura);
     });
-}
-
-function getAltura(gps) {
-    var locations = [];
-    
-    var latlng;
-
-    var elevator = new google.maps.ElevationService();
-    
-    if(gps){
-        latlng = new google.maps.LatLng(latitude, longitude);
-    }
-    else{
-        latlng = geolocationBusca;
-    }
-    
-    locations.push(latlng);
-    var positionalRequest = {
-        'locations' : locations
-    };
-
-    elevator.getElevationForLocations(positionalRequest, function(results, status) {
-        if (status == google.maps.ElevationStatus.OK) {
-            if (results[0]) {
-                $("#elevacaoLocal").html(results[0].elevation);
-                $("#divbotao").hide();
-                $("#tabela").show();
-                altitude = results[0].elevation;
-                getAlturaRio();
-            }
-            else {
-                alert('No results found');
-            }
-        }
-        else{
-            alert('Elevation service failed due to: ' + status);
-        }
-    });
-        
 }
 
 /**
  * Metodo que utiliza as cordenadas de geolocalização para captar o endereço
  */
-function geocodificacaoReversa(gps) {
-    var geocoder;
+function geocodificacaoReversa(ltlg, gps) {
     var latlng;
     
-    geocoder = new google.maps.Geocoder();
+    var geocoder = new google.maps.Geocoder();
     
-    if(gps){
-       latlng = new google.maps.LatLng(latitude, longitude);
+    if( gps == false ){
+    	latlng = geolocationBusca;
     }
     else{
-        latlng = geolocationBusca;
+        latlng = new google.maps.LatLng(ltlg[0], ltlg[1]);
     }
     
-    geocoder.geocode ({
-        'latLng' : latlng
-    }, 
-    function(results, status) {
+    // BUSCA O ENDEREÇO DO LOCAL
+    geocoder.geocode ({'latLng' : latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             if (results[0]) {
                 local = results[0].formatted_address;
+                
                 if(!gps){
                    local = $("#pesquisar").val();
                 }
+                
                 $("#enderecoLocal").html(local);
                 
-                if(gps){
-                   getAltura(true);
-                }
-                else{
-                    getAltura(false);
-                }
+                // BUSCA A ELEVAÇÃO DO LOCAL
+                var locations = [];
+			    var elevator = new google.maps.ElevationService();
+			    
+			    locations.push(latlng);
+			    
+			    var positionalRequest = {'locations' : locations};
+			
+			    elevator.getElevationForLocations(positionalRequest, function(results, status) {
+			        if (status == google.maps.ElevationStatus.OK) {
+			            if (results[0]) {
+			                $("#elevacaoLocal").html(results[0].elevation);
+			                $("#divbotao").hide();
+			                $("#tabela").show();
+			                
+			                altitude = results[0].elevation;
+			                
+			                getElevacaoRio();
+			            }
+			            else {
+			                alert('No results found');
+			            }
+			        }
+			        else{
+			            alert('Elevation service failed due to: ' + status);
+			        }
+			    });
             } 
             else {
                 alert("Geocoder failed due to: " + status);
@@ -216,16 +182,16 @@ function geocodificacaoReversa(gps) {
  */
 
 function coordenadas() {
-	var onSuccess = function(position) {
+	var onSuccess = function(position) {	
+		var latlng = [];	
+		latlng[0] = position.coords.latitude;
+		latlng[1] = position.coords.longitude;
 		
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
-		
-		geocodificacaoReversa(true);
-		
-		$("#latitudeLocal").html(latitude);
+		$("#latitudeLocal").html(latlng[0]);
 	
-		$("#longitudeLocal").html(longitude);
+		$("#longitudeLocal").html(latlng[1]);
+		
+		geocodificacaoReversa(latlng);
 	};
 
 	function onError(error) {
@@ -276,9 +242,9 @@ alert("readastext");
        var doisPontos = texto.indexOf(":");
        var pontoVirgula = texto.indexOf(";");
        */
-       alturaAlerta = 6//texto.substring(0,pontoVirgula);
+       alturaAlerta = 6;//texto.substring(0,pontoVirgula);
        
-       local = "Rua Seara 278, Imigrantes, Timbó" //texto.substring(pontoVirgula,doisPontos);
+       local = "Rua Seara 278, Imigrantes, Timbó" ;//texto.substring(pontoVirgula,doisPontos);
               
        $("#enderecoLocal").html(local);       
               
@@ -382,10 +348,10 @@ function ativarAlerta(sim) {
     if (sim) {
         timer = setInterval(
             function () {
-                getAlturaRio();
+                getElevacaoRio();
                 alteraBarraAlerta();
                 
-                nivelLocal = 66.2 - alturaRio;
+                nivelLocal = 66.2 - elevacaoRio;
                 
                 if(nivelLocal - 2 <= nivelRio ){
                     alerta();

@@ -41,13 +41,13 @@
         echo $_GET["getEnchentes"].' ('.json_encode(getEnchentes()).")";
     }
 	
-	if (isset($_GET['getAlturaRio'])) {
+	if (isset($_GET['getElevacaoRio'])) {
         header('content-type: application/json; charset=utf-8');
         header("access-control-allow-origin: *");   
 		
-		MongoConnect();
+		//MongoConnect();
 		
-        echo $_GET["getAlturaRio"].' ('.json_encode(getAlturaRio()).")";
+        echo json_encode(getElevacaoRio());
     }
 
 	if (isset($_GET['getDadosCeops'])) {
@@ -277,8 +277,7 @@
 		}
 		if (verificarEstadoDefesaCivil()) {
 			$retorno['1'] = '1';
-		}
-		
+		}		
 		return $retorno;
 	}
 
@@ -301,6 +300,7 @@
 		} else {
 			$cursor = $collectionLeituras -> find();
 		}
+		
 		$cursor -> sort(array('dataHora' => -1));
 		$cursor -> limit($qtdLeituras);
 
@@ -326,17 +326,17 @@
 				default:
 					$leituras[$i]['3'] = 'null';
 					break;
-			}
-			
+			}			
 			$i++;
-		}
-
-		
+		}		
 		return $leituras;
 	}
 	
-	function getAlturaRio() {
+	function getElevacaoRio() {
 		global $collectionAlturaRio;
+		
+		return 67; //QG TESTES******************************************
+		
 		$cursor = $collectionAlturaRio -> find();
 		foreach ($cursor as $document) {
 			$altura = $document["alturaRio"];

@@ -2,21 +2,21 @@
 <div id="modalBuscaLocal" class="modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-				<div id="forma">
-					<h4> Forma de Localização</h4>
-					<button type="button" onclick="addLocal(true);" data-dismiss="modal" class="button button-positive bSize">
-						GPS
-					</button>
-					<button type="button"  onclick="buscaLocal();"class="button button-positive bSize">
-						Mapa
-					</button>
-				</div>
-				<div id="buscaLocal" >
-					<input id='pesquisar' onFocus="geolocateBusca()" type='text' placeholder='RUA NUMERO CIDADE'>
-					<button type="button"  onclick="addLocal(false); $('#modalBuscaLocal').hide();"class="button button-positive bSize">
-						Ok
-					</button>
-				</div>
+			<div id="forma">
+				<h4> Forma de Localização</h4>
+				<button type="button" onclick="addLocal(true);" data-dismiss="modal" class="button button-positive bSize">
+					GPS
+				</button>
+				<button type="button"  onclick="buscaLocal();"class="button button-positive bSize">
+					Mapa
+				</button>
+			</div>
+			<div id="buscaLocal" >
+				<input id='pesquisar' onFocus="geolocateBusca()" type='text' placeholder='RUA NUMERO CIDADE'>
+				<button type="button"  onclick="addLocal(false); $('#modalBuscaLocal').hide();"class="button button-positive bSize">
+					Ok
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
