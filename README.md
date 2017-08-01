@@ -20,6 +20,8 @@ CEDUP Timbó, 2014.
 
 ## Componentes
 
+![diagram](https://github.com/RobertoDebarba/sistema-acompanhamento-enchentes/blob/master/docs/architectural-diagram.jpg)
+
 ### Arduino
 
 Resposável por realizar a medição do nível do rio e enviar para o servidor via Socket.
